@@ -210,7 +210,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 461548206}
   m_Father: {fileID: 357063213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,6 +309,246 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &461548205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461548206}
+  - component: {fileID: 461548208}
+  - component: {fileID: 461548207}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &461548206
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461548205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 201577806}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.5, y: -1.7999878}
+  m_SizeDelta: {x: 435.8, y: 945.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &461548207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461548205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam blandit
+    lectus, nec pulvinar erat vulputate non. Praesent aliquam aliquet commodo. Vestibulum
+    in mauris efficitur, accumsan ligula dictum, aliquet turpis. Sed lacus quam, posuere
+    quis massa sed, convallis tristique ligula. Cras lobortis orci eget enim viverra
+    interdum. Suspendisse fermentum faucibus justo, a viverra purus bibendum eu. Donec
+    turpis ipsum, fringilla id lacus at, convallis semper turpis. Curabitur tincidunt
+    nibh ligula, eget consequat felis vulputate tempus. Aenean convallis urna sit
+    amet molestie pretium.\r\n\r\nCurabitur faucibus dictum tellus. Suspendisse potenti.
+    Aenean blandit quis lorem convallis finibus. Class aptent taciti sociosqu ad litora
+    torquent per conubia nostra, per inceptos himenaeos. Pellentesque viverra sodales
+    rutrum. Proin porta ante vitae sem lobortis, a pellentesque nisl dapibus. Aenean
+    blandit malesuada purus vestibulum finibus. In quis pretium tellus. Nunc in lobortis
+    quam. Donec venenatis rutrum turpis et gravida. Etiam sit amet elit eget dui feugiat
+    maximus. Duis aliquet lacus sed felis sollicitudin, eu pulvinar nisl tempor. Etiam
+    lobortis neque quis mauris faucibus volutpat. Quisque non lacinia purus. Proin
+    eget neque ipsum. Suspendisse maximus interdum tortor eget ornare.\r\n\r\nSed
+    porta eros non turpis rutrum eleifend. Donec tincidunt dolor justo, tempor luctus
+    tellus aliquam ultrices. Donec semper, enim ut malesuada venenatis, sem leo lobortis
+    ex, nec finibus libero ex sed odio. Aenean eget rhoncus enim. Ut vestibulum eget
+    arcu at aliquam. Ut suscipit mauris rutrum ante vulputate suscipit. Ut bibendum
+    nulla interdum convallis tincidunt. Suspendisse non velit ut est commodo malesuada
+    non ornare lectus. Pellentesque vel tellus tortor. Vivamus vel odio eget nunc
+    volutpat lacinia fermentum ac nisl.\r\n\r\nUt euismod facilisis diam ac varius.
+    Maecenas mi eros, ullamcorper faucibus ullamcorper id, pretium et quam. Nulla
+    facilisi. Suspendisse posuere, odio in dictum suscipit, orci eros iaculis felis,
+    quis consectetur dui lorem dignissim purus. Nam pulvinar nisi in sem feugiat bibendum.
+    Cras mauris lorem, sollicitudin non ex vel, consectetur ultricies metus. Aliquam
+    dui felis, venenatis vel faucibus ut, blandit in ante. Integer quis pharetra eros.
+    Nulla porttitor gravida augue ut dapibus. Ut ac mi a mauris venenatis suscipit.
+    Etiam ullamcorper accumsan velit non vestibulum. Mauris iaculis, purus in auctor
+    convallis, erat massa pulvinar sem, egestas porttitor nisi nisi nec mauris. Nullam
+    arcu mi, efficitur non lobortis eget, placerat et arcu. Aliquam vel lectus egestas,
+    ultricies diam eget, finibus urna.\r\n\r\nNunc interdum magna vel metus pulvinar
+    interdum. Pellentesque aliquet volutpat risus non finibus. Donec scelerisque commodo
+    sem quis laoreet. Donec ac enim vitae libero tincidunt rutrum nec non felis. Nunc
+    in augue non lorem scelerisque blandit nec ornare ipsum. Nam elementum eget dolor
+    non cursus. Suspendisse pellentesque scelerisque mauris, quis consequat libero
+    blandit sit amet. Aliquam id sodales neque. Praesent congue magna condimentum
+    fringilla volutpat. Nulla facilisi. Vestibulum fringilla odio mi, ac dignissim
+    sem commodo ac. Suspendisse at euismod elit. Praesent et euismod ante. In sodales
+    hendrerit ligula, vitae egestas magna aliquet non.\nLorem ipsum dolor sit amet,
+    consectetur adipiscing elit. Nam aliquam blandit lectus, nec pulvinar erat vulputate
+    non. Praesent aliquam aliquet commodo. Vestibulum in mauris efficitur, accumsan
+    ligula dictum, aliquet turpis. Sed lacus quam, posuere quis massa sed, convallis
+    tristique ligula. Cras lobortis orci eget enim viverra interdum. Suspendisse fermentum
+    faucibus justo, a viverra purus bibendum eu. Donec turpis ipsum, fringilla id
+    lacus at, convallis semper turpis. Curabitur tincidunt nibh ligula, eget consequat
+    felis vulputate tempus. Aenean convallis urna sit amet molestie pretium.\r\n\r\nCurabitur
+    faucibus dictum tellus. Suspendisse potenti. Aenean blandit quis lorem convallis
+    finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos. Pellentesque viverra sodales rutrum. Proin porta ante vitae
+    sem lobortis, a pellentesque nisl dapibus. Aenean blandit malesuada purus vestibulum
+    finibus. In quis pretium tellus. Nunc in lobortis quam. Donec venenatis rutrum
+    turpis et gravida. Etiam sit amet elit eget dui feugiat maximus. Duis aliquet
+    lacus sed felis sollicitudin, eu pulvinar nisl tempor. Etiam lobortis neque quis
+    mauris faucibus volutpat. Quisque non lacinia purus. Proin eget neque ipsum. Suspendisse
+    maximus interdum tortor eget ornare.\r\n\r\nSed porta eros non turpis rutrum eleifend.
+    Donec tincidunt dolor justo, tempor luctus tellus aliquam ultrices. Donec semper,
+    enim ut malesuada venenatis, sem leo lobortis ex, nec finibus libero ex sed odio.
+    Aenean eget rhoncus enim. Ut vestibulum eget arcu at aliquam. Ut suscipit mauris
+    rutrum ante vulputate suscipit. Ut bibendum nulla interdum convallis tincidunt.
+    Suspendisse non velit ut est commodo malesuada non ornare lectus. Pellentesque
+    vel tellus tortor. Vivamus vel odio eget nunc volutpat lacinia fermentum ac nisl.\r\n\r\nUt
+    euismod facilisis diam ac varius. Maecenas mi eros, ullamcorper faucibus ullamcorper
+    id, pretium et quam. Nulla facilisi. Suspendisse posuere, odio in dictum suscipit,
+    orci eros iaculis felis, quis consectetur dui lorem dignissim purus. Nam pulvinar
+    nisi in sem feugiat bibendum. Cras mauris lorem, sollicitudin non ex vel, consectetur
+    ultricies metus. Aliquam dui felis, venenatis vel faucibus ut, blandit in ante.
+    Integer quis pharetra eros. Nulla porttitor gravida augue ut dapibus. Ut ac mi
+    a mauris venenatis suscipit. Etiam ullamcorper accumsan velit non vestibulum.
+    Mauris iaculis, purus in auctor convallis, erat massa pulvinar sem, egestas porttitor
+    nisi nisi nec mauris. Nullam arcu mi, efficitur non lobortis eget, placerat et
+    arcu. Aliquam vel lectus egestas, ultricies diam eget, finibus urna.\r\n\r\nNunc
+    interdum magna vel metus pulvinar interdum. Pellentesque aliquet volutpat risus
+    non finibus. Donec scelerisque commodo sem quis laoreet. Donec ac enim vitae libero
+    tincidunt rutrum nec non felis. Nunc in augue non lorem scelerisque blandit nec
+    ornare ipsum. Nam elementum eget dolor non cursus. Suspendisse pellentesque scelerisque
+    mauris, quis consequat libero blandit sit amet. Aliquam id sodales neque. Praesent
+    congue magna condimentum fringilla volutpat. Nulla facilisi. Vestibulum fringilla
+    odio mi, ac dignissim sem commodo ac. Suspendisse at euismod elit. Praesent et
+    euismod ante. In sodales hendrerit ligula, vitae egestas magna aliquet non.Lorem
+    ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam blandit lectus,
+    nec pulvinar erat vulputate non. Praesent aliquam aliquet commodo. Vestibulum
+    in mauris efficitur, accumsan ligula dictum, aliquet turpis. Sed lacus quam, posuere
+    quis massa sed, convallis tristique ligula. Cras lobortis orci eget enim viverra
+    interdum. Suspendisse fermentum faucibus justo, a viverra purus bibendum eu. Donec
+    turpis ipsum, fringilla id lacus at, convallis semper turpis. Curabitur tincidunt
+    nibh ligula, eget consequat felis vulputate tempus. Aenean convallis urna sit
+    amet molestie pretium.\r\n\r\nCurabitur faucibus dictum tellus. Suspendisse potenti.
+    Aenean blandit quis lorem convallis finibus. Class aptent taciti sociosqu ad litora
+    torquent per conubia nostra, per inceptos himenaeos. Pellentesque viverra sodales
+    rutrum. Proin porta ante vitae sem lobortis, a pellentesque nisl dapibus. Aenean
+    blandit malesuada purus vestibulum finibus. In quis pretium tellus. Nunc in lobortis
+    quam. Donec venenatis rutrum turpis et gravida. Etiam sit amet elit eget dui feugiat
+    maximus. Duis aliquet lacus sed felis sollicitudin, eu pulvinar nisl tempor. Etiam
+    lobortis neque quis mauris faucibus volutpat. Quisque non lacinia purus. Proin
+    eget neque ipsum. Suspendisse maximus interdum tortor eget ornare.\r\n\r\nSed
+    porta eros non turpis rutrum eleifend. Donec tincidunt dolor justo, tempor luctus
+    tellus aliquam ultrices. Donec semper, enim ut malesuada venenatis, sem leo lobortis
+    ex, nec finibus libero ex sed odio. Aenean eget rhoncus enim. Ut vestibulum eget
+    arcu at aliquam. Ut suscipit mauris rutrum ante vulputate suscipit. Ut bibendum
+    nulla interdum convallis tincidunt. Suspendisse non velit ut est commodo malesuada
+    non ornare lectus. Pellentesque vel tellus tortor. Vivamus vel odio eget nunc
+    volutpat lacinia fermentum ac nisl.\r\n\r\nUt euismod facilisis diam ac varius.
+    Maecenas mi eros, ullamcorper faucibus ullamcorper id, pretium et quam. Nulla
+    facilisi. Suspendisse posuere, odio in dictum suscipit, orci eros iaculis felis,
+    quis consectetur dui lorem dignissim purus. Nam pulvinar nisi in sem feugiat bibendum.
+    Cras mauris lorem, sollicitudin non ex vel, consectetur ultricies metus. Aliquam
+    dui felis, venenatis vel faucibus ut, blandit in ante. Integer quis pharetra eros.
+    Nulla porttitor gravida augue ut dapibus. Ut ac mi a mauris venenatis suscipit.
+    Etiam ullamcorper accumsan velit non vestibulum. Mauris iaculis, purus in auctor
+    convallis, erat massa pulvinar sem, egestas porttitor nisi nisi nec mauris. Nullam
+    arcu mi, efficitur non lobortis eget, placerat et arcu. Aliquam vel lectus egestas,
+    ultricies diam eget, finibus urna.\r\n\r\nNunc interdum magna vel metus pulvinar
+    interdum. Pellentesque aliquet volutpat risus non finibus. Donec scelerisque commodo
+    sem quis laoreet. Donec ac enim vitae libero tincidunt rutrum nec non felis. Nunc
+    in augue non lorem scelerisque blandit nec ornare ipsum. Nam elementum eget dolor
+    non cursus. Suspendisse pellentesque scelerisque mauris, quis consequat libero
+    blandit sit amet. Aliquam id sodales neque. Praesent congue magna condimentum
+    fringilla volutpat. Nulla facilisi. Vestibulum fringilla odio mi, ac dignissim
+    sem commodo ac. Suspendisse at euismod elit. Praesent et euismod ante. In sodales
+    hendrerit ligula, vitae egestas magna aliquet non.\nLorem ipsum dolor sit amet,
+    consectetur adipiscing elit. Nam aliquam blandit lectus, nec pulvinar erat vulputate
+    non. Praesent aliquam aliquet commodo. Vestibulum in mauris efficitur, accumsan
+    ligula dictum, aliquet turpis. Sed lacus quam, posuere quis massa sed, convallis
+    tristique ligula. Cras lobortis orci eget enim viverra interdum. Suspendisse fermentum
+    faucibus justo, a viverra purus bibendum eu. Donec turpis ipsum, fringilla id
+    lacus at, convallis semper turpis. Curabitur tincidunt nibh ligula, eget consequat
+    felis vulputate tempus. Aenean convallis urna sit amet molestie pretium.\r\n\r\nCurabitur
+    faucibus dictum tellus. Suspendisse potenti. Aenean blandit quis lorem convallis
+    finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos. Pellentesque viverra sodales rutrum. Proin porta ante vitae
+    sem lobortis, a pellentesque nisl dapibus. Aenean blandit malesuada purus vestibulum
+    finibus. In quis pretium tellus. Nunc in lobortis quam. Donec venenatis rutrum
+    turpis et gravida. Etiam sit amet elit eget dui feugiat maximus. Duis aliquet
+    lacus sed felis sollicitudin, eu pulvinar nisl tempor. Etiam lobortis neque quis
+    mauris faucibus volutpat. Quisque non lacinia purus. Proin eget neque ipsum. Suspendisse
+    maximus interdum tortor eget ornare.\r\n\r\nSed porta eros non turpis rutrum eleifend.
+    Donec tincidunt dolor justo, tempor luctus tellus aliquam ultrices. Donec semper,
+    enim ut malesuada venenatis, sem leo lobortis ex, nec finibus libero ex sed odio.
+    Aenean eget rhoncus enim. Ut vestibulum eget arcu at aliquam. Ut suscipit mauris
+    rutrum ante vulputate suscipit. Ut bibendum nulla interdum convallis tincidunt.
+    Suspendisse non velit ut est commodo malesuada non ornare lectus. Pellentesque
+    vel tellus tortor. Vivamus vel odio eget nunc volutpat lacinia fermentum ac nisl.\r\n\r\nUt
+    euismod facilisis diam ac varius. Maecenas mi eros, ullamcorper faucibus ullamcorper
+    id, pretium et quam. Nulla facilisi. Suspendisse posuere, odio in dictum suscipit,
+    orci eros iaculis felis, quis consectetur dui lorem dignissim purus. Nam pulvinar
+    nisi in sem feugiat bibendum. Cras mauris lorem, sollicitudin non ex vel, consectetur
+    ultricies metus. Aliquam dui felis, venenatis vel faucibus ut, blandit in ante.
+    Integer quis pharetra eros. Nulla porttitor gravida augue ut dapibus. Ut ac mi
+    a mauris venenatis suscipit. Etiam ullamcorper accumsan velit non vestibulum.
+    Mauris iaculis, purus in auctor convallis, erat massa pulvinar sem, egestas porttitor
+    nisi nisi nec mauris. Nullam arcu mi, efficitur non lobortis eget, placerat et
+    arcu. Aliquam vel lectus egestas, ultricies diam eget, finibus urna.\r\n\r\nNunc
+    interdum magna vel metus pulvinar interdum. Pellentesque aliquet volutpat risus
+    non finibus. Donec scelerisque commodo sem quis laoreet. Donec ac enim vitae libero
+    tincidunt rutrum nec non felis. Nunc in augue non lorem scelerisque blandit nec
+    ornare ipsum. Nam elementum eget dolor non cursus. Suspendisse pellentesque scelerisque
+    mauris, quis consequat libero blandit sit amet. Aliquam id sodales neque. Praesent
+    congue magna condimentum fringilla volutpat. Nulla facilisi. Vestibulum fringilla
+    odio mi, ac dignissim sem commodo ac. Suspendisse at euismod elit. Praesent et
+    euismod ante. In sodales hendrerit ligula, vitae egestas magna aliquet non."
+--- !u!222 &461548208
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461548205}
+  m_CullTransparentMesh: 0
 --- !u!1 &468757081
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -51.524994}
+  m_AnchoredPosition: {x: 2.11e-10, y: -51.524994}
   m_SizeDelta: {x: 480, y: 696.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469210666
