@@ -6,22 +6,23 @@ using UnityEngine;
 
 public class LoadCatalog : MonoBehaviour
 {
+    Resolution[] resolutions;
+
+    [SerializeField] GameObject buttonPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Testing
         GameObject content = GameObject.Find("Content");
-        GameObject button = new GameObject();
-
-        button.AddComponent<CanvasRenderer>();
-        button.AddComponent<RectTransform>();
-        Button mButton = button.AddComponent<Button>();
-        Image mImage = button.AddComponent<Image>();
-        mButton.targetGraphic = mImage;
-
-        button.transform.position = new Vector3(0, 0, 0);
-        button.transform.SetParent(content.transform);
-        button.GetComponent<Button>().onClick.AddListener(Testmethod);
-
+        resolutions = Screen.resolutions;
+        for( int i = 0; i < 10; i++)
+        {
+            GameObject button = (GameObject)Instantiate(buttonPrefab);
+            //button.GetComponent<Text>().text = i.ToString();
+            button.GetComponent<Button>().onClick.AddListener(Testmethod);
+            button.transform.SetParent(content.transform);
+        }
     }
 
     void Testmethod()
