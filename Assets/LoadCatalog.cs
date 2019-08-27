@@ -8,20 +8,24 @@ public class LoadCatalog : MonoBehaviour
 {
     Resolution[] resolutions;
 
+    string[] CataLogTitle = { "Chair", "Table", "Beds", "Backpacks" };
+
     [SerializeField] GameObject buttonPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Testing
         GameObject content = GameObject.Find("Content");
         resolutions = Screen.resolutions;
-        for( int i = 0; i < 10; i++)
+        for( int i = 0; i < CataLogTitle.Length; i++)
         {
             GameObject button = (GameObject)Instantiate(buttonPrefab);
-            //button.GetComponent<Text>().text = i.ToString();
+            button.GetComponent<Button>().GetComponentInChildren<Text>().text = CataLogTitle[i];
             button.GetComponent<Button>().onClick.AddListener(Testmethod);
             button.transform.SetParent(content.transform);
+            Vector3 position = new Vector3(0 ,i * 30 - 300);
+            button.transform.position = position;
+
         }
     }
 
