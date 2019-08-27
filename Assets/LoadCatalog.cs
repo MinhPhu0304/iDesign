@@ -8,7 +8,7 @@ public class LoadCatalog : MonoBehaviour
 {
     Resolution[] resolutions;
 
-    string[] CataLogTitle = { "Chair", "Table", "Beds", "Backpacks" };
+    string[] CataLogTitle = { "Chair", "Beds", "Couch", "Coffee table", "Dining table", "Coat rack" };
 
     [SerializeField] GameObject buttonPrefab;
 
