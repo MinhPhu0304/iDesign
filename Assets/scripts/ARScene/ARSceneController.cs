@@ -4,6 +4,7 @@ using GoogleARCore.Examples.Common;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 namespace GoogleARCore
 {
 
@@ -134,10 +135,11 @@ namespace GoogleARCore
         /// </summary>
         private void _UpdateApplicationLifecycle()
         {
+
             // Exit the app when the 'back' button is pressed.
             if (Input.GetKey(KeyCode.Escape))
             {
-                Application.Quit();
+                returnToMenu();
             }
 
             // Only allow the screen to sleep when not tracking.
@@ -160,9 +162,8 @@ namespace GoogleARCore
             // appear.
             if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
             {
-                _ShowAndroidToastMessage("Camera permission is needed to run this application.");
-                m_IsQuitting = true;
-                Invoke("_DoQuit", 0.5f);
+                _ShowAndroidToastMessage("Camera permission is required to run this application.");
+                returnToMenu();
             }
             else if (Session.Status.IsError())
             {
@@ -204,6 +205,11 @@ namespace GoogleARCore
             }
         }
 
+        public void returnToMenu()
+        {
+            Control menuControl = new Control();
+            menuControl.onClick();
+        }
         public void ChangeObjectToPlace(GameObject toObject)
         {
             objectToPlace = toObject;
