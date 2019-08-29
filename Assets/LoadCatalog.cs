@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 //using UnityEngine.Experimental.UIElements;
 
 public class LoadCatalog : MonoBehaviour
@@ -21,18 +22,19 @@ public class LoadCatalog : MonoBehaviour
         {
             GameObject button = (GameObject)Instantiate(buttonPrefab);
             button.GetComponent<Button>().GetComponentInChildren<Text>().text = CataLogTitle[i];
-            button.GetComponent<Button>().onClick.AddListener(Testmethod);
+            button.name = CataLogTitle[i] + i.ToString();
+            button.GetComponent<Button>().onClick.AddListener(() => NavigateToScene(button.name));
             button.transform.SetParent(content.transform);
             Vector3 position = new Vector3(0 ,i * 30 - 300);
             button.transform.position = position;
-
         }
     }
 
-    void Testmethod()
+    private void NavigateToScene(string name)
     {
-        Debug.Log("Button Pressed");
+        Debug.Log(name);
     }
+
 
     // Update is called once per frame
     void Update()
