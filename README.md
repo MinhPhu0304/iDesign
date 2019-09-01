@@ -1,7 +1,9 @@
 # iDesign
 
 ## Augmented Reality interior design app 
-
+![GitHub top language](https://img.shields.io/github/languages/top/Minhphu0304/iDesign)
+![GitHub](https://img.shields.io/github/license/Minhphu0304/iDesign)
+![GitHub contributors](https://img.shields.io/github/contributors/Minhphu0304/iDesign)
 
 ### I. What is iDesign about
 iDesign is an augmented reality Interior design app intended to help users to digitally display
@@ -16,9 +18,9 @@ product looks like on wall, table on their phone iDesign by using AR technology.
 are clear, for everyone involved: less hassle, less travel, quicker and more intuitive
 understanding of how a space will look and feel.
 
-![](./projectpitchimage.PNG)
+![](https://raw.githubusercontent.com/MinhPhu0304/iDesign/master/projectpitchimage.png)
 
-### II. Technology
+### II. Technology Used
     - Unity
     - ARCore
 
