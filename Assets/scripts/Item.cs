@@ -4,8 +4,9 @@ public class Item
 	private float price;
 	private string URL;
     private string desc;
-    private string specs;
-	public Item(string name, float price, string URL, string desc, string specs)
+    private Specs specs;
+    public int numberOfClicks = 0;
+	public Item(string name, float price, string URL, string desc, string desc1, Specs specs)
 	{
 		this.name = name;
 		this.price = price;
@@ -35,6 +36,6 @@ public class Item
 
     public string GetSpecs()
     {
-        return specs;
+        return specs.GetSpecs();
     }
 }

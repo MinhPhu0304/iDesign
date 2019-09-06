@@ -9,7 +9,8 @@ public class PurchasePanelScript : MonoBehaviour
     private Item currentItem;
     public GameObject ItemName;
     public GameObject ItemPrice;
-
+    public GameObject PreviewButton;
+    public GameObject PurchaseButton;
     // Start is called before the first frame update
     private void Start()
     {
@@ -25,8 +26,10 @@ public class PurchasePanelScript : MonoBehaviour
 
     public void ShowPanel()
     {
-        purchasePanel.gameObject.SetActive(true);
+        PreviewButton.GetComponent<Button>().interactable = false;
+        PurchaseButton.GetComponent<Button>().interactable = false;
 
+        purchasePanel.gameObject.SetActive(true);
 
         Text name = ItemName.GetComponent<Text>();
         name.text = currentItem.GetName();
@@ -37,11 +40,15 @@ public class PurchasePanelScript : MonoBehaviour
 
     public void HidePanel()
     {
+        PreviewButton.GetComponent<Button>().interactable = true;
+        PurchaseButton.GetComponent<Button>().interactable = true;
+
         purchasePanel.gameObject.SetActive(false);
     }
 
     public void GotoSupplierWebsite()
     {
+        ++currentItem.numberOfClicks;
         Application.OpenURL(currentItem.GetURL());
     }
 }
