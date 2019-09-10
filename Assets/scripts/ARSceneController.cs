@@ -34,7 +34,7 @@ namespace GoogleARCore
         /// <summary>
         /// A model to place when a raycast from a user touch hits a horizontal plane.
         /// </summary>
-        public GameObject objectToPlace;
+        public static GameObject objectToPlace;
 
         /// <summary>
         /// A model to place when a raycast from a user touch hits a feature point.
