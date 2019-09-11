@@ -193,6 +193,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201577806}
+  - component: {fileID: 201577807}
+  - component: {fileID: 201577808}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -216,9 +218,46 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -230, y: 268.05}
-  m_SizeDelta: {x: 460, y: 945}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &201577807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201577805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &201577808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201577805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!1 &357063212
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +362,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 1531110849561336641, guid: 6dd113ece39575449b806a5b6abb186b,
     type: 3}
+  categoryListingPrefab: {fileID: 2293756452914757157, guid: c3a9b3af2a9014d4995583f73f9733fd,
+    type: 3}
+  itemListingPrefab: {fileID: 8750093181132216491, guid: 50d2c2dc450e4a04dbfb404e6230c684,
+    type: 3}
+  itemListings: []
+  categoryListings: []
 --- !u!1 &468757081
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,9 +533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 201577806}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -1123,7 +1168,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 468757082}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.71634924
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

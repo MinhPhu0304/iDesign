@@ -7,7 +7,7 @@ public class Item
     private float price;
     private string URL;
     private string desc;
-    private ArrayList categories;
+    private ArrayList categories = new ArrayList();
     private Specs specs;
     public int numberOfClicks = 0;
 
@@ -61,6 +61,14 @@ public class Item
     public void AddCategory(string category)
     {
         categories.Add(category);
+    }
+
+    public void AddCategory(string[] categoryArray)
+    {
+        foreach (string category in categoryArray)
+        {
+            categories.Add(category);
+        }
     }
 
     public string GetSpecs()
