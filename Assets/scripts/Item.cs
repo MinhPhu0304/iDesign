@@ -1,19 +1,38 @@
+using System.Collections;
+
 public class Item
 {
-	private string name;
-	private float price;
-	private string URL;
+    private int itemID;
+    private string name;
+    private float price;
+    private string URL;
     private string desc;
+    private ArrayList categories = new ArrayList();
     private Specs specs;
     public int numberOfClicks = 0;
-	public Item(string name, float price, string URL, string desc, string desc1, Specs specs)
-	{
-		this.name = name;
-		this.price = price;
-		this.URL = URL;
+
+    public Item(int itemID, string name, float price, string URL, string desc)
+    {
+        this.itemID = itemID;
+        this.name = name;
+        this.price = price;
+        this.URL = URL;
+        this.desc = desc;
+    }
+    public Item(int itemID, string name, float price, string URL, string desc, Specs specs)
+    {
+        this.itemID = itemID;
+        this.name = name;
+        this.price = price;
+        this.URL = URL;
         this.desc = desc;
         this.specs = specs;
-	}
+    }
+
+    public int GetItemID()
+    {
+        return itemID;
+    }
 
     public string GetName()
     {
@@ -32,6 +51,24 @@ public class Item
     public string GetDesc()
     {
         return desc;
+    }
+
+    public ArrayList GetCategories()
+    {
+        return categories;
+    }
+
+    public void AddCategory(string category)
+    {
+        categories.Add(category);
+    }
+
+    public void AddCategory(string[] categoryArray)
+    {
+        foreach (string category in categoryArray)
+        {
+            categories.Add(category);
+        }
     }
 
     public string GetSpecs()

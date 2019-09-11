@@ -3,6 +3,7 @@ using GoogleARCore;
 using GoogleARCore.Examples.Common;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 namespace GoogleARCore
@@ -34,7 +35,7 @@ namespace GoogleARCore
         /// <summary>
         /// A model to place when a raycast from a user touch hits a horizontal plane.
         /// </summary>
-        public GameObject objectToPlace;
+        public static GameObject objectToPlace;
 
         /// <summary>
         /// A model to place when a raycast from a user touch hits a feature point.
@@ -137,8 +138,10 @@ namespace GoogleARCore
         {
 
             // Exit the app when the 'back' button is pressed.
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape) && SceneManager.GetActiveScene().name == "ARScene")
             {
+                Debug.Log("Esc pressed");
+
                 returnToMenu();
             }
 

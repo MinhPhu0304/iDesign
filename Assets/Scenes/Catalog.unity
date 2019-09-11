@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -193,6 +193,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201577806}
+  - component: {fileID: 201577807}
+  - component: {fileID: 201577808}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -214,11 +216,48 @@ RectTransform:
   m_Father: {fileID: 357063213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000004083914}
-  m_SizeDelta: {x: 0, y: 1026}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &201577807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201577805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &201577808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201577805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!1 &357063212
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,11 +357,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 357063212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4532e4a87e60c8f4dae79cb3c4a2ea0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ba8908725ba358428f5d29ef5352871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 1531110849561336641, guid: f310e190839caff4ea800793a0b62db5,
+  buttonPrefab: {fileID: 1531110849561336641, guid: 6dd113ece39575449b806a5b6abb186b,
     type: 3}
+  categoryListingPrefab: {fileID: 2293756452914757157, guid: c3a9b3af2a9014d4995583f73f9733fd,
+    type: 3}
+  itemListingPrefab: {fileID: 8750093181132216491, guid: 50d2c2dc450e4a04dbfb404e6230c684,
+    type: 3}
+  itemListings: []
+  categoryListings: []
 --- !u!1 &468757081
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,9 +533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 201577806}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -500,8 +545,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1571435369}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -3
-  m_VerticalScrollbarSpacing: -3
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -646,7 +691,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 760b068b12a741e42ba6806246d29b9f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 24660329ff6b4234d97bdf2a87823d14, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1122,8 +1167,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 468757083}
   m_HandleRect: {fileID: 468757082}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.6627193
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
