@@ -52,6 +52,11 @@ namespace GoogleARCore
         /// </summary>
         private bool m_IsQuitting = false;
 
+
+        public void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
         /// <summary>
         /// The Unity Update() method.
         /// </summary>
