@@ -3,6 +3,7 @@ using GoogleARCore;
 using GoogleARCore.Examples.Common;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 namespace GoogleARCore
@@ -52,11 +53,6 @@ namespace GoogleARCore
         /// </summary>
         private bool m_IsQuitting = false;
 
-
-        public void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
         /// <summary>
         /// The Unity Update() method.
         /// </summary>
@@ -142,8 +138,10 @@ namespace GoogleARCore
         {
 
             // Exit the app when the 'back' button is pressed.
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape) && SceneManager.GetActiveScene().name == "ARScene")
             {
+                Debug.Log("Esc pressed");
+
                 returnToMenu();
             }
 
