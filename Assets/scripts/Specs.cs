@@ -26,5 +26,5 @@ public class Specs
 
         return specs;
     }
-
 }
+
