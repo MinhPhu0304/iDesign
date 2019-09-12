@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TopPanel : MonoBehaviour
+public class TopPanelBehaviour : MonoBehaviour
 {
     public GameObject TitleItemNameText;
     // Start is called before the first frame update
     void Start()
     {
         Text name = TitleItemNameText.GetComponent<Text>();
-        Item currentItem = ItemDisplayPanel.currentItem;
+        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
         if (currentItem != null)
-            name.text = ItemDisplayPanel.currentItem.GetName();
+            name.text = ItemDisplayPanelBehaviour.currentItem.GetName();
     }
 
     // Update is called once per frame

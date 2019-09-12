@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PurchasePanelScript : MonoBehaviour
+public class PurchasePanelBehaviour : MonoBehaviour
 {
     public GameObject purchasePanel;
     private Item currentItem;
@@ -14,7 +14,7 @@ public class PurchasePanelScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        currentItem = ItemDisplayPanel.currentItem;
+        currentItem = ItemDisplayPanelBehaviour.currentItem;
         HidePanel();
     }
 
@@ -35,7 +35,7 @@ public class PurchasePanelScript : MonoBehaviour
         name.text = currentItem.GetName();
 
         Text price = ItemPrice.GetComponent<Text>();
-        price.text = "Price: $" + currentItem.GetPrice();
+        price.text = "Price: " + string.Format("{0:C}", currentItem.GetPrice());
     }
 
     public void HidePanel()

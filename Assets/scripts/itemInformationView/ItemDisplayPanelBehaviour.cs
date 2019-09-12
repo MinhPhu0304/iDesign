@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemDisplayPanel : MonoBehaviour
+public class ItemDisplayPanelBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
     public static Item currentItem;
     public GameObject ItemNameText;
+    public GameObject itemPrice;
     public GameObject DescAndSpecsContent;
     void Start()
     {
@@ -14,7 +15,10 @@ public class ItemDisplayPanel : MonoBehaviour
         Text name = ItemNameText.GetComponent<Text>();
         name.text = currentItem.GetName();
 
-        
+        itemPrice.GetComponent<Text>().text = string.Format("{0:C}", currentItem.GetPrice());
+        currentItem.GetPrice();
+
+
         Text descAndSpecs = DescAndSpecsContent.GetComponentInChildren<Text>();
         descAndSpecs.text = "Description: \n\n" + currentItem.GetDesc() + "\n\nSpecifications: \n\n" + currentItem.GetSpecs();
     }
