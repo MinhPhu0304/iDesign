@@ -13,9 +13,9 @@ public class LoadCatalog : MonoBehaviour
 
     string[] CataLogTitle = { "Chair", "Beds", "Couch", "Coffee table", "Dining table", "Coat rack" };
 
-    [SerializeField] GameObject buttonPrefab;
-    [SerializeField] GameObject categoryListingPrefab;
-    [SerializeField] GameObject itemListingPrefab;
+    
+    public GameObject categoryListingPrefab;
+    public GameObject itemListingPrefab;
 
     public ArrayList loadedItems = new ArrayList();
     public ArrayList foundCategories = new ArrayList();
