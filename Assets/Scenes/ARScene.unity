@@ -252,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 96.480835
       objectReference: {fileID: 0}
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 96.480835
       objectReference: {fileID: 0}
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 1043584193}
   - component: {fileID: 1043584192}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,6 +832,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1742234420608119168}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1454752204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1132834895103378, guid: c539aa4fa1bac4b4da61761b0699b48b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1356061802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1454752205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454752204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebdd35bba15b49429a0106cf40ab125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1506846533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1034,7 @@ PrefabInstance:
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 96.480835
       objectReference: {fileID: 0}
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
@@ -1156,7 +1174,6 @@ GameObject:
   - component: {fileID: 2019007177}
   - component: {fileID: 2019007176}
   - component: {fileID: 2019007175}
-  - component: {fileID: 2019007178}
   m_Layer: 5
   m_Name: ShotButton
   m_TagString: Untagged
@@ -1171,17 +1188,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019007173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 108}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 209.313}
+  m_LocalScale: {x: 0.93808323, y: 0.93808323, z: 0.93808323}
   m_Children:
   - {fileID: 1965923792}
   m_Father: {fileID: 581030544}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137, y: 446}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 407, y: -104.0204}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019007175
@@ -1224,7 +1241,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2019007178}
+      - m_Target: {fileID: 1454752205}
         m_MethodName: TakeAShot
         m_Mode: 1
         m_Arguments:
@@ -1274,19 +1291,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019007173}
   m_CullTransparentMesh: 0
---- !u!114 &2019007178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019007173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ebdd35bba15b49429a0106cf40ab125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blink: {fileID: 0}
 --- !u!1001 &1742234420608119168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1372,7 +1376,7 @@ PrefabInstance:
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 96.480835
       objectReference: {fileID: 0}
     - target: {fileID: 1742234421888026270, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
         type: 3}
