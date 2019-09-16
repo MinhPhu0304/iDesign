@@ -7,10 +7,12 @@ public class TakeScreenshot : MonoBehaviour
     public void TakeAShot()
     {
         StartCoroutine("TakeScreenshotAndSave");
+
     }
 
     IEnumerator TakeScreenshotAndSave()
     {
+        yield return null;
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = false;
         yield return new WaitForEndOfFrame();
         Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
