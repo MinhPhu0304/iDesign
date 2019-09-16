@@ -18,12 +18,6 @@ public class PurchasePanelBehaviour : MonoBehaviour
         HidePanel();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
-
     public void ShowPanel()
     {
         PreviewButton.GetComponent<Button>().interactable = false;

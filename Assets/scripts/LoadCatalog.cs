@@ -17,8 +17,8 @@ public class LoadCatalog : MonoBehaviour
     public GameObject categoryListingPrefab;
     public GameObject itemListingPrefab;
 
-    public ArrayList loadedItems = new ArrayList();
-    public ArrayList foundCategories = new ArrayList();
+    public List<Item> loadedItems = new List<Item>();
+    public List<string> foundCategories = new List<string>();
 
     public List<GameObject> itemListings;
     public List<GameObject> categoryListings;
@@ -26,6 +26,7 @@ public class LoadCatalog : MonoBehaviour
     public List<GameObject> disabledListings;
 
     GameObject sceneController;
+    GameObject itemSceneController;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,9 @@ public class LoadCatalog : MonoBehaviour
 
         sceneController = new GameObject();
         sceneController.AddComponent<ARSceneController>();
+
+        itemSceneController = new GameObject();
+        itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
 
         GameObject content = GameObject.Find("Content");
 
@@ -51,8 +55,8 @@ public class LoadCatalog : MonoBehaviour
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
             itemListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = thumbnailSprite; //Set thumbnail
 
-            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToScene(itemInList.GetName())); //Make previewbutton go to ARScene
-            //itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList.GetName())); //Make info button go to info scene
+            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName())); //Make previewbutton go to ARScene
+            itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
             itemListing.transform.SetParent(content.transform); //Set listing parent
             RectTransform rt = itemListing.GetComponent<RectTransform>(); //get size of listing
@@ -110,7 +114,7 @@ public class LoadCatalog : MonoBehaviour
         return found;
     }
 
-    private void NavigateToScene(string name)
+    private void NavigateToARScene(string name)
     {
         Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
@@ -182,6 +186,11 @@ public class LoadCatalog : MonoBehaviour
         disabledListings.Remove(toShow);
     }
 
+    private void NavigateToInfoScene(Item itemToShow)
+    {
+        Debug.Log("Navigate to infoscene");
+        itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
+    }
 
     private void GenerateItems()
     {
@@ -208,7 +217,7 @@ public class LoadCatalog : MonoBehaviour
     {
         foreach (Item item in loadedItems)
         {
-            ArrayList itemCategories = item.GetCategories();
+            List<string> itemCategories = item.GetCategories();
 
             foreach (string category in itemCategories)
             {
