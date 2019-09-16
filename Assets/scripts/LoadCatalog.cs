@@ -124,7 +124,7 @@ public class LoadCatalog : MonoBehaviour
         GameObject searchPanel = GameObject.Find("Search Text");
         string search = searchPanel.GetComponentInChildren<Text>().text;
 
-        Debug.Log(search + " Typed in search box");
+        Debug.Log("Searching for: " + search);
 
         List<Item> searchResults = new List<Item>();
 
@@ -132,6 +132,7 @@ public class LoadCatalog : MonoBehaviour
         {
             if (foundItem.GetName().Contains(search) || foundItem.GetCategories().Contains(search))
             {
+                //If item is not already in search results
                 if (!searchResults.Contains(foundItem))
                 {
                     searchResults.Add(foundItem);
@@ -141,7 +142,10 @@ public class LoadCatalog : MonoBehaviour
 
         hideListings();
 
-        foreach ()
+        foreach (Item toShow in searchResults)
+        {
+            showListing(toShow);
+        }
     }
 
     //Hides all listings currently visible
@@ -162,15 +166,20 @@ public class LoadCatalog : MonoBehaviour
             visibleListings.Remove(toHide);
         }
 
-        
     }
 
-    private void showListing(GameObject listing)
+    //Shows listing that is passed in and updates visible/disabled lists
+    private void showListing(Item listing)
     {
-        listing.SetActive(true);
+        Debug.Log($"Looking for: Listing: {listing.GetItemID()} {listing.GetName()}");
 
-        visibleListings.Add(listing);
-        disabledListings.Remove(listing);
+        GameObject content = GameObject.Find("Content");
+        GameObject toShow = content.transform.Find($"Listing: { listing.GetItemID()} { listing.GetName()}").gameObject;
+
+        toShow.SetActive(true);
+
+        visibleListings.Add(toShow);
+        disabledListings.Remove(toShow);
     }
 
 
