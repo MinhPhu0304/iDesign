@@ -22,6 +22,8 @@ public class LoadCatalog : MonoBehaviour
 
     public List<GameObject> itemListings;
     public List<GameObject> categoryListings;
+    public List<GameObject> visibleListings;
+    public List<GameObject> disabledListings;
 
     GameObject sceneController;
 
@@ -57,6 +59,7 @@ public class LoadCatalog : MonoBehaviour
             rt.sizeDelta = new Vector2(440, 125); //set size of listing
 
             itemListings.Add(itemListing);
+            disabledListings.Add(itemListing);
 
             listingNo++;
         }
@@ -87,6 +90,7 @@ public class LoadCatalog : MonoBehaviour
             rt.sizeDelta = new Vector2(440, 125);
 
             categoryListings.Add(categoryListing);
+            visibleListings.Add(categoryListing);
 
             listingNo++;
 
@@ -112,7 +116,61 @@ public class LoadCatalog : MonoBehaviour
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
         sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 
-        SceneManager.LoadScene("ARScene");      
+        SceneManager.LoadScene("ARScene");
+    }
+
+    public void SearchCatalog()
+    {
+        GameObject searchPanel = GameObject.Find("Search Text");
+        string search = searchPanel.GetComponentInChildren<Text>().text;
+
+        Debug.Log(search + " Typed in search box");
+
+        List<Item> searchResults = new List<Item>();
+
+        foreach (Item foundItem in loadedItems)
+        {
+            if (foundItem.GetName().Contains(search) || foundItem.GetCategories().Contains(search))
+            {
+                if (!searchResults.Contains(foundItem))
+                {
+                    searchResults.Add(foundItem);
+                }
+            }
+        }
+
+        hideListings();
+
+        foreach ()
+    }
+
+    //Hides all listings currently visible
+    private void hideListings()
+    {
+        List<GameObject> listingsToHide = new List<GameObject>();
+
+        foreach (GameObject listing in visibleListings)
+        {
+            listing.SetActive(false);
+
+            disabledListings.Add(listing);
+            listingsToHide.Add(listing);
+        }
+
+        foreach (GameObject toHide in listingsToHide)
+        {
+            visibleListings.Remove(toHide);
+        }
+
+        
+    }
+
+    private void showListing(GameObject listing)
+    {
+        listing.SetActive(true);
+
+        visibleListings.Add(listing);
+        disabledListings.Remove(listing);
     }
 
 
