@@ -47,6 +47,7 @@ public class LoadCatalog : MonoBehaviour
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
+            itemListing.GetComponentInChildren<Text>().fontSize = 30;
             itemListing.name = $"Listing: {itemInList.GetItemID()} {itemInList.GetName()}"; //Set name of gameobject
 
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
@@ -84,6 +85,7 @@ public class LoadCatalog : MonoBehaviour
             }         
 
             categoryListing.GetComponentInChildren<Text>().text = category;
+            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
             categoryListing.name = $"Category: {category}";
 
             categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
