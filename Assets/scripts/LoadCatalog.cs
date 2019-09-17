@@ -50,6 +50,7 @@ public class LoadCatalog : MonoBehaviour
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
+            itemListing.GetComponentInChildren<Text>().fontSize = 30;
             itemListing.name = $"Listing: {itemInList.GetItemID()} {itemInList.GetName()}"; //Set name of gameobject
 
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
@@ -58,9 +59,9 @@ public class LoadCatalog : MonoBehaviour
             itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName())); //Make previewbutton go to ARScene
             itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
-            itemListing.transform.SetParent(content.transform); //Set listing parent
+            itemListing.transform.SetParent(content.transform,false); //Set listing parent
             RectTransform rt = itemListing.GetComponent<RectTransform>(); //get size of listing
-            rt.sizeDelta = new Vector2(440, 125); //set size of listing
+            rt.sizeDelta = new Vector2(640, 125); //set size of listing
 
             itemListings.Add(itemListing);
             disabledListings.Add(itemListing);
@@ -84,14 +85,15 @@ public class LoadCatalog : MonoBehaviour
             }         
 
             categoryListing.GetComponentInChildren<Text>().text = category;
+            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
             categoryListing.name = $"Category: {category}";
 
             categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
             categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
 
-            categoryListing.transform.SetParent(content.transform);
+            categoryListing.transform.SetParent(content.transform,false);
             RectTransform rt = categoryListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(440, 125);
+            rt.sizeDelta = new Vector2(640, 125);
 
             categoryListings.Add(categoryListing);
             visibleListings.Add(categoryListing);
