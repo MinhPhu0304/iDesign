@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TakeScreenshot : MonoBehaviour
 {
+    //public Renderer rend;
     public void TakeAShot()
     {
         StartCoroutine("TakeScreenshotAndSave");
-
     }
 
     IEnumerator TakeScreenshotAndSave()
@@ -16,7 +16,7 @@ public class TakeScreenshot : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = false;
         yield return new WaitForEndOfFrame();
         Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
-        //Get Image from screen
+        //Takes Image from Screen
         screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
         screenImage.Apply();
         //Convert to png
@@ -26,7 +26,7 @@ public class TakeScreenshot : MonoBehaviour
         string fileName = "Screenshot" + timeStamp + ".png";
 
         //Save image to gallery
-        NativeGallery.SaveImageToGallery(imageBytes, "AlbumName", fileName, null);
+        NativeGallery.SaveImageToGallery(imageBytes, "DCIM/Screenshots", fileName, null);
         yield return new WaitForEndOfFrame();
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
     }
