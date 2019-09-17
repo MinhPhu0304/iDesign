@@ -17,13 +17,16 @@ public class LoadCatalog : MonoBehaviour
     public GameObject categoryListingPrefab;
     public GameObject itemListingPrefab;
 
-    public ArrayList loadedItems = new ArrayList();
-    public ArrayList foundCategories = new ArrayList();
+    public List<Item> loadedItems = new List<Item>();
+    public List<string> foundCategories = new List<string>();
 
     public List<GameObject> itemListings;
     public List<GameObject> categoryListings;
+    public List<GameObject> visibleListings;
+    public List<GameObject> disabledListings;
 
     GameObject sceneController;
+    GameObject itemSceneController;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,9 @@ public class LoadCatalog : MonoBehaviour
 
         sceneController = new GameObject();
         sceneController.AddComponent<ARSceneController>();
+
+        itemSceneController = new GameObject();
+        itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
 
         GameObject content = GameObject.Find("Content");
 
@@ -49,14 +55,15 @@ public class LoadCatalog : MonoBehaviour
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
             itemListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = thumbnailSprite; //Set thumbnail
 
-            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToScene(itemInList.GetName())); //Make previewbutton go to ARScene
-            //itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList.GetName())); //Make info button go to info scene
+            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName())); //Make previewbutton go to ARScene
+            itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
             itemListing.transform.SetParent(content.transform); //Set listing parent
             RectTransform rt = itemListing.GetComponent<RectTransform>(); //get size of listing
             rt.sizeDelta = new Vector2(440, 125); //set size of listing
 
             itemListings.Add(itemListing);
+            disabledListings.Add(itemListing);
 
             listingNo++;
         }
@@ -87,6 +94,7 @@ public class LoadCatalog : MonoBehaviour
             rt.sizeDelta = new Vector2(440, 125);
 
             categoryListings.Add(categoryListing);
+            visibleListings.Add(categoryListing);
 
             listingNo++;
 
@@ -106,15 +114,83 @@ public class LoadCatalog : MonoBehaviour
         return found;
     }
 
-    private void NavigateToScene(string name)
+    private void NavigateToARScene(string name)
     {
         Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
         sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 
-        SceneManager.LoadScene("ARScene");      
+        SceneManager.LoadScene("ARScene");
     }
 
+    public void SearchCatalog()
+    {
+        GameObject searchPanel = GameObject.Find("Search Text");
+        string search = searchPanel.GetComponentInChildren<Text>().text;
+
+        Debug.Log("Searching for: " + search);
+
+        List<Item> searchResults = new List<Item>();
+
+        foreach (Item foundItem in loadedItems)
+        {
+            if (foundItem.GetName().Contains(search) || foundItem.GetCategories().Contains(search))
+            {
+                //If item is not already in search results
+                if (!searchResults.Contains(foundItem))
+                {
+                    searchResults.Add(foundItem);
+                }
+            }
+        }
+
+        hideListings();
+
+        foreach (Item toShow in searchResults)
+        {
+            showListing(toShow);
+        }
+    }
+
+    //Hides all listings currently visible
+    private void hideListings()
+    {
+        List<GameObject> listingsToHide = new List<GameObject>();
+
+        foreach (GameObject listing in visibleListings)
+        {
+            listing.SetActive(false);
+
+            disabledListings.Add(listing);
+            listingsToHide.Add(listing);
+        }
+
+        foreach (GameObject toHide in listingsToHide)
+        {
+            visibleListings.Remove(toHide);
+        }
+
+    }
+
+    //Shows listing that is passed in and updates visible/disabled lists
+    private void showListing(Item listing)
+    {
+        Debug.Log($"Looking for: Listing: {listing.GetItemID()} {listing.GetName()}");
+
+        GameObject content = GameObject.Find("Content");
+        GameObject toShow = content.transform.Find($"Listing: { listing.GetItemID()} { listing.GetName()}").gameObject;
+
+        toShow.SetActive(true);
+
+        visibleListings.Add(toShow);
+        disabledListings.Remove(toShow);
+    }
+
+    private void NavigateToInfoScene(Item itemToShow)
+    {
+        Debug.Log("Navigate to infoscene");
+        itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
+    }
 
     private void GenerateItems()
     {
@@ -141,7 +217,7 @@ public class LoadCatalog : MonoBehaviour
     {
         foreach (Item item in loadedItems)
         {
-            ArrayList itemCategories = item.GetCategories();
+            List<string> itemCategories = item.GetCategories();
 
             foreach (string category in itemCategories)
             {

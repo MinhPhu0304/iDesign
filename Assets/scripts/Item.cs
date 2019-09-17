@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 
 public class Item
 {
@@ -7,7 +7,7 @@ public class Item
     private float price;
     private string URL;
     private string desc;
-    private ArrayList categories = new ArrayList();
+    private List<string> categories = new List<string>();
     private Specs specs;
     public int numberOfClicks = 0;
 
@@ -18,6 +18,7 @@ public class Item
         this.price = price;
         this.URL = URL;
         this.desc = desc;
+        this.specs = new Specs(0, 0, 0, "n/a");
     }
     public Item(int itemID, string name, float price, string URL, string desc, Specs specs)
     {
@@ -53,7 +54,7 @@ public class Item
         return desc;
     }
 
-    public ArrayList GetCategories()
+    public List<string> GetCategories()
     {
         return categories;
     }
