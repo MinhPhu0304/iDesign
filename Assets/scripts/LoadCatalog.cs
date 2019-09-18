@@ -10,9 +10,6 @@ using System;
 public class LoadCatalog : MonoBehaviour
 {
     Resolution[] resolutions;
-
-    string[] CataLogTitle = { "Chair", "Beds", "Couch", "Coffee table", "Dining table", "Coat rack" };
-
     
     public GameObject categoryListingPrefab;
     public GameObject itemListingPrefab;
@@ -50,7 +47,6 @@ public class LoadCatalog : MonoBehaviour
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
-            itemListing.GetComponentInChildren<Text>().fontSize = 30;
             itemListing.name = $"Listing: {itemInList.GetItemID()} {itemInList.GetName()}"; //Set name of gameobject
 
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
@@ -60,8 +56,11 @@ public class LoadCatalog : MonoBehaviour
             itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
             itemListing.transform.SetParent(content.transform,false); //Set listing parent
-            RectTransform rt = itemListing.GetComponent<RectTransform>(); //get size of listing
-            rt.sizeDelta = new Vector2(640, 125); //set size of listing
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = itemListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
 
             itemListings.Add(itemListing);
             disabledListings.Add(itemListing);
@@ -85,15 +84,17 @@ public class LoadCatalog : MonoBehaviour
             }         
 
             categoryListing.GetComponentInChildren<Text>().text = category;
-            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
             categoryListing.name = $"Category: {category}";
 
             categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
             categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
 
             categoryListing.transform.SetParent(content.transform,false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
             RectTransform rt = categoryListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(640, 125);
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
 
             categoryListings.Add(categoryListing);
             visibleListings.Add(categoryListing);
