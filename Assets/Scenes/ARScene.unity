@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Table
       objectReference: {fileID: 0}
+    - target: {fileID: 1742234421888026272, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b86b38c1ec9ef946a6f014965ee54ed, type: 3}
 --- !u!1 &273442689
@@ -508,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742234421888026272, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b86b38c1ec9ef946a6f014965ee54ed, type: 3}
@@ -1086,6 +1096,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Couch
       objectReference: {fileID: 0}
+    - target: {fileID: 1742234421888026272, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b86b38c1ec9ef946a6f014965ee54ed, type: 3}
 --- !u!1 &1965923791
@@ -1422,6 +1437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Andy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742234421888026272, guid: 7b86b38c1ec9ef946a6f014965ee54ed,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b86b38c1ec9ef946a6f014965ee54ed, type: 3}
