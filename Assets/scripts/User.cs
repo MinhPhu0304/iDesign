@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System;
 
 [Serializable]
 public class User
@@ -34,6 +35,7 @@ public class User
     public void addFavourite(Item favouritedItem)
     {
         favourites.Add(favouritedItem);
+        Console.WriteLine(favourites.Count);
     }
 
     //Returns a formatted versions of the favourites

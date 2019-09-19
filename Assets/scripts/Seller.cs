@@ -1,20 +1,23 @@
 using System.Collections.Generic;
 
-public class Seller : User
+namespace Seller
 {
-    private List<Item> sellerItems;
-    public Seller(int userID, string username) : base(userID, username)
+    public class Seller : User
     {
-        sellerItems = new List<Item>();
-    }
+        private List<Item> sellerItems;
+        public Seller(int userID, string username) : base(userID, username)
+        {
+            sellerItems = new List<Item>();
+        }
 
-    public List<Item> GetSellerItem()
-    {
-        return sellerItems;
-    }
+        public List<Item> GetSellerItem()
+        {
+            return sellerItems;
+        }
 
-    public void uploadItem()
-    {
-        sellerItems = new List<Item>();
+        public void uploadItem()
+        {
+            sellerItems = new List<Item>();
+        }
     }
 }
