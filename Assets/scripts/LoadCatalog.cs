@@ -5,12 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleARCore;
 using System;
-//using UnityEngine.Experimental.UIElements;
 
 public class LoadCatalog : MonoBehaviour
-{
-    Resolution[] resolutions;
-    
+{    
     public GameObject categoryListingPrefab;
     public GameObject itemListingPrefab;
 
@@ -247,15 +244,13 @@ public class LoadCatalog : MonoBehaviour
     {
         GameObject content = GameObject.Find("Content");
 
-        foreach (GameObject catListing in categoryListings)
-        {
-            catListing.SetActive(false);
-        }
+        hideListings();
 
         foreach (Item itemInList in loadedItems)
         {
             if (itemInList.GetCategories().Contains(category))
             {
+                showListing(itemInList);
                 content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
             }
         }        
