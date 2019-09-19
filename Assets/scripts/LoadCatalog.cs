@@ -198,19 +198,19 @@ public class LoadCatalog : MonoBehaviour
     {
         Item gotItem;
 
-        loadedItems.Add(new Item(0, "Chair", 10.00f, "www.google.com", "No description set."));
+        loadedItems.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[0];
         gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks"});
 
-        loadedItems.Add(new Item(1, "Couch", 100.00f, "www.google.com", "No description set."));
+        loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[1];
         gotItem.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
 
-        loadedItems.Add(new Item(2, "Table", 20.00f, "www.google.com", "No description set."));
+        loadedItems.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[2];
         gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
 
-        loadedItems.Add(new Item(3, "Andy", 0.00f, "www.google.com", "Andy the android."));
+        loadedItems.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
         gotItem = (Item)loadedItems[3];
         gotItem.AddCategory(new string[] { "Google", "Android" });
     }
