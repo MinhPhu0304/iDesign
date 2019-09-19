@@ -76,4 +76,10 @@ public class Item
     {
         return specs.GetSpecs();
     }
+
+    override
+    public string ToString()
+    {
+        return name;
+    }
 }

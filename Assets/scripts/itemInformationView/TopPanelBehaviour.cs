@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class TopPanelBehaviour : MonoBehaviour
 {
     public GameObject TitleItemNameText;
     public GameObject FavouriteButton;
-    private User currentUser;
+    private static User currentUser;
     // Start is called before the first frame update
     private Sprite selectedSprite;
     private Sprite defaultSprite;
@@ -24,15 +25,24 @@ public class TopPanelBehaviour : MonoBehaviour
         if (currentItem != null)
             name.text = ItemDisplayPanelBehaviour.currentItem.GetName();
 
+        string readInFile = loadFIle();
+
+        if (readInFile.Contains(currentItem.GetName()))
+        {
+            favouriteItem();
+        }
+
+        Debug.Log(readInFile);
+
         updateFavourtieButton();
-        
+
     }
 
     private void updateFavourtieButton()
     {
         Item currentItem = ItemDisplayPanelBehaviour.currentItem;
-        
-        if (currentUser.GetFavourites().Contains(currentItem))
+
+        if (isFavourite())
         {
             FavouriteButton.GetComponent<Image>().sprite = selectedSprite;
         }
@@ -45,27 +55,36 @@ public class TopPanelBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void GoBack()
-    {
+    { 
         SceneManager.LoadScene("Catalog");
     }
 
-    public void clickFavouite()
+    public void clickFavourite()
     {
-        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
 
-        if (!currentUser.GetFavourites().Contains(currentItem))
+        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
+        string readInFile = loadFIle();
+
+        if (readInFile.Contains(currentItem.GetName()))
         {
+            unfavouriteItem();
+        }
+        else if (!isFavourite())
+        {
+            Debug.Log("Favouriting item");
             favouriteItem();
         }
         else
         {
+            Debug.Log("unfavouriting item");
             unfavouriteItem();
         }
 
+        saveFile();
         updateFavourtieButton();
     }
 
@@ -77,5 +96,34 @@ public class TopPanelBehaviour : MonoBehaviour
     private void favouriteItem()
     {
         currentUser.addFavourite(ItemDisplayPanelBehaviour.currentItem);
+    }
+
+    public void saveFile()
+    {
+        string path = Application.persistentDataPath + "/favourites.txt";
+
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, false);
+        writer.Write(currentUser.formatFavourites());
+        writer.Close();
+    }
+
+    public Boolean isFavourite()
+    {
+        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
+        Debug.Log(currentUser.formatFavourites());
+        return (currentUser.formatFavourites().Contains(currentItem.GetName()));
+    }
+
+    public string loadFIle()
+    {
+        string path = Application.persistentDataPath + "/favourites.txt";
+
+        //Read the text from directly from the test.txt file
+        StreamReader reader = new StreamReader(path);
+        string inputFaves = reader.ReadToEnd();
+        reader.Close();
+
+        return inputFaves;
     }
 }
