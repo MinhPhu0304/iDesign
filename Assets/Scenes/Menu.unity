@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -968,11 +968,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1077254495}
     m_Modifications:
-    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
-        type: 3}
-      propertyPath: m_Name
-      value: Account Button
-      objectReference: {fileID: 0}
     - target: {fileID: 3806906071494316587, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_Sprite
@@ -997,6 +992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
+        type: 3}
+      propertyPath: m_Name
+      value: Account Button
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -1056,12 +1056,12 @@ PrefabInstance:
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -180.5
+      value: 219.5
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -482
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -1076,22 +1076,22 @@ PrefabInstance:
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -1874,9 +1874,9 @@ RectTransform:
   m_Father: {fileID: 135492557}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: -1188}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -0.50001, y: 315.2}
   m_SizeDelta: {x: 801, y: 630.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1204890295
@@ -2009,11 +2009,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1077254495}
     m_Modifications:
-    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
-        type: 3}
-      propertyPath: m_Name
-      value: Settings Button
-      objectReference: {fileID: 0}
     - target: {fileID: 3806906071494316587, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_Sprite
@@ -2038,6 +2033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
+        type: 3}
+      propertyPath: m_Name
+      value: Settings Button
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -2097,17 +2097,17 @@ PrefabInstance:
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 180.50003
+      value: -220
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -482
+      value: 220.00003
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 301
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -2117,22 +2117,22 @@ PrefabInstance:
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -3017,11 +3017,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1077254495}
     m_Modifications:
-    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
-        type: 3}
-      propertyPath: m_Name
-      value: Camera Button
-      objectReference: {fileID: 0}
     - target: {fileID: 3806906071494316587, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_Sprite
@@ -3041,6 +3036,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera Button
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
@@ -3307,11 +3307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1077254495}
     m_Modifications:
-    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
-        type: 3}
-      propertyPath: m_Name
-      value: Browse Button
-      objectReference: {fileID: 0}
     - target: {fileID: 3806906071494316587, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
       propertyPath: m_Color.a
@@ -3331,6 +3326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849059820102159148, guid: 74bd71f4d5539bb4980cbaad1de62f79,
+        type: 3}
+      propertyPath: m_Name
+      value: Browse Button
       objectReference: {fileID: 0}
     - target: {fileID: 723493051274744557, guid: 74bd71f4d5539bb4980cbaad1de62f79,
         type: 3}
