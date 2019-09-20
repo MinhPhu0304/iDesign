@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class User
 {
@@ -29,11 +28,13 @@ public class User
         return favourites;
     }
 
+    //Add an Item to the user's favourites
     public void addFavourite(Item favouritedItem)
     {
         favourites.Add(favouritedItem);
     }
 
+    //Returns a formatted versions of the favourites
     public string formatFavourites()
     {
         string formatedFavourites = "";
@@ -55,8 +56,7 @@ public class User
         {
             formatedFavourites += favourites[favourites.Count - 1];
         }
-
-        Debug.Log(formatedFavourites);
+        
         return formatedFavourites;
     }
 }
