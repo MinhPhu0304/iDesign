@@ -14,6 +14,7 @@ public class TopPanelBehaviour : MonoBehaviour
     // Start is called before the first frame update
     private Sprite selectedSprite;
     private Sprite defaultSprite;
+    private string favouriteBuffer;
     void Start()
     {
         defaultSprite = Resources.Load("favourite", typeof(Sprite)) as Sprite;
@@ -25,19 +26,27 @@ public class TopPanelBehaviour : MonoBehaviour
         if (currentItem != null)
             name.text = ItemDisplayPanelBehaviour.currentItem.GetName();
 
-        string readInFile = loadFIle();
-
-        if (readInFile.Contains(currentItem.GetName()))
+        //Checking if the text file with favourites exist. If it does we can then read in
+        if (File.Exists(Application.persistentDataPath + "/favourites.txt"))
         {
-            favouriteItem();
-        }
+            string readInFile = loadFIle();
 
-        Debug.Log(readInFile);
+            //Save in to the buffer which will hold the previously stored favourites
+            favouriteBuffer = readInFile;
+            if (readInFile.Contains(currentItem.GetName()))
+            {
+                //Remove the text with the currentItem so if it is unfavourited it will be removed from the favourite text file
+                favouriteBuffer = favouriteBuffer.Replace(currentItem.GetName(), "");
+                //Re favourite the item as it would of been destroyed when the scene changed
+                favouriteItem();
+            }
+        }
 
         updateFavourtieButton();
 
     }
 
+    //Update the UI of the favourite button
     private void updateFavourtieButton()
     {
         Item currentItem = ItemDisplayPanelBehaviour.currentItem;
@@ -52,39 +61,29 @@ public class TopPanelBehaviour : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void GoBack()
     { 
         SceneManager.LoadScene("Catalog");
     }
 
+    //Controls the behaviour, when clicking the button.
     public void clickFavourite()
     {
-
         Item currentItem = ItemDisplayPanelBehaviour.currentItem;
-        string readInFile = loadFIle();
 
-        if (readInFile.Contains(currentItem.GetName()))
+        //Checking the item is already favourited or  not
+        if (!isFavourite())
         {
-            unfavouriteItem();
-        }
-        else if (!isFavourite())
-        {
-            Debug.Log("Favouriting item");
             favouriteItem();
         }
         else
         {
-            Debug.Log("unfavouriting item");
             unfavouriteItem();
         }
 
-        saveFile();
+        //Save the favourites file and update the UI
+        saveFavouriteFile();
         updateFavourtieButton();
     }
 
@@ -98,16 +97,17 @@ public class TopPanelBehaviour : MonoBehaviour
         currentUser.addFavourite(ItemDisplayPanelBehaviour.currentItem);
     }
 
-    public void saveFile()
+    //This method saves the favourite files into a text file
+    public void saveFavouriteFile()
     {
         string path = Application.persistentDataPath + "/favourites.txt";
 
-        //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, false);
-        writer.Write(currentUser.formatFavourites());
+        writer.WriteLine(favouriteBuffer + currentUser.formatFavourites());
         writer.Close();
     }
 
+    //This method check if the currentItem is already favourited
     public Boolean isFavourite()
     {
         Item currentItem = ItemDisplayPanelBehaviour.currentItem;
@@ -115,11 +115,11 @@ public class TopPanelBehaviour : MonoBehaviour
         return (currentUser.formatFavourites().Contains(currentItem.GetName()));
     }
 
+    //Reads the input from the favourites text file and return the contents as a string
     public string loadFIle()
     {
         string path = Application.persistentDataPath + "/favourites.txt";
 
-        //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
         string inputFaves = reader.ReadToEnd();
         reader.Close();
