@@ -60,33 +60,25 @@ public class AndroidLocalDataBase : MonoBehaviour
         //  reader_function();
     }
     //Insert
-    public void insert_button()
+    public void signUpRountine()
     {
         insert_function(t_name.text, t_Password.text);
     }
-    //Search 
-    public void Search_button()
-    {
-        dataUser.text = "";
-        Search_function(t_id.text);
-
-    }
 
     //Insert To Database
-    private void insert_function(string name, string Address)
+    private void insert_function(string name, string password)
     {
         using (dbconn = new SqliteConnection(conn))
         {
             dbconn.Open(); //Open connection to the database.
             dbcmd = dbconn.CreateCommand();
-            sqlQuery = string.Format("insert into user (name, Password) values (\"{0}\",\"{1}\")", name, Address);// table name
+            sqlQuery = string.Format("insert into user (name, Password) values (\"{0}\",\"{1}\")", name, password);// table name
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
             dbconn.Close();
         }
-        dataUser.text = "";
         Debug.Log("Insert Done  ");
-
+        SceneManager.LoadScene("Menu");
         reader_function();
     }
     //Read All Data For To Database
@@ -103,7 +95,6 @@ public class AndroidLocalDataBase : MonoBehaviour
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                // idreaders = reader.GetString(1);
                 Namereaders = reader.GetString(0);
                 Addressreaders = reader.GetString(1);
 
@@ -174,7 +165,6 @@ public class AndroidLocalDataBase : MonoBehaviour
         showWrongCredentialMessage();
     }
 
-
     private void showWrongCredentialMessage()
     {
         t_name.placeholder.GetComponent<Text>().text = "Wrong username or password";
@@ -212,6 +202,7 @@ public class AndroidLocalDataBase : MonoBehaviour
         }
 
     }
+
     //Update on  Database 
     private void update_function(string update_id, string update_name, string update_address)
     {
@@ -235,7 +226,6 @@ public class AndroidLocalDataBase : MonoBehaviour
             Search_function(t_id.text);
         }
 
-        // SceneManager.LoadScene("home");
     }
 
     // Update is called once per frame
