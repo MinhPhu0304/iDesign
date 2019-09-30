@@ -121,11 +121,6 @@ public class TopPanelBehaviour : MonoBehaviour
         stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None);
         IFormatter formatter = new BinaryFormatter();
         currentUser = (User)formatter.Deserialize(stream);
-
-        //foreach(Item item in currentUser.GetFavourites())
-        //{
-        //    Debug.Log(item);
-        //}
         stream.Close();
     }
 
