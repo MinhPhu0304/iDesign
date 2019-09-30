@@ -861,6 +861,7 @@ GameObject:
   - component: {fileID: 676355536}
   - component: {fileID: 676355535}
   - component: {fileID: 676355539}
+  - component: {fileID: 676355540}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -966,6 +967,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a381a98a92946aa4ea9e88f263048548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &676355540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676355534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828d982a235f175459dc828878d94928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t_name: {fileID: 573922102}
+  t_Password: {fileID: 1338651780}
+  t_id: {fileID: 0}
+  dataUser: {fileID: 0}
 --- !u!1 &766531930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,8 +1515,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 676355539}
-        m_MethodName: SwitchToMenu
+      - m_Target: {fileID: 676355540}
+        m_MethodName: executeLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

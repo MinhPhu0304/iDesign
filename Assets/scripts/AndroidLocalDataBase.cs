@@ -8,13 +8,15 @@ using System;
 using System.Data;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class AndroidLocalDataBase : MonoBehaviour
 { 
     private string conn, sqlQuery;
     IDbConnection dbconn;
     IDbCommand dbcmd;
     private IDataReader reader;
-    public InputField t_name, t_Address, t_id;
+    public InputField t_name, t_Password, t_id;
     public Text dataUser;
 
     string DatabaseName = "users.s3db";
@@ -30,8 +32,6 @@ public class AndroidLocalDataBase : MonoBehaviour
             Debug.LogWarning("File \"" + filepath + "\" does not exist. Attempting to create from \"" +
                              Application.dataPath + "!/assets/users");
 
-
-
             // UNITY_ANDROID
             WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/users.s3db");
             while (!loadDB.isDone) { }
@@ -46,7 +46,7 @@ public class AndroidLocalDataBase : MonoBehaviour
         dbconn.Open();
 
         string query;
-        query = "CREATE TABLE user (ID INTEGER PRIMARY KEY  AUTOINCREMENT, Name varchar(100), Address varchar(200))";
+        query = "CREATE TABLE user (ID INTEGER PRIMARY KEY  AUTOINCREMENT, Name varchar(100), Password varchar(200))";
         try
         {
             dbcmd = dbconn.CreateCommand(); // create empty command
@@ -62,7 +62,7 @@ public class AndroidLocalDataBase : MonoBehaviour
     //Insert
     public void insert_button()
     {
-        insert_function(t_name.text, t_Address.text);
+        insert_function(t_name.text, t_Password.text);
     }
     //Search 
     public void Search_button()
@@ -79,7 +79,7 @@ public class AndroidLocalDataBase : MonoBehaviour
         {
             dbconn.Open(); //Open connection to the database.
             dbcmd = dbconn.CreateCommand();
-            sqlQuery = string.Format("insert into user (name, Address) values (\"{0}\",\"{1}\")", name, Address);// table name
+            sqlQuery = string.Format("insert into user (name, Password) values (\"{0}\",\"{1}\")", name, Address);// table name
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
             dbconn.Close();
@@ -98,7 +98,7 @@ public class AndroidLocalDataBase : MonoBehaviour
         {
             dbconn.Open(); //Open connection to the database.
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT  Name, Address " + "FROM user";// table name
+            string sqlQuery = "SELECT  Name, Password " + "FROM user";// table name
             dbcmd.CommandText = sqlQuery;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
@@ -108,7 +108,7 @@ public class AndroidLocalDataBase : MonoBehaviour
                 Addressreaders = reader.GetString(1);
 
                 dataUser.text += Namereaders + " - " + Addressreaders + " ";
-                Debug.Log(" name =" + Namereaders + "Address=" + Addressreaders);
+                Debug.Log(" name =" + Namereaders + "Password=" + Addressreaders);
             }
             reader.Close();
             reader = null;
@@ -126,7 +126,7 @@ public class AndroidLocalDataBase : MonoBehaviour
             string Name_readers_Search, Address_readers_Search;
             dbconn.Open(); //Open connection to the database.
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT name,address " + "FROM user where id =" + Search_by_id;// table name
+            string sqlQuery = "SELECT name,password " + "FROM user where id =" + Search_by_id;// table name
             dbcmd.CommandText = sqlQuery;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
@@ -148,6 +148,32 @@ public class AndroidLocalDataBase : MonoBehaviour
 
     }
 
+    public void executeLogin()
+    {
+        string username = t_name.text;
+        string password = t_Password.text;
+
+        using (dbconn = new SqliteConnection(conn))
+        {
+            dbconn.Open();
+            IDbCommand dbcmd = dbconn.CreateCommand();
+            string sqlQuery = "SELECT * " + "FROM user where Name =\"" + username +"\"";
+            dbcmd.CommandText = sqlQuery;
+            IDataReader reader = dbcmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string usernameRecord = reader.GetString(0);
+                string passwordRecord = reader.GetString(1);
+
+                if (passwordRecord.Equals(passwordRecord))
+                {
+                    SceneManager.LoadScene("Menu");
+                }
+            }
+        }
+        Debug.Log("Error wrong password");
+    }
+
 
     //Search on Database by ID
     private void F_to_update_function(string Search_by_id)
@@ -166,7 +192,7 @@ public class AndroidLocalDataBase : MonoBehaviour
                 Name_readers_Search = reader.GetString(0);
                 Address_readers_Search = reader.GetString(1);
                 t_name.text = Name_readers_Search;
-                t_Address.text = Address_readers_Search;
+                t_Password.text = Address_readers_Search;
 
             }
             reader.Close();
