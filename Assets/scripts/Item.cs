@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 
+[Serializable]
 public class Item
 {
     private int itemID;
@@ -81,5 +83,12 @@ public class Item
     public string ToString()
     {
         return name;
+    }
+
+    override
+    public Boolean Equals(Object obj)
+    {
+        Item compareItem = (Item) obj;
+        return (itemID == compareItem.itemID);
     }
 }
