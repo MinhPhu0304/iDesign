@@ -171,9 +171,17 @@ public class AndroidLocalDataBase : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Error wrong password");
+        showWrongCredentialMessage();
     }
 
+
+    private void showWrongCredentialMessage()
+    {
+        t_name.placeholder.GetComponent<Text>().text = "Wrong username or password";
+        t_name.text = "";
+        t_Password.placeholder.GetComponent<Text>().text = "Wrong username or password";
+        t_Password.text = "";
+    }
 
     //Search on Database by ID
     private void F_to_update_function(string Search_by_id)
