@@ -157,7 +157,7 @@ public class AndroidLocalDataBase : MonoBehaviour
         {
             dbconn.Open();
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT * " + "FROM user where Name =\"" + username +"\"";
+            string sqlQuery = "SELECT name,password " + "FROM user where Name =\"" + username +"\"";
             dbcmd.CommandText = sqlQuery;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
