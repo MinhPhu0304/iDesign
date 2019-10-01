@@ -21,6 +21,7 @@
 namespace GoogleARCore.Examples.ObjectManipulation
 {
     using UnityEngine;
+    using UnityEngine.UI;
 
     /// <summary>
     /// Manipulates the rotation of an object via a drag or a twist gesture.
@@ -32,6 +33,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
         private const float k_RotationRateDegreesDrag = 100.0f;
         private const float k_RotationRateDegreesTwist = 2.5f;
 
+        private GameObject RotateButton;
+
         /// <summary>
         /// Returns true if the manipulation can be started for the given Drag gesture.
         /// </summary>
@@ -41,11 +44,20 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             if (!IsSelected())
             {
+                OutputDebug("IsSelected accessed. (Drag)");
                 return false;
             }
 
+
             if (gesture.TargetObject != null)
             {
+                OutputDebug("TargetObject accessed. (Drag)");
+                return false;
+            }
+
+            if (checkRotationToggle() == false)
+            {
+                OutputDebug("Drag gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -61,11 +73,20 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             if (!IsSelected())
             {
+                OutputDebug("IsSelected accessed. (Twist)");
                 return false;
             }
 
+
             if (gesture.TargetObject != null)
             {
+                OutputDebug("TargetObject accessed. (Twist)");
+                return false;
+            }
+
+            if (checkRotationToggle() == false)
+            {
+                OutputDebug("Twist gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -97,6 +118,22 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             float rotationAmount = -gesture.DeltaRotation * k_RotationRateDegreesTwist;
             transform.Rotate(0.0f, rotationAmount, 0.0f);
+        }
+
+        private bool checkRotationToggle() {
+            RotateButton = GameObject.Find("ToggleRotation");
+            OutputDebug("Checking rotation toggle: " + RotateButton.GetComponent<ManipulationButtons>().GetMoveStatus());
+
+            return RotateButton.GetComponent<ManipulationButtons>().GetMoveStatus();
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
         }
     }
 }
