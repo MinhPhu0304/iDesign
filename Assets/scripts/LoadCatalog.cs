@@ -130,20 +130,39 @@ public class LoadCatalog : MonoBehaviour
         GameObject searchPanel = GameObject.Find("Search Text");
         string search = searchPanel.GetComponentInChildren<Text>().text;
 
+        //If no search text input do nothing
+        if (search.Length == 0)
+        {
+            return;
+        }
+
         Debug.Log("Searching for: " + search);
 
         List<Item> searchResults = new List<Item>();
 
         foreach (Item foundItem in loadedItems)
         {
-            if (foundItem.GetName().Contains(search) || foundItem.GetCategories().Contains(search))
+            //Check if searched text is a category
+            //Search case doesn't need to match and needs to be 3 characters long
+            bool foundCategory = false;
+            foreach (string category in foundItem.GetCategories())
             {
-                //If item is not already in search results
+                if (category.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0 && search.Length >= 3)
+                {
+                    foundCategory = true;
+                }
+            }
+
+            //Check if search was found in name or category
+            if (foundItem.GetName().IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0 || foundCategory)
+            {
+                //If item is not already in search results: add item
                 if (!searchResults.Contains(foundItem))
                 {
                     searchResults.Add(foundItem);
                 }
             }
+
         }
 
         hideListings();
