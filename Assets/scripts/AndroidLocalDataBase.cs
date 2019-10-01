@@ -16,7 +16,7 @@ public class AndroidLocalDataBase : MonoBehaviour
     IDbConnection dbconn;
     IDbCommand dbcmd;
     private IDataReader reader;
-    public InputField t_name, t_Password, t_id;
+    public InputField textInputUsername, textInputPassword, t_id;
     public Text dataUser;
 
     string DatabaseName = "users.s3db";
@@ -62,11 +62,11 @@ public class AndroidLocalDataBase : MonoBehaviour
     //Insert
     public void signUpRountine()
     {
-        insert_function(t_name.text, t_Password.text);
+        InsertNewUsernameToDatabase(textInputUsername.text, textInputPassword.text);
     }
 
     //Insert To Database
-    private void insert_function(string name, string password)
+    private void InsertNewUsernameToDatabase(string name, string password)
     {
         using (dbconn = new SqliteConnection(conn))
         {
@@ -79,10 +79,10 @@ public class AndroidLocalDataBase : MonoBehaviour
         }
         Debug.Log("Insert Done  ");
         SceneManager.LoadScene("Menu");
-        reader_function();
+        ReadAllUsernameRecord();
     }
     //Read All Data For To Database
-    public void reader_function()
+    public void ReadAllUsernameRecord()
     {
         // int idreaders ;
         string Namereaders, Addressreaders;
@@ -110,24 +110,24 @@ public class AndroidLocalDataBase : MonoBehaviour
         }
     }
     //Search on Database by ID
-    private void Search_function(string Search_by_id)
+    private void SearchUsernameByID(string userNameID)
     {
         using (dbconn = new SqliteConnection(conn))
         {
-            string Name_readers_Search, Address_readers_Search;
+            string usernameRead, passwordRead;
             dbconn.Open(); //Open connection to the database.
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT name,password " + "FROM user where id =" + Search_by_id;// table name
+            string sqlQuery = "SELECT name,password " + "FROM user where id =" + userNameID;// table name
             dbcmd.CommandText = sqlQuery;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
                 //  string id = reader.GetString(0);
-                Name_readers_Search = reader.GetString(0);
-                Address_readers_Search = reader.GetString(1);
-                dataUser.text += Name_readers_Search + " - " + Address_readers_Search + "\n";
+                usernameRead = reader.GetString(0);
+                passwordRead = reader.GetString(1);
+                dataUser.text += usernameRead + " - " + passwordRead + "\n";
 
-                Debug.Log(" name =" + Name_readers_Search + "Address=" + Address_readers_Search);
+                Debug.Log(" name =" + usernameRead + "Address=" + passwordRead);
 
             }
             reader.Close();
@@ -141,8 +141,8 @@ public class AndroidLocalDataBase : MonoBehaviour
 
     public void executeLogin()
     {
-        string username = t_name.text;
-        string password = t_Password.text;
+        string username = textInputUsername.text;
+        string password = textInputPassword.text;
 
         using (dbconn = new SqliteConnection(conn))
         {
@@ -167,10 +167,10 @@ public class AndroidLocalDataBase : MonoBehaviour
 
     private void showWrongCredentialMessage()
     {
-        t_name.placeholder.GetComponent<Text>().text = "Wrong username or password";
-        t_name.text = "";
-        t_Password.placeholder.GetComponent<Text>().text = "Wrong username or password";
-        t_Password.text = "";
+        textInputUsername.placeholder.GetComponent<Text>().text = "Wrong username or password";
+        textInputUsername.text = "";
+        textInputPassword.placeholder.GetComponent<Text>().text = "Wrong username or password";
+        textInputPassword.text = "";
     }
 
     //Search on Database by ID
@@ -189,8 +189,8 @@ public class AndroidLocalDataBase : MonoBehaviour
 
                 Name_readers_Search = reader.GetString(0);
                 Address_readers_Search = reader.GetString(1);
-                t_name.text = Name_readers_Search;
-                t_Password.text = Address_readers_Search;
+                textInputUsername.text = Name_readers_Search;
+                textInputPassword.text = Address_readers_Search;
 
             }
             reader.Close();
@@ -204,7 +204,7 @@ public class AndroidLocalDataBase : MonoBehaviour
     }
 
     //Update on  Database 
-    private void update_function(string update_id, string update_name, string update_address)
+    private void UpdateUserRecord(string update_id, string update_name, string update_address)
     {
         using (dbconn = new SqliteConnection(conn))
         {
@@ -223,7 +223,7 @@ public class AndroidLocalDataBase : MonoBehaviour
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
             dbconn.Close();
-            Search_function(t_id.text);
+            SearchUsernameByID(t_id.text);
         }
 
     }
