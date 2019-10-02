@@ -42,6 +42,11 @@ public class User
         return string.Join(",", favourites);
     }
 
+    public void removeItem(Item item)
+    {
+        favourites.Remove(item);
+    }
+
     override
     public string ToString()
     {
