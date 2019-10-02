@@ -22,7 +22,7 @@ public class TopPanelBehaviour : MonoBehaviour
     FileStream stream;
     void Start()
     {
-        path = Application.persistentDataPath + "/favourites.txt";
+        path = Application.persistentDataPath + "/favourites.dat";
 
         defaultSprite = Resources.Load("favourite", typeof(Sprite)) as Sprite;
         selectedSprite = Resources.Load("favouriteSelected", typeof(Sprite)) as Sprite;
@@ -37,7 +37,7 @@ public class TopPanelBehaviour : MonoBehaviour
         {
             try
             {
-                loadFIle();
+                loadFavouriteFIle();
             } catch(SerializationException ex)
             {
                 Debug.Log("File cannot be unserialized!.");
@@ -76,12 +76,11 @@ public class TopPanelBehaviour : MonoBehaviour
         //Checking the item is already favourited or  not
         if (!isFavourite())
         {
-            favouriteItem();
+            addFavourite();
         }
         else
         {
-            unfavouriteItem();
-            Debug.Log("After unfavourite: " + currentUser.formatFavourites());
+            removeFavourite();
         }
 
         //Save the favourites file and update the UI
@@ -89,12 +88,12 @@ public class TopPanelBehaviour : MonoBehaviour
         updateFavourtieButton();
     }
 
-    private void unfavouriteItem()
+    private void removeFavourite()
     {
-        currentUser.GetFavourites().Remove(currentItem);
+        currentUser.removeItem(currentItem);
     }
 
-    private void favouriteItem()
+    private void addFavourite()
     {
         currentUser.addFavourite(currentItem);
     }
@@ -102,11 +101,25 @@ public class TopPanelBehaviour : MonoBehaviour
     //This method saves the favourite files into a text file
     public void saveFavouriteFile()
     {
-        stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
-        IFormatter formatter = new BinaryFormatter();
+        using (stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        {
+            IFormatter formatter = new BinaryFormatter();
 
-        formatter.Serialize(stream, currentUser);
-        stream.Close();
+            formatter.Serialize(stream, currentUser);
+            stream.Close();
+        }
+    }
+
+    //Reads the input from the favourites text file and return the contents as a string
+    public void loadFavouriteFIle()
+    {
+        using (stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            Debug.Log(path);
+            IFormatter formatter = new BinaryFormatter();
+            currentUser = (User)formatter.Deserialize(stream);
+            stream.Close();
+        }
     }
 
     //This method check if the currentItem is already favourited
@@ -115,13 +128,6 @@ public class TopPanelBehaviour : MonoBehaviour
         return (currentUser.formatFavourites().Contains(currentItem.GetName()));
     }
 
-    //Reads the input from the favourites text file and return the contents as a string
-    public void loadFIle()
-    {
-        stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None);
-        IFormatter formatter = new BinaryFormatter();
-        currentUser = (User)formatter.Deserialize(stream);
-        stream.Close();
-    }
-
+    
+    
 }
