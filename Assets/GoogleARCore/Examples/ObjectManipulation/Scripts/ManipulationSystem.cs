@@ -158,7 +158,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
             //If tap was on UI, ignore tap
             if (IsPointerOverUIObject())
             {
-                
                 return;
             }
 
@@ -190,6 +189,10 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
             Deselect();
             SelectedObject = target;
+        }
+
+        public void DeselectObject() {
+            Deselect();
         }
 
         //Checks if UI is over objects and planes

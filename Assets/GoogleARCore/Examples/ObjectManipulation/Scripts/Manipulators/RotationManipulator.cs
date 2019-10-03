@@ -33,7 +33,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
         private const float k_RotationRateDegreesDrag = 100.0f;
         private const float k_RotationRateDegreesTwist = 2.5f;
 
-        private GameObject RotateButton;
+        private Button RotateButton;
 
         /// <summary>
         /// Returns true if the manipulation can be started for the given Drag gesture.
@@ -42,6 +42,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// <returns>True if the manipulation can be started.</returns>
         protected override bool CanStartManipulationForGesture(DragGesture gesture)
         {
+           
             if (!IsSelected())
             {
                 OutputDebug("IsSelected accessed. (Drag)");
@@ -121,10 +122,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
         }
 
         private bool checkRotationToggle() {
-            RotateButton = GameObject.Find("ToggleRotation");
-            OutputDebug("Checking rotation toggle: " + RotateButton.GetComponent<ManipulationButtons>().GetMoveStatus());
+            OutputDebug("Finding toggle rotation button");
 
-            return RotateButton.GetComponent<ManipulationButtons>().GetMoveStatus();
+            GameObject manipulationPanel = GameObject.Find("Controls");
+            
+            OutputDebug("Checking rotation toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetRotationStatus());
+            return manipulationPanel.GetComponent<ManipulationButtons>().GetRotationStatus();
         }
 
         private void OutputDebug(string message)
