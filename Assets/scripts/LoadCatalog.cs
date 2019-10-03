@@ -263,8 +263,6 @@ public class LoadCatalog : MonoBehaviour
     {
         GameObject content = GameObject.Find("Content");
 
-        hideListings();
-
         foreach (Item itemInList in loadedItems)
         {
             if (itemInList.GetCategories().Contains(category))
@@ -274,6 +272,52 @@ public class LoadCatalog : MonoBehaviour
             }
         }        
     }
+
+    //Generates Items listed under Office category
+    public void categoryOffice()
+    {
+        GameObject content = GameObject.Find("Content");
+
+        foreach (Item itemInList in loadedItems)
+        {
+            if (itemInList.GetCategories().Contains("Office"))
+            {
+                showListing(itemInList);
+                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+            }
+        }
+    }
+
+    //Generates Items listed under Living Category
+    public void categoryLiving()
+    {
+        GameObject content = GameObject.Find("Content");
+
+        foreach (Item itemInList in loadedItems)
+        {
+            if (itemInList.GetCategories().Contains("Living Room"))
+            {
+                showListing(itemInList);
+                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+            }
+        }
+    }
+
+    //Generates Items listed under Google category
+    public void categoryGoogle()
+    {
+        GameObject content = GameObject.Find("Content");
+
+        foreach (Item itemInList in loadedItems)
+        {
+            if (itemInList.GetCategories().Contains("Google"))
+            {
+                showListing(itemInList);
+                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void Update()

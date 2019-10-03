@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class FilterOpen : MonoBehaviour
 {
-    public GameObject filterPanel;
+    public GameObject panelToOpen;
 
     public void OpenPanel()
     {
-        if(filterPanel != null)
+        //scriptToAccess.hideListings();
+        if (panelToOpen != null)
         {
-            bool isActive = filterPanel.activeSelf;
+            bool isActive = panelToOpen.activeSelf;
 
-            filterPanel.SetActive(!isActive);
+            panelToOpen.SetActive(!isActive);
         }
     }
+
+    public void showOffice()
+    {
+        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+
+        scriptToAccess.categoryOffice();
+    }
+
+    public void showLiving()
+    {
+        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+
+        scriptToAccess.categoryLiving();
+    }
+
+    public void showGoogle()
+    {
+        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+
+        scriptToAccess.categoryGoogle();
+    }
+
 }
