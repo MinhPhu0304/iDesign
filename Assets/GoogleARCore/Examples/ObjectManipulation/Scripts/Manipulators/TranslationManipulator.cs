@@ -89,7 +89,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             //Move not activated
             if (checkMoveToggle() == false)
             {
-                OutputDebug("Move not toggled");
+                //OutputDebug("Move not toggled");
                 return false;
             }
 

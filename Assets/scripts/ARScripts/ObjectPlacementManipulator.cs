@@ -22,6 +22,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
 {
     using GoogleARCore;
     using UnityEngine;
+    using UnityEngine.UI;
     /*using UnityEngine.EventSystems;
     using System.Collections.Generic;*/
 
@@ -53,7 +54,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// <returns>True if the manipulation can be started.</returns>
         protected override bool CanStartManipulationForGesture(TapGesture gesture)
         {
-            
+            if (checkPlaceToggle() == false)
+            {
+                //OutputDebug("Placement not enabled");
+                return false;
+            }
+
             if (gesture.TargetObject == null)
             {
                 return true;
@@ -68,10 +74,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// <param name="gesture">The current gesture.</param>
         protected override void OnEndManipulation(TapGesture gesture)
         {
-            /*if (IsPointerOverUIObject())
-            {
-                return;
-            }*/
 
             if (gesture.WasCancelled)
             {
@@ -120,18 +122,30 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
                     // Select the placed object.
                     manipulator.GetComponent<Manipulator>().Select();
+
+                    //Disable object placement after item placed.
+                    GameObject manipulationPanel = GameObject.Find("Controls");
+                    manipulationPanel.GetComponent<ManipulationButtons>().togglePlace = false;
+
                 }
             }
         }
 
-        /*//Checks if tap was on a UI object
-        public static bool IsPointerOverUIObject()
+        private bool checkPlaceToggle()
         {
-            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-            eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-            return results.Count > 0;
-        }*/
+            GameObject manipulationPanel = GameObject.Find("Controls");
+
+            OutputDebug("Checking place toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetPlaceStatus());
+            return manipulationPanel.GetComponent<ManipulationButtons>().GetPlaceStatus();
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
+        }
     }
 }

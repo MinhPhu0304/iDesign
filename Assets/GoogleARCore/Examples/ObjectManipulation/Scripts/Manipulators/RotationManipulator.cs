@@ -45,20 +45,18 @@ namespace GoogleARCore.Examples.ObjectManipulation
            
             if (!IsSelected())
             {
-                OutputDebug("IsSelected accessed. (Drag)");
                 return false;
             }
 
 
             if (gesture.TargetObject != null)
             {
-                OutputDebug("TargetObject accessed. (Drag)");
                 return false;
             }
 
             if (checkRotationToggle() == false)
             {
-                OutputDebug("Drag gesture to rotate recognised, however rotation is not enabled!");
+                //OutputDebug("Drag gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -74,20 +72,18 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             if (!IsSelected())
             {
-                OutputDebug("IsSelected accessed. (Twist)");
                 return false;
             }
 
 
             if (gesture.TargetObject != null)
             {
-                OutputDebug("TargetObject accessed. (Twist)");
                 return false;
             }
 
             if (checkRotationToggle() == false)
             {
-                OutputDebug("Twist gesture to rotate recognised, however rotation is not enabled!");
+                //OutputDebug("Twist gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -122,8 +118,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
         }
 
         private bool checkRotationToggle() {
-            OutputDebug("Finding toggle rotation button");
-
             GameObject manipulationPanel = GameObject.Find("Controls");
             
             OutputDebug("Checking rotation toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetRotationStatus());

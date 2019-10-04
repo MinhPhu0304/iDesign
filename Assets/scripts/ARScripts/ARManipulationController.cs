@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+﻿    //-----------------------------------------------------------------------
 // <copyright file="ObjectManipulationController.cs" company="Google">
 //
 // Copyright 2018 Google Inc. All Rights Reserved.
@@ -32,6 +32,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
     /// <summary>
     /// Controls the HelloObjectManipulation example.
     /// </summary>
+    /// 
     public class ARManipulationController : MonoBehaviour
     {
         /// <summary>

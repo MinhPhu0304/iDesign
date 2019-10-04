@@ -21,6 +21,7 @@
 namespace GoogleARCore.Examples.ObjectManipulation
 {
     using UnityEngine;
+    using UnityEngine.UI;
 
     /// <summary>
     /// Controls the elevation of an object via a two finger drag gesture.
@@ -149,6 +150,23 @@ namespace GoogleARCore.Examples.ObjectManipulation
             {
                 LineRenderer.enabled = false;
             }
+        }
+
+        private bool checkLiftToggle()
+        {
+            GameObject manipulationPanel = GameObject.Find("Controls");
+
+            OutputDebug("Checking lift toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetLiftStatus());
+            return manipulationPanel.GetComponent<ManipulationButtons>().GetLiftStatus();
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
         }
     }
 }
