@@ -844,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -390, y: -0.00006083228}
+  m_AnchoredPosition: {x: -390.00003, y: -0.000055977227}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201577807
@@ -1033,7 +1033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: brandC
+  m_Text: Ikea
 --- !u!222 &323947182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1146,11 +1146,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categoryListingPrefab: {fileID: 2293756452914757157, guid: c3a9b3af2a9014d4995583f73f9733fd,
     type: 3}
+  brandListingPrefab: {fileID: 6752145015603637905, guid: a1f4587fcbc14ac48af7706d33e00ce6,
+    type: 3}
   itemListingPrefab: {fileID: 8750093181132216491, guid: 50d2c2dc450e4a04dbfb404e6230c684,
     type: 3}
   foundCategories: []
+  foundBrands: []
   itemListings: []
   categoryListings: []
+  brandListings: []
   visibleListings: []
   disabledListings: []
 --- !u!1 &468757081
@@ -1618,7 +1622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 222.9, y: -767.4}
+  m_AnchoredPosition: {x: 222.9, y: -635}
   m_SizeDelta: {x: -446, y: 1274.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688096865
@@ -2182,7 +2186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: brandB
+  m_Text: Living & Co
 --- !u!222 &776762389
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2376,8 +2380,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1038.1667, y: 2098.25}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.00018310547}
+  m_SizeDelta: {x: 0, y: -0.00024414062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &861623127
 MonoBehaviour:
@@ -2392,7 +2396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.94509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2428,6 +2432,7 @@ GameObject:
   - component: {fileID: 870579555}
   - component: {fileID: 870579554}
   - component: {fileID: 870579553}
+  - component: {fileID: 870579556}
   m_Layer: 5
   m_Name: brandC
   m_TagString: Untagged
@@ -2494,7 +2499,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 870579554}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 870579556}
+        m_MethodName: showIkea
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &870579554
@@ -2534,6 +2550,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870579551}
   m_CullTransparentMesh: 0
+--- !u!114 &870579556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870579551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8313995ca75c42a2855b460db9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}
 --- !u!1 &958441934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,8 +2816,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -92.00012, y: -5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -57.4, y: -5}
+  m_SizeDelta: {x: 229.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006872703
 MonoBehaviour:
@@ -2823,7 +2852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: brandA
+  m_Text: Harvey Norman
 --- !u!222 &1006872704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3520,6 +3549,7 @@ GameObject:
   - component: {fileID: 1279207750}
   - component: {fileID: 1279207749}
   - component: {fileID: 1279207748}
+  - component: {fileID: 1279207751}
   m_Layer: 5
   m_Name: brandB
   m_TagString: Untagged
@@ -3586,7 +3616,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1279207749}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1279207751}
+        m_MethodName: showLivingCo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1279207749
@@ -3626,6 +3667,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279207746}
   m_CullTransparentMesh: 0
+--- !u!114 &1279207751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279207746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8313995ca75c42a2855b460db9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}
 --- !u!1 &1284690127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,6 +3692,7 @@ GameObject:
   - component: {fileID: 1284690131}
   - component: {fileID: 1284690130}
   - component: {fileID: 1284690129}
+  - component: {fileID: 1284690132}
   m_Layer: 5
   m_Name: brandA
   m_TagString: Untagged
@@ -3704,7 +3759,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1284690130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1284690132}
+        m_MethodName: showHarveyNorm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1284690130
@@ -3744,6 +3810,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284690127}
   m_CullTransparentMesh: 0
+--- !u!114 &1284690132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284690127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8313995ca75c42a2855b460db9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}
 --- !u!1 &1327696965
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +4088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4889,7 +4968,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2081525147}
   m_HandleRect: {fileID: 2081525146}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5316,6 +5395,7 @@ GameObject:
   - component: {fileID: 1935077158}
   - component: {fileID: 1935077157}
   - component: {fileID: 1935077156}
+  - component: {fileID: 1935077159}
   m_Layer: 5
   m_Name: Any
   m_TagString: Untagged
@@ -5382,7 +5462,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1935077157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1935077159}
+        m_MethodName: showAny
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1935077157
@@ -5422,6 +5513,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935077154}
   m_CullTransparentMesh: 0
+--- !u!114 &1935077159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935077154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8313995ca75c42a2855b460db9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}
 --- !u!1 &2037179715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5811,6 +5915,7 @@ GameObject:
   - component: {fileID: 2134954802}
   - component: {fileID: 2134954801}
   - component: {fileID: 2134954800}
+  - component: {fileID: 2134954803}
   m_Layer: 5
   m_Name: Any
   m_TagString: Untagged
@@ -5877,7 +5982,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134954801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2134954803}
+        m_MethodName: showAny
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2134954801
@@ -5917,3 +6033,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134954798}
   m_CullTransparentMesh: 0
+--- !u!114 &2134954803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134954798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8313995ca75c42a2855b460db9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}

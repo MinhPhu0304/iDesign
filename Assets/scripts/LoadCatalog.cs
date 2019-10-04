@@ -9,13 +9,16 @@ using System;
 public class LoadCatalog : MonoBehaviour
 {    
     public GameObject categoryListingPrefab;
+    public GameObject brandListingPrefab;
     public GameObject itemListingPrefab;
 
     public List<Item> loadedItems = new List<Item>();
     public List<string> foundCategories = new List<string>();
+    public List<string> foundBrands = new List<string>();
 
     public List<GameObject> itemListings;
     public List<GameObject> categoryListings;
+    public List<GameObject> brandListings;
     public List<GameObject> visibleListings;
     public List<GameObject> disabledListings;
 
@@ -27,6 +30,7 @@ public class LoadCatalog : MonoBehaviour
     {
         GenerateItems();
         GenerateCategories();
+        GenerateBrands();
 
         sceneController = new GameObject();
         sceneController.AddComponent<ARSceneController>();
@@ -102,6 +106,38 @@ public class LoadCatalog : MonoBehaviour
 
         }
 
+        foreach (string brand in foundBrands)
+        {
+            GameObject brandListing = Instantiate(brandListingPrefab);
+
+            Item foundItemInBrands = null;
+
+            for (int i = 0; i < loadedItems.Count && foundItemInBrands == null; i++)
+            {
+                foundItemInBrands = FindItemBrand((Item)loadedItems[i], brand);
+            }
+
+            brandListing.GetComponentInChildren<Text>().text = brand;
+            brandListing.GetComponentInChildren<Text>().fontSize = 30;
+            brandListing.name = $"Brand: {brand}";
+
+            brandListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInBrands.GetName()}");
+            brandListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToBrand(brand));
+
+            brandListing.transform.SetParent(content.transform, false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = brandListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+
+            brandListings.Add(brandListing);
+            visibleListings.Add(brandListing);
+
+            listingNo++;
+
+        }
+
     }
 
     private Item FindItemCategory(Item item, string category)
@@ -109,6 +145,18 @@ public class LoadCatalog : MonoBehaviour
         Item found = null;
 
         if (item.GetCategories().Contains(category))
+        {
+            found = item;
+        }
+
+        return found;
+    }
+
+    private Item FindItemBrand(Item item, string brand)
+    {
+        Item found = null;
+
+        if(item.GetBrand().Contains(brand))
         {
             found = item;
         }
@@ -220,18 +268,22 @@ public class LoadCatalog : MonoBehaviour
         loadedItems.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[0];
         gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks"});
+        gotItem.AddBrand(new string[] { "Ikea" });
 
         loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[1];
         gotItem.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
+        gotItem.AddBrand(new string[] { "Harvey Norman" });
 
         loadedItems.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[2];
         gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
+        gotItem.AddBrand(new string[] { "Living & Co" });
 
         loadedItems.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
         gotItem = (Item)loadedItems[3];
         gotItem.AddCategory(new string[] { "Google", "Android" });
+        
     }
 
     private void GenerateCategories()
@@ -259,9 +311,37 @@ public class LoadCatalog : MonoBehaviour
         Debug.Log($"Categories loaded: {result}");
     }
 
+    private void GenerateBrands()
+    {
+        foreach (Item item in loadedItems)
+        {
+            List<string> itemBrands = item.GetBrand();
+
+            foreach (string brand in itemBrands)
+            {
+                if (foundBrands.Contains(brand))
+                {
+                    Debug.Log($"Brand {brand} is already in foundBrands.");
+                }
+                else
+                {
+                    foundBrands.Add(brand);
+                }
+            }
+        }
+
+        foundBrands.Sort();
+
+        var result = string.Join(", ", foundBrands.ToArray());
+        Debug.Log($"Brands loaded: {result}");
+    }
+
+
     private void ChangeContentToCategory(string category)
     {
         GameObject content = GameObject.Find("Content");
+
+        hideListings();
 
         foreach (Item itemInList in loadedItems)
         {
@@ -273,14 +353,15 @@ public class LoadCatalog : MonoBehaviour
         }        
     }
 
-    //Generates Items listed under Office category
-    public void categoryOffice()
+    private void ChangeContentToBrand(string brand)
     {
         GameObject content = GameObject.Find("Content");
 
+        hideListings();
+
         foreach (Item itemInList in loadedItems)
         {
-            if (itemInList.GetCategories().Contains("Office"))
+            if (itemInList.GetBrand().Contains(brand))
             {
                 showListing(itemInList);
                 content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
@@ -288,36 +369,22 @@ public class LoadCatalog : MonoBehaviour
         }
     }
 
-    //Generates Items listed under Living Category
-    public void categoryLiving()
+    //Implemented to FilterOpen.cs for filter GUI functionality
+    public void categoryGenerate(string category)
     {
-        GameObject content = GameObject.Find("Content");
-
-        foreach (Item itemInList in loadedItems)
-        {
-            if (itemInList.GetCategories().Contains("Living Room"))
-            {
-                showListing(itemInList);
-                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
-            }
-        }
+        ChangeContentToCategory(category);
     }
 
-    //Generates Items listed under Google category
-    public void categoryGoogle()
+    public void brandGenerate(string brand)
     {
-        GameObject content = GameObject.Find("Content");
-
-        foreach (Item itemInList in loadedItems)
-        {
-            if (itemInList.GetCategories().Contains("Google"))
-            {
-                showListing(itemInList);
-                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
-            }
-        }
+        ChangeContentToBrand(brand);
     }
 
+    public void resetListing()
+    {
+        hideListings();
+        Start();
+    }
 
     // Update is called once per frame
     void Update()
