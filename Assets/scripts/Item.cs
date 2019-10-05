@@ -9,6 +9,7 @@ public class Item
     private string desc;
     private List<string> categories = new List<string>();
     private List<string> brands = new List<string>();
+    private List<string> designers = new List<string>();
     private Specs specs;
     public int numberOfClicks = 0;
 
@@ -88,6 +89,24 @@ public class Item
         foreach (string brand in brandArray)
         {
             brands.Add(brand);
+        }
+    }
+    
+    public List<string> GetDesigner()
+    {
+        return designers;
+    }
+
+    public void AddDesigner(string designer)
+    {
+        designers.Add(designer);
+    }
+
+    public void AddDesigner(string[] designerArray)
+    {
+        foreach (string designer in designerArray)
+        {
+            designers.Add(designer);
         }
     }
 

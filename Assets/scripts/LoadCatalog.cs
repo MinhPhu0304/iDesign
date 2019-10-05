@@ -10,15 +10,18 @@ public class LoadCatalog : MonoBehaviour
 {    
     public GameObject categoryListingPrefab;
     public GameObject brandListingPrefab;
+    public GameObject designerListingPrefab;
     public GameObject itemListingPrefab;
 
     public List<Item> loadedItems = new List<Item>();
     public List<string> foundCategories = new List<string>();
     public List<string> foundBrands = new List<string>();
+    public List<string> foundDesigners = new List<string>();
 
     public List<GameObject> itemListings;
     public List<GameObject> categoryListings;
     public List<GameObject> brandListings;
+    public List<GameObject> designerListings;
     public List<GameObject> visibleListings;
     public List<GameObject> disabledListings;
 
@@ -31,6 +34,7 @@ public class LoadCatalog : MonoBehaviour
         GenerateItems();
         GenerateCategories();
         GenerateBrands();
+        GenerateDesigners();
 
         sceneController = new GameObject();
         sceneController.AddComponent<ARSceneController>();
@@ -138,6 +142,38 @@ public class LoadCatalog : MonoBehaviour
 
         }
 
+        foreach (string designer in foundDesigners)
+        {
+            GameObject designerListing = Instantiate(designerListingPrefab);
+
+            Item foundItemInDesigners = null;
+
+            for (int i = 0; i < loadedItems.Count && foundItemInDesigners == null; i++)
+            {
+                foundItemInDesigners = FindItemDesigner((Item)loadedItems[i], designer);
+            }
+
+            designerListing.GetComponentInChildren<Text>().text = designer;
+            designerListing.GetComponentInChildren<Text>().fontSize = 30;
+            designerListing.name = $"Designer: {designer}";
+
+            designerListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInDesigners.GetName()}");
+            designerListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToDesigner(designer));
+
+            designerListing.transform.SetParent(content.transform, false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = designerListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+
+            designerListings.Add(designerListing);
+            visibleListings.Add(designerListing);
+
+            listingNo++;
+
+        }
+
     }
 
     private Item FindItemCategory(Item item, string category)
@@ -157,6 +193,18 @@ public class LoadCatalog : MonoBehaviour
         Item found = null;
 
         if(item.GetBrand().Contains(brand))
+        {
+            found = item;
+        }
+
+        return found;
+    }
+
+    private Item FindItemDesigner(Item item, string designer)
+    {
+        Item found = null;
+
+        if (item.GetDesigner().Contains(designer))
         {
             found = item;
         }
@@ -269,21 +317,25 @@ public class LoadCatalog : MonoBehaviour
         gotItem = (Item)loadedItems[0];
         gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks"});
         gotItem.AddBrand(new string[] { "Ikea" });
+        gotItem.AddDesigner(new string[] { "Ikea" });
 
         loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[1];
         gotItem.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
         gotItem.AddBrand(new string[] { "Harvey Norman" });
+        gotItem.AddDesigner(new string[] { "Parkland" });
 
         loadedItems.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[2];
         gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
-        gotItem.AddBrand(new string[] { "Living & Co" });
+        gotItem.AddBrand(new string[] { "The Warehouse" });
+        gotItem.AddDesigner(new string[] { "Living & Co" });
 
         loadedItems.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
         gotItem = (Item)loadedItems[3];
         gotItem.AddCategory(new string[] { "Google", "Android" });
-        
+        gotItem.AddDesigner(new string[] { "Google" });
+
     }
 
     private void GenerateCategories()
@@ -336,6 +388,30 @@ public class LoadCatalog : MonoBehaviour
         Debug.Log($"Brands loaded: {result}");
     }
 
+    private void GenerateDesigners()
+    {
+        foreach (Item item in loadedItems)
+        {
+            List<string> itemDesigner = item.GetDesigner();
+
+            foreach (string designer in itemDesigner)
+            {
+                if (foundDesigners.Contains(designer))
+                {
+                    Debug.Log($"Design {designer} is already in foundDesigners.");
+                }
+                else
+                {
+                    foundDesigners.Add(designer);
+                }
+            }
+        }
+
+        foundDesigners.Sort();
+
+        var result = string.Join(", ", foundDesigners.ToArray());
+        Debug.Log($"Designers loaded: {result}");
+    }
 
     private void ChangeContentToCategory(string category)
     {
@@ -369,6 +445,22 @@ public class LoadCatalog : MonoBehaviour
         }
     }
 
+    private void ChangeContentToDesigner(string designer)
+    {
+        GameObject content = GameObject.Find("Content");
+
+        hideListings();
+
+        foreach (Item itemInList in loadedItems)
+        {
+            if (itemInList.GetDesigner().Contains(designer))
+            {
+                showListing(itemInList);
+                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+            }
+        }
+    }
+
     //Implemented to FilterOpen.cs for filter GUI functionality
     public void categoryGenerate(string category)
     {
@@ -378,6 +470,11 @@ public class LoadCatalog : MonoBehaviour
     public void brandGenerate(string brand)
     {
         ChangeContentToBrand(brand);
+    }
+
+    public void designerGenerate(string designer)
+    {
+        ChangeContentToDesigner(designer);
     }
 
     public void resetListing()
