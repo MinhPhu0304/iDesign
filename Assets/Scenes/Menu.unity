@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2491,6 +2491,7 @@ GameObject:
   - component: {fileID: 1826285065}
   - component: {fileID: 1826285067}
   - component: {fileID: 1826285066}
+  - component: {fileID: 1826285068}
   m_Layer: 5
   m_Name: PopularItemPanel
   m_TagString: Untagged
@@ -2556,6 +2557,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826285064}
   m_CullTransparentMesh: 0
+--- !u!114 &1826285068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826285064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bc97fc80424d44fbc473744a223446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList: []
+  numberOfPopularItems: 10
 --- !u!1 &1833315124
 GameObject:
   m_ObjectHideFlags: 0
