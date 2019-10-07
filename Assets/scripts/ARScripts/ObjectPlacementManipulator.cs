@@ -40,7 +40,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// <summary>
         /// A model to place when a raycast from a user touch hits a plane.
         /// </summary>
-        public GameObject objectToPlace;
+        public GameObject ObjectToPlace;
 
         /// <summary>
         /// Manipulator prefab to attach placed objects to.
@@ -104,7 +104,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 else
                 {
                     // Instantiate model at the hit pose.
-                    var modelObject = Instantiate(objectToPlace, hit.Pose.position, hit.Pose.rotation);
+                    var modelObject = Instantiate(ObjectToPlace, hit.Pose.position, hit.Pose.rotation);
 
                     // Instantiate manipulator.
                     var manipulator =
@@ -146,6 +146,16 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
             DebugLogText.text = DebugLogText.text + "\n" + message;
             Debug.Log(message);
+        }
+
+        public void returnToMenu()
+        {
+            Control menuControl = new Control();
+            menuControl.onClick();
+        }
+        public void ChangeObjectToPlace(GameObject toObject)
+        {
+            ObjectToPlace = toObject;
         }
     }
 }
