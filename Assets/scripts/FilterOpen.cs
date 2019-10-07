@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FilterOpen : MonoBehaviour
 {
     public GameObject panelToOpen;
+    public Text text;
 
     public void OpenPanel()
     {
@@ -27,7 +29,10 @@ public class FilterOpen : MonoBehaviour
     {
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        scriptToAccess.categoryGenerate("Office"); ;
+        scriptToAccess.categoryGenerate("Office");
+
+        //text = TextChange.GetComponent<Text>();
+        text.text = "Office";
     }
     //Displays items under Living Room category
     public void showLiving()
@@ -35,6 +40,8 @@ public class FilterOpen : MonoBehaviour
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         scriptToAccess.categoryGenerate("Living Room");
+
+        text.text = "Living Room";
     }
     //Displays items made and designed by Google
     public void showGoogle()
@@ -42,6 +49,8 @@ public class FilterOpen : MonoBehaviour
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         scriptToAccess.categoryGenerate("Google");
+
+        text.text = "Google";
     }
     //Displays items made and designed by Ikea
     public void showIkea()
@@ -49,6 +58,8 @@ public class FilterOpen : MonoBehaviour
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         scriptToAccess.brandGenerate("Ikea");
+
+        text.text = "Ikea";
     }
     //Displays items made for Harvey Norman and designed by Parkland
     public void showHarveyNorm()
@@ -56,6 +67,8 @@ public class FilterOpen : MonoBehaviour
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         scriptToAccess.brandGenerate("Harvey Norman");
+
+        text.text = "Harvey Norman";
     }
     //Displays items made for The Warehouse and designed by Living&Co
     public void showWarehouse()
@@ -63,6 +76,17 @@ public class FilterOpen : MonoBehaviour
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         scriptToAccess.brandGenerate("The Warehouse");
+
+        text.text = "The Warehouse";
+    }
+    //Displays items designed by Parkland
+    public void showParkland()
+    {
+        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+
+        scriptToAccess.designerGenerate("Parkland");
+
+        text.text = "Parkland";
     }
 
 }

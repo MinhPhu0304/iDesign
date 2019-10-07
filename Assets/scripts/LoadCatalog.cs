@@ -109,71 +109,6 @@ public class LoadCatalog : MonoBehaviour
             listingNo++;
 
         }
-
-        foreach (string brand in foundBrands)
-        {
-            GameObject brandListing = Instantiate(brandListingPrefab);
-
-            Item foundItemInBrands = null;
-
-            for (int i = 0; i < loadedItems.Count && foundItemInBrands == null; i++)
-            {
-                foundItemInBrands = FindItemBrand((Item)loadedItems[i], brand);
-            }
-
-            brandListing.GetComponentInChildren<Text>().text = brand;
-            brandListing.GetComponentInChildren<Text>().fontSize = 30;
-            brandListing.name = $"Brand: {brand}";
-
-            brandListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInBrands.GetName()}");
-            brandListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToBrand(brand));
-
-            brandListing.transform.SetParent(content.transform, false);
-
-            //set size of listing
-            GameObject scrollView = GameObject.Find("Scroll View");
-            RectTransform rt = brandListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
-
-            brandListings.Add(brandListing);
-            visibleListings.Add(brandListing);
-
-            listingNo++;
-
-        }
-
-        foreach (string designer in foundDesigners)
-        {
-            GameObject designerListing = Instantiate(designerListingPrefab);
-
-            Item foundItemInDesigners = null;
-
-            for (int i = 0; i < loadedItems.Count && foundItemInDesigners == null; i++)
-            {
-                foundItemInDesigners = FindItemDesigner((Item)loadedItems[i], designer);
-            }
-
-            designerListing.GetComponentInChildren<Text>().text = designer;
-            designerListing.GetComponentInChildren<Text>().fontSize = 30;
-            designerListing.name = $"Designer: {designer}";
-
-            designerListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInDesigners.GetName()}");
-            designerListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToDesigner(designer));
-
-            designerListing.transform.SetParent(content.transform, false);
-
-            //set size of listing
-            GameObject scrollView = GameObject.Find("Scroll View");
-            RectTransform rt = designerListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
-
-            designerListings.Add(designerListing);
-            visibleListings.Add(designerListing);
-
-            listingNo++;
-
-        }
-
     }
 
     private Item FindItemCategory(Item item, string category)
@@ -258,7 +193,6 @@ public class LoadCatalog : MonoBehaviour
                     searchResults.Add(foundItem);
                 }
             }
-
         }
 
         hideListings();
@@ -286,7 +220,6 @@ public class LoadCatalog : MonoBehaviour
         {
             visibleListings.Remove(toHide);
         }
-
     }
 
     //Shows listing that is passed in and updates visible/disabled lists
@@ -480,7 +413,104 @@ public class LoadCatalog : MonoBehaviour
     public void resetListing()
     {
         hideListings();
-        Start();
+
+        GameObject content = GameObject.Find("Content");
+
+        int listingNo = 0;
+        foreach (string category in foundCategories)
+        {
+            GameObject categoryListing = Instantiate(categoryListingPrefab);
+
+            Item foundItemInCategory = null;
+
+            for (int i = 0; i < loadedItems.Count && foundItemInCategory == null; i++)
+            {
+                foundItemInCategory = FindItemCategory((Item)loadedItems[i], category);
+            }
+
+            categoryListing.GetComponentInChildren<Text>().text = category;
+            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
+            categoryListing.name = $"Category: {category}";
+
+            categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
+            categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
+
+            categoryListing.transform.SetParent(content.transform, false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = categoryListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+
+            categoryListings.Add(categoryListing);
+            visibleListings.Add(categoryListing);
+
+            listingNo++;
+
+        }
+
+        foreach (string brand in foundBrands)
+        {
+            GameObject brandListing = Instantiate(brandListingPrefab);
+
+            Item foundItemInBrands = null;
+
+            for (int i = 0; i < loadedItems.Count && foundItemInBrands == null; i++)
+            {
+                foundItemInBrands = FindItemBrand((Item)loadedItems[i], brand);
+            }
+
+            brandListing.GetComponentInChildren<Text>().text = brand;
+            brandListing.GetComponentInChildren<Text>().fontSize = 30;
+            brandListing.name = $"Brand: {brand}";
+
+            brandListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInBrands.GetName()}");
+            brandListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToBrand(brand));
+
+            brandListing.transform.SetParent(content.transform, false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = brandListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+
+            brandListings.Add(brandListing);
+            visibleListings.Add(brandListing);
+
+            listingNo++;
+
+        }
+
+        foreach (string designer in foundDesigners)
+        {
+            GameObject designerListing = Instantiate(designerListingPrefab);
+
+            Item foundItemInDesigners = null;
+
+            for (int i = 0; i < loadedItems.Count && foundItemInDesigners == null; i++)
+            {
+                foundItemInDesigners = FindItemDesigner((Item)loadedItems[i], designer);
+            }
+
+            designerListing.GetComponentInChildren<Text>().text = designer;
+            designerListing.GetComponentInChildren<Text>().fontSize = 30;
+            designerListing.name = $"Designer: {designer}";
+
+            designerListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInDesigners.GetName()}");
+            designerListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToDesigner(designer));
+
+            designerListing.transform.SetParent(content.transform, false);
+
+            //set size of listing
+            GameObject scrollView = GameObject.Find("Scroll View");
+            RectTransform rt = designerListing.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+
+            designerListings.Add(designerListing);
+            visibleListings.Add(designerListing);
+
+            listingNo++;
+        }
     }
 
     // Update is called once per frame
