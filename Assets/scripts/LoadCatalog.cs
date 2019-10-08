@@ -300,19 +300,7 @@ public class LoadCatalog : MonoBehaviour
     {
         foreach (Item item in loadedItems)
         {
-            List<string> itemBrands = item.GetBrand();
-
-            foreach (string brand in itemBrands)
-            {
-                if (foundBrands.Contains(brand))
-                {
-                    Debug.Log($"Brand {brand} is already in foundBrands.");
-                }
-                else
-                {
-                    foundBrands.Add(brand);
-                }
-            }
+            scanBrand(item);
         }
 
         foundBrands.Sort();
@@ -321,29 +309,51 @@ public class LoadCatalog : MonoBehaviour
         Debug.Log($"Brands loaded: {result}");
     }
 
+    public void scanBrand(Item item)
+    {
+        List<string> itemBrands = item.GetBrand();
+
+        foreach (string brand in itemBrands)
+        {
+            if (foundBrands.Contains(brand))
+            {
+                Debug.Log($"Brand {brand} is already in foundBrands.");
+            }
+            else
+            {
+                foundBrands.Add(brand);
+            }
+        }
+    }
+
     private void GenerateDesigners()
     {
         foreach (Item item in loadedItems)
         {
-            List<string> itemDesigner = item.GetDesigner();
-
-            foreach (string designer in itemDesigner)
-            {
-                if (foundDesigners.Contains(designer))
-                {
-                    Debug.Log($"Design {designer} is already in foundDesigners.");
-                }
-                else
-                {
-                    foundDesigners.Add(designer);
-                }
-            }
+            scanDesign(item);
         }
 
         foundDesigners.Sort();
 
         var result = string.Join(", ", foundDesigners.ToArray());
         Debug.Log($"Designers loaded: {result}");
+    }
+
+    public void scanDesign(Item item)
+    {
+        List<string> itemBrands = item.GetBrand();
+
+        foreach (string brand in itemBrands)
+        {
+            if (foundBrands.Contains(brand))
+            {
+                Debug.Log($"Brand {brand} is already in foundBrands.");
+            }
+            else
+            {
+                foundBrands.Add(brand);
+            }
+        }
     }
 
     private void ChangeContentToCategory(string category)
@@ -414,41 +424,52 @@ public class LoadCatalog : MonoBehaviour
     {
         hideListings();
 
+        viewCategories();
+        viewDesigners();
+        viewBrands();
+
+    }
+
+    private void viewDesigners()
+    {
         GameObject content = GameObject.Find("Content");
-
         int listingNo = 0;
-        foreach (string category in foundCategories)
+        foreach (string designer in foundDesigners)
         {
-            GameObject categoryListing = Instantiate(categoryListingPrefab);
+            GameObject designerListing = Instantiate(designerListingPrefab);
 
-            Item foundItemInCategory = null;
+            Item foundItemInDesigners = null;
 
-            for (int i = 0; i < loadedItems.Count && foundItemInCategory == null; i++)
+            for (int i = 0; i < loadedItems.Count && foundItemInDesigners == null; i++)
             {
-                foundItemInCategory = FindItemCategory((Item)loadedItems[i], category);
+                foundItemInDesigners = FindItemDesigner((Item)loadedItems[i], designer);
             }
 
-            categoryListing.GetComponentInChildren<Text>().text = category;
-            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
-            categoryListing.name = $"Category: {category}";
+            designerListing.GetComponentInChildren<Text>().text = designer;
+            designerListing.GetComponentInChildren<Text>().fontSize = 30;
+            designerListing.name = $"Designer: {designer}";
 
-            categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
-            categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
+            designerListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInDesigners.GetName()}");
+            designerListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToDesigner(designer));
 
-            categoryListing.transform.SetParent(content.transform, false);
+            designerListing.transform.SetParent(content.transform, false);
 
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
-            RectTransform rt = categoryListing.GetComponent<RectTransform>();
+            RectTransform rt = designerListing.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
 
-            categoryListings.Add(categoryListing);
-            visibleListings.Add(categoryListing);
+            designerListings.Add(designerListing);
+            visibleListings.Add(designerListing);
 
             listingNo++;
-
         }
+    }
 
+    private void viewBrands()
+    {
+        GameObject content = GameObject.Find("Content");
+        int listingNo = 0;
         foreach (string brand in foundBrands)
         {
             GameObject brandListing = Instantiate(brandListingPrefab);
@@ -480,36 +501,42 @@ public class LoadCatalog : MonoBehaviour
             listingNo++;
 
         }
+    }
 
-        foreach (string designer in foundDesigners)
+    private void viewCategories()
+    {
+        GameObject content = GameObject.Find("Content");
+        int listingNo = 0;
+        foreach (string category in foundCategories)
         {
-            GameObject designerListing = Instantiate(designerListingPrefab);
+            GameObject categoryListing = Instantiate(categoryListingPrefab);
 
-            Item foundItemInDesigners = null;
+            Item foundItemInCategory = null;
 
-            for (int i = 0; i < loadedItems.Count && foundItemInDesigners == null; i++)
+            for (int i = 0; i < loadedItems.Count && foundItemInCategory == null; i++)
             {
-                foundItemInDesigners = FindItemDesigner((Item)loadedItems[i], designer);
+                foundItemInCategory = FindItemCategory((Item)loadedItems[i], category);
             }
 
-            designerListing.GetComponentInChildren<Text>().text = designer;
-            designerListing.GetComponentInChildren<Text>().fontSize = 30;
-            designerListing.name = $"Designer: {designer}";
+            categoryListing.GetComponentInChildren<Text>().text = category;
+            categoryListing.GetComponentInChildren<Text>().fontSize = 30;
+            categoryListing.name = $"Category: {category}";
 
-            designerListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInDesigners.GetName()}");
-            designerListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToDesigner(designer));
+            categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
+            categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
 
-            designerListing.transform.SetParent(content.transform, false);
+            categoryListing.transform.SetParent(content.transform, false);
 
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
-            RectTransform rt = designerListing.GetComponent<RectTransform>();
+            RectTransform rt = categoryListing.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
 
-            designerListings.Add(designerListing);
-            visibleListings.Add(designerListing);
+            categoryListings.Add(categoryListing);
+            visibleListings.Add(categoryListing);
 
             listingNo++;
+
         }
     }
 
