@@ -40,6 +40,7 @@
             itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
 
             GameObject content = GameObject.Find("Content");
+            itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
             int listingNo = 0;
             foreach (Item itemInList in loadedItems)
