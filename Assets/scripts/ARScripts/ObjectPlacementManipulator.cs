@@ -47,6 +47,18 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// </summary>
         public GameObject ManipulatorPrefab;
 
+        private ItemManager itemManager;
+
+        /// <summary>
+        /// On object creation: 
+        /// Assign the itemManager ObjectToPlace to this scripts ObjectToPlace 
+        /// </summary>
+        private void Start()
+        {
+            itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+            ObjectToPlace = itemManager.ObjectToPlace;
+            Debug.Log("OPM: " + ObjectToPlace + " itemManager: " + itemManager.ObjectToPlace);
+        }
         /// <summary>
         /// Returns true if the manipulation can be started for the given gesture.
         /// </summary>
@@ -103,6 +115,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 }
                 else
                 {
+
                     // Instantiate model at the hit pose.
                     var modelObject = Instantiate(ObjectToPlace, hit.Pose.position, hit.Pose.rotation);
 
@@ -148,11 +161,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             Debug.Log(message);
         }
 
-        public void returnToMenu()
-        {
-            Control menuControl = new Control();
-            menuControl.onClick();
-        }
+        
         public void ChangeObjectToPlace(GameObject toObject)
         {
             ObjectToPlace = toObject;

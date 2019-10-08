@@ -57,7 +57,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             // Exit the app when the 'back' button is pressed.
             if (Input.GetKey(KeyCode.Escape))
             {
-                Application.Quit();
+                returnToMenu();
             }
 
             // Only allow the screen to sleep when not tracking.
@@ -122,6 +122,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
                     toastObject.Call("show");
                 }));
             }
+        }
+
+        public void returnToMenu()
+        {
+            Control menuControl = new Control();
+            menuControl.onClick();
         }
     }
 }

@@ -75,24 +75,26 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// <returns>True if the manipulation can be started.</returns>
         protected override bool CanStartManipulationForGesture(DragGesture gesture)
         {
-            if (gesture.TargetObject == null)
+            if (gesture.TargetObject != null)
             {
+                OutputDebug("Target Object == null");
                 return false;
             }
 
             // If the gesture isn't targeting this item, don't start manipulating.
             if (gesture.TargetObject != gameObject)
             {
+                OutputDebug("Target Object is no a gameobject");
+
                 return false;
             }
 
             //Move not activated
             if (checkMoveToggle() == false)
             {
-                //OutputDebug("Move not toggled");
+                OutputDebug("Move not toggled");
                 return false;
             }
-
 
             // Select it.
             Select();

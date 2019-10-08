@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ARManipulation.unity
-    guid: 6f5278d613a22994f9dfeee2c1d9c431
-  - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: 49c8ea47c1a8191468bb0eccbffa870b
   - enabled: 1
@@ -20,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARScene.unity
     guid: bf3ffd8bafaca584590252ce8eb410cf
+  - enabled: 1
+    path: Assets/Scenes/ARManipulation.unity
+    guid: 6f5278d613a22994f9dfeee2c1d9c431
   - enabled: 1
     path: Assets/Scenes/itemInformationView.unity
     guid: a6f2140390f2e5045b63d2f70f316519

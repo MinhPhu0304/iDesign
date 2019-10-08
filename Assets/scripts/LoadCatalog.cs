@@ -22,6 +22,8 @@
         public List<GameObject> visibleListings;
         public List<GameObject> disabledListings;
 
+        public ItemManager itemManager;
+
         GameObject sceneController;
         GameObject itemSceneController;
 
@@ -123,7 +125,9 @@
         {
             Debug.Log($"Loading resource: {name}");
             GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
-            sceneController.GetComponent<ObjectPlacementManipulator>().ChangeObjectToPlace(selectedObject);
+            //sceneController.GetComponent<ObjectPlacementManipulator>().ChangeObjectToPlace(selectedObject);
+            itemManager.ObjectToPlace = selectedObject;
+            Debug.Log("Item Manager: " + itemManager.ObjectToPlace);
 
             SceneManager.LoadScene("ARManipulation");
         }

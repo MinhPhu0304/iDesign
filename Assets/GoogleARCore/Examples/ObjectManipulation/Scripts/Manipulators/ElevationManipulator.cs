@@ -61,6 +61,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 return false;
             }
 
+            if (checkLiftToggle() == false)
+            {
+                return false;
+            }
+
             return true;
         }
 
