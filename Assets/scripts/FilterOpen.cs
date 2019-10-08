@@ -31,7 +31,6 @@ public class FilterOpen : MonoBehaviour
 
         scriptToAccess.categoryGenerate("Office");
 
-        //text = TextChange.GetComponent<Text>();
         text.text = "Office";
     }
     //Displays items under Living Room category
@@ -88,5 +87,4 @@ public class FilterOpen : MonoBehaviour
 
         text.text = "Parkland";
     }
-
 }
