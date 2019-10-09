@@ -8,7 +8,9 @@ public class FilterOpen : MonoBehaviour
     public GameObject panelToOpen;
     public Text textExtract;
     public Text textChange;
+    public Text textFilter;
 
+    //Allows functionality of opening a panel
     public void OpenPanel()
     {
         if (panelToOpen != null)
@@ -19,44 +21,51 @@ public class FilterOpen : MonoBehaviour
         }
     }
 
-    public void showAny()
+    public void filter()
     {
+        //Allows access of LoadCatalog scipt's methods via its attachment to Viewport canvas
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        scriptToAccess.resetListing();
-    }
+        string categoryName;
+        string brandName;
+        string designerName;
+        string filter;
 
-    public void showCategories(string categoryName)
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+        //If text object provided contains text matching 'filter', then program knows which sorting function to use
+        filter = textFilter.text;
 
-        categoryName = textExtract.text;
+        if (filter == "Category")
+        {
+            categoryName = textExtract.text;
 
-        scriptToAccess.categoryGenerate(categoryName);
+            scriptToAccess.categoryGenerate(categoryName);
 
-        textChange.text = categoryName;
-    }
+            textChange.text = categoryName;
+        }
 
-    public void showBrands(string brandName)
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+        if (filter == "Brand")
+        {
+            brandName = textExtract.text;
 
-        brandName = textExtract.text;
+            scriptToAccess.brandGenerate(brandName);
 
-        scriptToAccess.brandGenerate(brandName);
+            textChange.text = brandName;
+        }
 
-        textChange.text = brandName;
-    }
+        if (filter == "Designed by")
+        {
+            designerName = textExtract.text;
 
-    public void showDesigners(string designerName)
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+            scriptToAccess.designerGenerate(designerName);
 
-        designerName = textExtract.text;
+            textChange.text = designerName;
+        }
 
-        scriptToAccess.designerGenerate(designerName);
+        if (filter == "All")
+        {
+            scriptToAccess.resetListing();
+        }
 
-        textChange.text = designerName;
     }
 }
 
