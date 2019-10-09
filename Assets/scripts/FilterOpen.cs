@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class FilterOpen : MonoBehaviour
 {
     public GameObject panelToOpen;
-    public Text text;
+    public Text textExtract;
+    public Text textChange;
 
     public void OpenPanel()
     {
@@ -24,67 +25,40 @@ public class FilterOpen : MonoBehaviour
 
         scriptToAccess.resetListing();
     }
-    //Displays items under Office
-    public void showOffice()
+
+    public void showCategories(string categoryName)
     {
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        scriptToAccess.categoryGenerate("Office");
+        categoryName = textExtract.text;
 
-        text.text = "Office";
+        scriptToAccess.categoryGenerate(categoryName);
+
+        textChange.text = categoryName;
     }
-    //Displays items under Living Room category
-    public void showLiving()
+
+    public void showBrands(string brandName)
     {
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        scriptToAccess.categoryGenerate("Living Room");
+        brandName = textExtract.text;
 
-        text.text = "Living Room";
+        scriptToAccess.brandGenerate(brandName);
+
+        textChange.text = brandName;
     }
-    //Displays items made and designed by Google
-    public void showGoogle()
+
+    public void showDesigners(string designerName)
     {
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        scriptToAccess.categoryGenerate("Google");
+        designerName = textExtract.text;
 
-        text.text = "Google";
-    }
-    //Displays items made and designed by Ikea
-    public void showIkea()
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+        scriptToAccess.designerGenerate(designerName);
 
-        scriptToAccess.brandGenerate("Ikea");
-
-        text.text = "Ikea";
-    }
-    //Displays items made for Harvey Norman and designed by Parkland
-    public void showHarveyNorm()
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
-
-        scriptToAccess.brandGenerate("Harvey Norman");
-
-        text.text = "Harvey Norman";
-    }
-    //Displays items made for The Warehouse and designed by Living&Co
-    public void showWarehouse()
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
-
-        scriptToAccess.brandGenerate("The Warehouse");
-
-        text.text = "The Warehouse";
-    }
-    //Displays items designed by Parkland
-    public void showParkland()
-    {
-        LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
-
-        scriptToAccess.designerGenerate("Parkland");
-
-        text.text = "Parkland";
+        textChange.text = designerName;
     }
 }
+
+
+

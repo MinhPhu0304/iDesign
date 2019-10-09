@@ -249,7 +249,7 @@ public class LoadCatalog : MonoBehaviour
         loadedItems.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)loadedItems[0];
         gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks"});
-        gotItem.AddBrand(new string[] { "Ikea" });
+        gotItem.AddBrand(new string[] { "Ikea"});
         gotItem.AddDesigner(new string[] { "Ikea" });
 
         loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
