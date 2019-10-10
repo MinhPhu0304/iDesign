@@ -362,12 +362,12 @@ public class LoadCatalog : MonoBehaviour
 
         hideListings();
 
-        foreach (Item itemInList in loadedItems)
+        foreach (Item item in loadedItems)
         {
-            if (itemInList.GetCategories().Contains(category))
+            if (item.GetCategories().Contains(category))
             {
-                showListing(itemInList);
-                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+                showListing(item);
+                content.transform.Find($"Listing: {item.GetItemID()} {item.GetName()}").gameObject.SetActive(true);
             }
         }        
     }
@@ -378,12 +378,12 @@ public class LoadCatalog : MonoBehaviour
 
         hideListings();
 
-        foreach (Item itemInList in loadedItems)
+        foreach (Item item in loadedItems)
         {
-            if (itemInList.GetBrand().Contains(brand))
+            if (item.GetBrand().Contains(brand))
             {
-                showListing(itemInList);
-                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+                showListing(item);
+                content.transform.Find($"Listing: {item.GetItemID()} {item.GetName()}").gameObject.SetActive(true);
             }
         }
     }
@@ -394,12 +394,12 @@ public class LoadCatalog : MonoBehaviour
 
         hideListings();
 
-        foreach (Item itemInList in loadedItems)
+        foreach (Item item in loadedItems)
         {
-            if (itemInList.GetDesigner().Contains(designer))
+            if (item.GetDesigner().Contains(designer))
             {
-                showListing(itemInList);
-                content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
+                showListing(item);
+                content.transform.Find($"Listing: {item.GetItemID()} {item.GetName()}").gameObject.SetActive(true);
             }
         }
     }

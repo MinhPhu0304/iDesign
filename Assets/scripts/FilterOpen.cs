@@ -20,21 +20,20 @@ public class FilterOpen : MonoBehaviour
             panelToOpen.SetActive(!isActive);
         }
     }
-
     public void filter()
     {
-        //Allows access of LoadCatalog scipt's methods via its attachment to Viewport canvas
+        //Allows access of LoadCatalog.cs script's methods via its attachment to Viewport canvas
         LoadCatalog scriptToAccess = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
         string categoryName;
         string brandName;
         string designerName;
-        string filter;
+        string filterTo;
 
-        //If text object provided contains text matching 'filter', then program knows which sorting function to use
-        filter = textFilter.text;
+        //Text object provided contains text that is loading into 'filter', then program knows which sorting function to use
+        filterTo = textFilter.text;
 
-        if (filter == "Category")
+        if (filterTo == "Category")
         {
             categoryName = textExtract.text;
 
@@ -43,7 +42,7 @@ public class FilterOpen : MonoBehaviour
             textChange.text = categoryName;
         }
 
-        if (filter == "Brand")
+        if (filterTo == "Brand")
         {
             brandName = textExtract.text;
 
@@ -52,7 +51,7 @@ public class FilterOpen : MonoBehaviour
             textChange.text = brandName;
         }
 
-        if (filter == "Designed by")
+        if (filterTo == "Designed by")
         {
             designerName = textExtract.text;
 
@@ -61,11 +60,12 @@ public class FilterOpen : MonoBehaviour
             textChange.text = designerName;
         }
 
-        if (filter == "All")
+        if (filterTo == "Any")
         {
             scriptToAccess.resetListing();
-        }
 
+            textChange.text = "Any";
+        }
     }
 }
 
