@@ -48,11 +48,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 return false;
             }
 
-
-            if (gesture.TargetObject != null)
+            //Commented out to allow rotation when touch hits an object
+            /*if (gesture.TargetObject != null)
             {
                 return false;
-            }
+            }*/
 
             if (checkRotationToggle() == false)
             {

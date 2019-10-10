@@ -78,7 +78,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             if (gesture.TargetObject == null)
             {
                 OutputDebug("Target Object == null" + gesture.TargetObject);
-                //return false;
+                return false;
             }
 
             // If the gesture isn't targeting this item, don't start manipulating.
@@ -86,7 +86,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             {
                 OutputDebug("Target Object is not a gameobject");
 
-                //return false;
+                return false;
             }
 
             //Move not activated

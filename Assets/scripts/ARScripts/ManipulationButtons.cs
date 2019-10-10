@@ -12,6 +12,10 @@ public class ManipulationButtons : MonoBehaviour
     public bool toggleScale = false;
     public bool toggleLift = false;
 
+    public GameObject rotateButton;
+    public GameObject moveButton;
+    public GameObject placeButton;
+
     //TODO: check if an item is selected?
 
     public void RotatePressed() {

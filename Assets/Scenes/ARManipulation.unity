@@ -1624,6 +1624,9 @@ MonoBehaviour:
   togglePlace: 1
   toggleScale: 0
   toggleLift: 0
+  rotateButton: {fileID: 279384910}
+  moveButton: {fileID: 1270508812}
+  placeButton: {fileID: 202275142}
 --- !u!114 &1297354676
 MonoBehaviour:
   m_ObjectHideFlags: 0
