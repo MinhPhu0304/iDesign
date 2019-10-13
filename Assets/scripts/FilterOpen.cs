@@ -7,7 +7,6 @@ public class FilterOpen : MonoBehaviour
 {
     public GameObject panelToOpen;
     public Text textExtract;
-    public Text textChange;
     public Text textFilter;
 
     //Allows functionality of opening a panel
@@ -34,7 +33,7 @@ public class FilterOpen : MonoBehaviour
         string designerName;
         string filterTo;
 
-        //Text object provided contains text that is loading into 'filter', then program knows which sorting function to use
+        //Text object provided contains text that is loaded into 'filter', then program knows which sorting function to use
         filterTo = textFilter.text;
 
         if (filterTo == "Category")
@@ -42,8 +41,6 @@ public class FilterOpen : MonoBehaviour
             categoryName = textExtract.text;
 
             scriptToAccess.categoryGenerate(categoryName);
-
-            textChange.text = categoryName;
         }
 
         if (filterTo == "Brand")
@@ -51,27 +48,21 @@ public class FilterOpen : MonoBehaviour
             brandName = textExtract.text;
 
             scriptToAccess.brandGenerate(brandName);
-
-            textChange.text = brandName;
         }
- 
+
         if (filterTo == "Designed by")
         {
             designerName = textExtract.text;
 
             scriptToAccess.designerGenerate(designerName);
-
-            textChange.text = designerName;
         }
 
         if (filterTo == "Any")
         {
             scriptToAccess.resetListing();
-
-            textChange.text = "Any";
         }
         yield return null;
-    }  
+    }
 }
 
 
