@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using GoogleARCore;
 
 public class PopularItemsBehaviour : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class PopularItemsBehaviour : MonoBehaviour
     public List<Item> itemList;
     public GameObject popularItemPanel;
     public List<GameObject> itemListings;
+    public GameObject sceneController;
+    public GameObject itemSceneController;
     //Setting the number of popular items to display to 10
     public int MAX_NUMBER_OF_POPULAR_ITENS = 10;
     // Start is called before the first frame update
@@ -18,6 +22,11 @@ public class PopularItemsBehaviour : MonoBehaviour
         itemList = new List<Item>();
         itemListings = new List<GameObject>();
 
+        sceneController = new GameObject();
+        sceneController.AddComponent<ARSceneController>();
+
+        itemSceneController = new GameObject();
+        itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
         queryItems();
         updatePopularItems();
     }
@@ -87,7 +96,7 @@ public class PopularItemsBehaviour : MonoBehaviour
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
             RectTransform rt = itemListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(scrollView.GetComponent<RectTransform>().rect.width - 80, 150);
+            rt.sizeDelta = new Vector2(375, 400);
 
             itemListings.Add(itemListing);
             
@@ -110,15 +119,15 @@ public class PopularItemsBehaviour : MonoBehaviour
     private void NavigateToInfoScene(Item itemToShow)
     {
         Debug.Log("Navigate to infoscene");
-        //itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
+        itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
     }
 
     private void NavigateToARScene(string name)
     {
         Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
-        //sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
+        sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 
-        //SceneManager.LoadScene("ARScene");
+        SceneManager.LoadScene("ARScene");
     }
 }
