@@ -142,7 +142,7 @@ public class AndroidLocalDataBase : MonoBehaviour
     public void executeLogin()
     {
         string username = textInputUsername.text;
-        string password = textInputPassword.text;
+        string passwordInput = textInputPassword.text;
 
         using (dbconn = new SqliteConnection(conn))
         {
@@ -154,9 +154,9 @@ public class AndroidLocalDataBase : MonoBehaviour
             while (reader.Read())
             {
                 string usernameRecord = reader.GetString(0);
-                string passwordRecord = reader.GetString(1);
+                string passwordInRecord = reader.GetString(1);
 
-                if (passwordRecord.Equals(passwordRecord))
+                if (passwordInRecord.Equals(passwordInput))
                 {
                     SceneManager.LoadScene("Menu");
                 }
