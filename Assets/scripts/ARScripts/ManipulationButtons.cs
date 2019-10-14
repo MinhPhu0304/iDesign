@@ -12,11 +12,21 @@ public class ManipulationButtons : MonoBehaviour
     public bool toggleScale = false;
     public bool toggleLift = false;
 
+    public Color toggledColour;
+
     public GameObject rotateButton;
     public GameObject moveButton;
     public GameObject placeButton;
 
+    private GameObject currentlyPressed;
+
     //TODO: check if an item is selected?
+
+    private void Start()
+    {
+        TogglePressedColour(placeButton);
+        currentlyPressed = placeButton;
+    }
 
     public void RotatePressed() {
         if (toggleRotate)
@@ -29,6 +39,7 @@ public class ManipulationButtons : MonoBehaviour
             togglePlace = false;
             toggleScale = false;
             toggleRotate = true;
+            TogglePressedColour(rotateButton);
         }
 
         OutputDebug("Rotate set to: " + toggleRotate);
@@ -46,6 +57,7 @@ public class ManipulationButtons : MonoBehaviour
             toggleScale = false;
             toggleLift = false;
             toggleMove = true;
+            TogglePressedColour(moveButton);
         }
 
         OutputDebug("Move set to: " + toggleMove);
@@ -64,6 +76,7 @@ public class ManipulationButtons : MonoBehaviour
             toggleScale = false;
             toggleLift = false;
             togglePlace = true;
+            TogglePressedColour(placeButton);
         }
 
         OutputDebug("Place set to: " + togglePlace);
@@ -121,6 +134,17 @@ public class ManipulationButtons : MonoBehaviour
     }
     public bool GetLiftStatus() {
         return toggleLift;
+    }
+
+    public void TogglePressedColour(GameObject pressedButton)
+    {
+        pressedButton.GetComponent<Image>().color = toggledColour;
+
+        if (currentlyPressed != null)
+        {
+            currentlyPressed.GetComponent<Image>().color = Color.white;
+            currentlyPressed = pressedButton;
+        }
     }
 
     private void OutputDebug(string message)
