@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 public class TopPanelBehaviour : MonoBehaviour
 {
@@ -15,36 +17,37 @@ public class TopPanelBehaviour : MonoBehaviour
     private Sprite selectedSprite;
     private Sprite defaultSprite;
     private string favouriteBuffer;
+    private Item currentItem;
+    string path;
+    FileStream stream;
     void Start()
     {
+        path = Application.persistentDataPath + "/favourites.dat";
+
         defaultSprite = Resources.Load("favourite", typeof(Sprite)) as Sprite;
         selectedSprite = Resources.Load("favouriteSelected", typeof(Sprite)) as Sprite;
         currentUser = new User(1, "guy01");
 
         Text name = TitleItemNameText.GetComponent<Text>();
-        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
+        currentItem = ItemDisplayPanelBehaviour.currentItem;
         if (currentItem != null)
             name.text = ItemDisplayPanelBehaviour.currentItem.GetName();
 
-        //Checking if the text file with favourites exist. If it does we can then read in
-        if (File.Exists(Application.persistentDataPath + "/favourites.txt"))
+        if (File.Exists(path))
         {
-            string readInFile = loadFIle();
-
-            //Save in to the buffer which will hold the previously stored favourites
-            favouriteBuffer = readInFile;
-            if (readInFile.Contains(currentItem.GetName()))
+            try
             {
-                //Remove the text with the currentItem so if it is unfavourited it will be removed from the favourite text file
-                favouriteBuffer = favouriteBuffer.Replace(currentItem.GetName(), "");
-                //Re favourite the item as it would of been destroyed when the scene changed
-                favouriteItem();
+                loadFavouriteFIle();
+            } catch(SerializationException ex)
+            {
+                Debug.Log("File cannot be unserialized!.");
             }
+            
         }
-
         updateFavourtieButton();
 
     }
+
 
     //Update the UI of the favourite button
     private void updateFavourtieButton()
@@ -70,16 +73,14 @@ public class TopPanelBehaviour : MonoBehaviour
     //Controls the behaviour, when clicking the button.
     public void clickFavourite()
     {
-        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
-
         //Checking the item is already favourited or  not
         if (!isFavourite())
         {
-            favouriteItem();
+            addFavourite();
         }
         else
         {
-            unfavouriteItem();
+            removeFavourite();
         }
 
         //Save the favourites file and update the UI
@@ -87,43 +88,46 @@ public class TopPanelBehaviour : MonoBehaviour
         updateFavourtieButton();
     }
 
-    private void unfavouriteItem()
+    private void removeFavourite()
     {
-        currentUser.GetFavourites().Remove(ItemDisplayPanelBehaviour.currentItem);
+        currentUser.removeItem(currentItem);
     }
 
-    private void favouriteItem()
+    private void addFavourite()
     {
-        currentUser.addFavourite(ItemDisplayPanelBehaviour.currentItem);
+        currentUser.addFavourite(currentItem);
     }
 
     //This method saves the favourite files into a text file
     public void saveFavouriteFile()
     {
-        string path = Application.persistentDataPath + "/favourites.txt";
+        using (stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        {
+            IFormatter formatter = new BinaryFormatter();
 
-        StreamWriter writer = new StreamWriter(path, false);
-        writer.WriteLine(favouriteBuffer + currentUser.formatFavourites());
-        writer.Close();
+            formatter.Serialize(stream, currentUser);
+            stream.Close();
+        }
+    }
+
+    //Reads the input from the favourites text file and return the contents as a string
+    public void loadFavouriteFIle()
+    {
+        using (stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            Debug.Log(path);
+            IFormatter formatter = new BinaryFormatter();
+            currentUser = (User)formatter.Deserialize(stream);
+            stream.Close();
+        }
     }
 
     //This method check if the currentItem is already favourited
     public Boolean isFavourite()
     {
-        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
-        Debug.Log(currentUser.formatFavourites());
         return (currentUser.formatFavourites().Contains(currentItem.GetName()));
     }
 
-    //Reads the input from the favourites text file and return the contents as a string
-    public string loadFIle()
-    {
-        string path = Application.persistentDataPath + "/favourites.txt";
-
-        StreamReader reader = new StreamReader(path);
-        string inputFaves = reader.ReadToEnd();
-        reader.Close();
-
-        return inputFaves;
-    }
+    
+    
 }

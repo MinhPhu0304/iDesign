@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 
+[Serializable]
 public class Item
 {
     private int itemID;
@@ -8,6 +10,8 @@ public class Item
     private string URL;
     private string desc;
     private List<string> categories = new List<string>();
+    private List<string> brands = new List<string>();
+    private List<string> designers = new List<string>();
     private Specs specs;
     public int numberOfClicks = 0;
 
@@ -72,6 +76,43 @@ public class Item
         }
     }
 
+    public List<string> GetBrand()
+    {
+        return brands;
+    }
+
+    public void AddBrand(string brand)
+    {
+        brands.Add(brand);
+    }
+
+    public void AddBrand(string[] brandArray)
+    {
+        foreach (string brand in brandArray)
+        {
+            brands.Add(brand);
+        }
+    }
+
+    public List<string> GetDesigner()
+    {
+        return designers;
+    }
+
+    public void AddDesigner(string designer)
+    {
+        designers.Add(designer);
+    }
+
+    public void AddDesigner(string[] designerArray)
+    {
+        foreach (string designer in designerArray)
+        {
+            designers.Add(designer);
+        }
+    }
+
+
     public string GetSpecs()
     {
         return specs.GetSpecs();
@@ -81,5 +122,12 @@ public class Item
     public string ToString()
     {
         return name;
+    }
+
+    override
+    public Boolean Equals(Object obj)
+    {
+        Item compareItem = (Item) obj;
+        return (itemID == compareItem.itemID);
     }
 }
