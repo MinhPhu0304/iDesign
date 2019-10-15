@@ -15,7 +15,7 @@ public class PopularItemsBehaviour : MonoBehaviour
     public GameObject sceneController;
     public GameObject itemSceneController;
     //Setting the number of popular items to display to 10
-    public int MAX_NUMBER_OF_POPULAR_ITENS = 10;
+    public int MAX_NUMBER_OF_POPULAR_ITEMS = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,12 +64,12 @@ public class PopularItemsBehaviour : MonoBehaviour
 
         // Check if the item list is less than the max number of popular items
         // If it is greater than the max number of items make it eual the max number
-        if (itemList.Count < MAX_NUMBER_OF_POPULAR_ITENS)
+        if (itemList.Count < MAX_NUMBER_OF_POPULAR_ITEMS)
         {
             numberOfPopularItems = itemList.Count;
         } else
         {
-            numberOfPopularItems = MAX_NUMBER_OF_POPULAR_ITENS;
+            numberOfPopularItems = MAX_NUMBER_OF_POPULAR_ITEMS;
         }
 
         GameObject content = GameObject.Find("Content");
@@ -96,7 +96,7 @@ public class PopularItemsBehaviour : MonoBehaviour
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
             RectTransform rt = itemListing.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(375, 400);
+            rt.sizeDelta = new Vector2(400, 390);
 
             itemListings.Add(itemListing);
             

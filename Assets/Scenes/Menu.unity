@@ -708,7 +708,7 @@ MonoBehaviour:
   itemListings: []
   sceneController: {fileID: 0}
   itemSceneController: {fileID: 0}
-  MAX_NUMBER_OF_POPULAR_ITENS: 10
+  MAX_NUMBER_OF_POPULAR_ITEMS: 10
 --- !u!1 &458649005
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 0}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: 0
+  m_HorizontalScrollbarSpacing: 20
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2612,7 +2612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000021286871, y: -11}
+  m_AnchoredPosition: {x: -0.000028313223, y: -11}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1827677957
@@ -2633,7 +2633,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 30
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -2651,7 +2651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
-  m_VerticalFit: 1
+  m_VerticalFit: 2
 --- !u!1 &1833315124
 GameObject:
   m_ObjectHideFlags: 0
