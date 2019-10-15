@@ -14,18 +14,19 @@ public class ManipulationButtons : MonoBehaviour
 
     public Color toggledColour;
 
+    private List<GameObject> toggleButtons;
     public GameObject rotateButton;
     public GameObject moveButton;
     public GameObject placeButton;
 
-    private GameObject currentlyPressed;
-
-    //TODO: check if an item is selected?
-
     private void Start()
     {
-        TogglePressedColour(placeButton);
-        currentlyPressed = placeButton;
+        toggleButtons = new List<GameObject>();
+        toggleButtons.Add(rotateButton);
+        toggleButtons.Add(moveButton);
+        toggleButtons.Add(placeButton);
+
+        TogglePressedColour();
     }
 
     public void RotatePressed() {
@@ -39,8 +40,9 @@ public class ManipulationButtons : MonoBehaviour
             togglePlace = false;
             toggleScale = false;
             toggleRotate = true;
-            TogglePressedColour(rotateButton);
+            
         }
+        TogglePressedColour();
 
         OutputDebug("Rotate set to: " + toggleRotate);
     }
@@ -57,8 +59,9 @@ public class ManipulationButtons : MonoBehaviour
             toggleScale = false;
             toggleLift = false;
             toggleMove = true;
-            TogglePressedColour(moveButton);
+            
         }
+        TogglePressedColour();
 
         OutputDebug("Move set to: " + toggleMove);
 
@@ -76,8 +79,9 @@ public class ManipulationButtons : MonoBehaviour
             toggleScale = false;
             toggleLift = false;
             togglePlace = true;
-            TogglePressedColour(placeButton);
+            
         }
+        TogglePressedColour();
 
         OutputDebug("Place set to: " + togglePlace);
     }
@@ -136,14 +140,26 @@ public class ManipulationButtons : MonoBehaviour
         return toggleLift;
     }
 
-    public void TogglePressedColour(GameObject pressedButton)
+    public void TogglePressedColour()
     {
-        pressedButton.GetComponent<Image>().color = toggledColour;
-
-        if (currentlyPressed != null)
+        foreach (GameObject toggleButton in toggleButtons)
         {
-            currentlyPressed.GetComponent<Image>().color = Color.white;
-            currentlyPressed = pressedButton;
+            if (toggleButton == rotateButton && toggleRotate)
+            {
+                toggleButton.GetComponent<Image>().color = toggledColour;
+            }
+            else if (toggleButton == moveButton && toggleMove)
+            {
+                toggleButton.GetComponent<Image>().color = toggledColour;
+            }
+            else if (toggleButton == placeButton && togglePlace)
+            {
+                toggleButton.GetComponent<Image>().color = toggledColour;
+            }
+            else
+            {
+                toggleButton.GetComponent<Image>().color = Color.white;
+            }
         }
     }
 
