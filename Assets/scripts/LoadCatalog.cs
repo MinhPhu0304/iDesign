@@ -4,10 +4,11 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GoogleARCore;
+using GoogleARCore.Examples.ObjectManipulation;
 using System;
 
 public class LoadCatalog : MonoBehaviour
-{    
+{
     public GameObject categoryListingPrefab;
     public GameObject brandListingPrefab;
     public GameObject designerListingPrefab;
@@ -25,6 +26,8 @@ public class LoadCatalog : MonoBehaviour
     public List<GameObject> visibleListings;
     public List<GameObject> disabledListings;
 
+    public ItemManager itemManager;
+
     GameObject sceneController;
     GameObject itemSceneController;
 
@@ -35,12 +38,13 @@ public class LoadCatalog : MonoBehaviour
         GenerateCategories();
 
         sceneController = new GameObject();
-        sceneController.AddComponent<ARSceneController>();
+        sceneController.AddComponent<ObjectPlacementManipulator>();
 
         itemSceneController = new GameObject();
         itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
 
         GameObject content = GameObject.Find("Content");
+        itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
         int listingNo = 0;
         foreach (Item itemInList in loadedItems)
@@ -59,7 +63,7 @@ public class LoadCatalog : MonoBehaviour
             itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName())); //Make previewbutton go to ARScene
             itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
-            itemListing.transform.SetParent(content.transform,false); //Set listing parent
+            itemListing.transform.SetParent(content.transform, false); //Set listing parent
 
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
@@ -85,7 +89,7 @@ public class LoadCatalog : MonoBehaviour
             for (int i = 0; i < loadedItems.Count && foundItemInCategory == null; i++)
             {
                 foundItemInCategory = FindItemCategory((Item)loadedItems[i], category);
-            }         
+            }
 
             categoryListing.GetComponentInChildren<Text>().text = category;
             categoryListing.GetComponentInChildren<Text>().fontSize = 30;
@@ -94,7 +98,7 @@ public class LoadCatalog : MonoBehaviour
             categoryListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Thumbnails/{foundItemInCategory.GetName()}");
             categoryListing.GetComponent<Button>().onClick.AddListener(() => ChangeContentToCategory(category));
 
-            categoryListing.transform.SetParent(content.transform,false);
+            categoryListing.transform.SetParent(content.transform, false);
 
             //set size of listing
             GameObject scrollView = GameObject.Find("Scroll View");
@@ -150,9 +154,11 @@ public class LoadCatalog : MonoBehaviour
     {
         Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
-        sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
+        //sceneController.GetComponent<ObjectPlacementManipulator>().ChangeObjectToPlace(selectedObject);
+        itemManager.ObjectToPlace = selectedObject;
+        Debug.Log("Item Manager: " + itemManager.ObjectToPlace);
 
-        SceneManager.LoadScene("ARScene");
+        SceneManager.LoadScene("ARManipulation");
     }
 
     public void SearchCatalog()
@@ -370,7 +376,7 @@ public class LoadCatalog : MonoBehaviour
                 showListing(itemInList);
                 content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
             }
-        }        
+        }
     }
 
     private void ChangeContentToBrand(string brand)
@@ -543,6 +549,6 @@ public class LoadCatalog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

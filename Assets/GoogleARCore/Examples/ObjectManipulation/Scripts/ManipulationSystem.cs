@@ -21,6 +21,10 @@
 namespace GoogleARCore.Examples.ObjectManipulation
 {
     using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+    using System.Collections.Generic;
+
 
     /// <summary>
     /// Manipulation system allows the user to manipulate virtual objects (select, translate,
@@ -151,6 +155,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// </summary>
         public void Update()
         {
+            //If tap was on UI, ignore tap
+            if (IsPointerOverUIObject())
+            {
+                return;
+            }
+
             DragGestureRecognizer.Update();
             PinchGestureRecognizer.Update();
             TwoFingerDragGestureRecognizer.Update();
@@ -179,6 +189,29 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
             Deselect();
             SelectedObject = target;
+        }
+
+        public void DeselectObject() {
+            Deselect();
+        }
+
+        //Checks if UI is over objects and planes
+        public static bool IsPointerOverUIObject()
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            return results.Count > 0;
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
         }
     }
 }
