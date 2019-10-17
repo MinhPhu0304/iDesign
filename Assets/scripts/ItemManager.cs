@@ -8,18 +8,7 @@ public class ItemManager : MonoBehaviour
 
     public GameObject ObjectToPlace;
     public static ItemManager Instance;
-    /*{
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new ItemManager();
-                Debug.Log("Item manager created");
-            }
-            return _instance;
-        }
-    }
-*/
+    
     public void Awake()
     {
         if (_instance != null)
