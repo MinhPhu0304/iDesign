@@ -62,9 +62,6 @@ public class PopularItemsBehaviour : MonoBehaviour
         itemList.Sort();
 
         int numberOfPopularItems;
-
-        Debug.Log("Item List count: " + itemList.Count);
-        Debug.Log("Max Number if popular items: " + MAX_NUMBER_OF_POPULAR_ITEMS);
         // Check if the item list is less than the max number of popular items
         // If it is greater than the max number of items make it eual the max number
         if (itemList.Count < MAX_NUMBER_OF_POPULAR_ITEMS)
@@ -74,9 +71,7 @@ public class PopularItemsBehaviour : MonoBehaviour
         {
             numberOfPopularItems = MAX_NUMBER_OF_POPULAR_ITEMS;
         }
-
-        Debug.Log(numberOfPopularItems);
-
+        
         GameObject content = GameObject.Find("Content");
 
         for (int i =0; i < numberOfPopularItems; ++i)
@@ -107,8 +102,7 @@ public class PopularItemsBehaviour : MonoBehaviour
             
             showListing(itemInList);
             itemListing.SetActive(true);
-            Debug.Log("Number of likes of " + itemInList.GetName() + " is " + itemInList.numberOfClicks);
-
+     
         }    
     }
 
