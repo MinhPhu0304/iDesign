@@ -15,7 +15,8 @@ public class PopularItemsBehaviour : MonoBehaviour
     public GameObject sceneController;
     public GameObject itemSceneController;
     //Setting the number of popular items to display to 10
-    public int MAX_NUMBER_OF_POPULAR_ITEMS = 10;
+    public int MAX_NUMBER_OF_POPULAR_ITEMS = 5;
+    public int FONT_SIZE = 30;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,8 @@ public class PopularItemsBehaviour : MonoBehaviour
 
         int numberOfPopularItems;
 
+        Debug.Log("Item List count: " + itemList.Count);
+        Debug.Log("Max Number if popular items: " + MAX_NUMBER_OF_POPULAR_ITEMS);
         // Check if the item list is less than the max number of popular items
         // If it is greater than the max number of items make it eual the max number
         if (itemList.Count < MAX_NUMBER_OF_POPULAR_ITEMS)
@@ -71,6 +74,8 @@ public class PopularItemsBehaviour : MonoBehaviour
         {
             numberOfPopularItems = MAX_NUMBER_OF_POPULAR_ITEMS;
         }
+
+        Debug.Log(numberOfPopularItems);
 
         GameObject content = GameObject.Find("Content");
 
@@ -82,7 +87,7 @@ public class PopularItemsBehaviour : MonoBehaviour
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
-            itemListing.GetComponentInChildren<Text>().fontSize = 30;
+            itemListing.GetComponentInChildren<Text>().fontSize = FONT_SIZE;
             itemListing.name = $"Listing: {itemInList.GetItemID()} {itemInList.GetName()}"; //Set name of gameobject
 
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
@@ -102,14 +107,13 @@ public class PopularItemsBehaviour : MonoBehaviour
             
             showListing(itemInList);
             itemListing.SetActive(true);
+            Debug.Log("Number of likes of " + itemInList.GetName() + " is " + itemInList.numberOfClicks);
 
         }    
     }
 
     private void showListing(Item listing)
     {
-        Debug.Log($"Looking for: Listing: {listing.GetItemID()} {listing.GetName()}");
-
         GameObject content = GameObject.Find("Content");
         GameObject toShow = content.transform.Find($"Listing: { listing.GetItemID()} { listing.GetName()}").gameObject;
 
