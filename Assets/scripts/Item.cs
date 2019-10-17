@@ -149,11 +149,11 @@ public class Item : IComparable
 
         if(numberOfClicks > otherItemClicks)
         {
-            return 1;
+            return -1;
         }
         else if(numberOfClicks < otherItemClicks)
         {
-            return -1;
+            return 1;
         }
         else
         {
