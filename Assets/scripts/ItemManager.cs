@@ -62,7 +62,7 @@ public class ItemManager : MonoBehaviour
         dbconn.Open();
 
         string query;
-        query = "CREATE TABLE [IF NOT EXISTS] item (" +
+        query = "CREATE TABLE IF NOT EXISTS item (" +
                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                    "Name varchar(100), " +
                                    "price REAL," +
@@ -71,7 +71,7 @@ public class ItemManager : MonoBehaviour
                                    "categories varchar(200)," +
                                    "brands varchar(100)," +
                                    "designer varchar(50)," +
-                                   "spec varchar(400);";
+                                   "spec varchar(100));";
         try
         {
             dbcmd = dbconn.CreateCommand(); // create empty command
@@ -108,7 +108,7 @@ public class ItemManager : MonoBehaviour
             IDbCommand dbCommand = dbconn.CreateCommand();
             dbCommand.CommandText = "Select COUNT(*) Total from item;";
             IDataReader dbRecord = dbCommand.ExecuteReader();
-            totalRecordInDB = dbRecord.GetInt32(0);
+            if(dbRecord.Read()) totalRecordInDB = dbRecord.GetInt32(0);
         }
 
         return totalRecordInDB;
@@ -149,11 +149,25 @@ public class ItemManager : MonoBehaviour
             {
                 string itemName = item.GetName();
                 string itemDesc = item.GetDesc();
+                string sellerURL = item.GetURL();
                 float price = item.GetPrice();
                 int itemId = item.GetItemID();
-
+                string insertRecord = string.Format("INSERT into item (ID, Name, price, url, desc, categories, brands, designer, spec)" +
+                                                        "values (\"{0}\",\"{1}\",\"{2}\", \"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\")",
+                                                        itemId,
+                                                        itemName,
+                                                        price,
+                                                        sellerURL,
+                                                        itemDesc,
+                                                        "",
+                                                        "",
+                                                        "",
+                                                        "");
+                dbCommand.CommandText = insertRecord;
+                dbCommand.ExecuteScalar();
             }
         }
+        Debug.Log("Done populating item data to database");
     }
 
     //https://www.youtube.com/watch?v=5p2JlI7PV1w
