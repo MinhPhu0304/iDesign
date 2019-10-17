@@ -22,6 +22,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
 {
     using GoogleARCore.Examples.ObjectManipulationInternal;
     using UnityEngine;
+    using UnityEngine.UI;
 
     /// <summary>
     /// Controls the scale of an object via a Pinch gesture.
@@ -107,6 +108,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 return false;
             }
 
+            if (checkScaleToggle() == false)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -179,6 +185,23 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 float currentScale = m_CurrentScale;
                 transform.localScale = new Vector3(currentScale, currentScale, currentScale);
             }
+        }
+
+        private bool checkScaleToggle()
+        {
+            GameObject manipulationPanel = GameObject.Find("Controls");
+
+            OutputDebug("Checking scale toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetScaleStatus());
+            return manipulationPanel.GetComponent<ManipulationButtons>().GetScaleStatus();
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
         }
     }
 }

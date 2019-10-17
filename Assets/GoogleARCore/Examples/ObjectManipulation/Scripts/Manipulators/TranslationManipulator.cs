@@ -22,6 +22,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
 {
     using GoogleARCore.Examples.ObjectManipulationInternal;
     using UnityEngine;
+    using UnityEngine.UI;
 
     /// <summary>
     /// Manipulates the position of an object via a drag gesture.
@@ -76,12 +77,22 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             if (gesture.TargetObject == null)
             {
+                OutputDebug("Target Object == null" + gesture.TargetObject);
                 return false;
             }
 
             // If the gesture isn't targeting this item, don't start manipulating.
             if (gesture.TargetObject != gameObject)
             {
+                OutputDebug("Target Object is not a gameobject");
+
+                return false;
+            }
+
+            //Move not activated
+            if (checkMoveToggle() == false)
+            {
+                OutputDebug("Move not toggled");
                 return false;
             }
 
@@ -219,6 +230,21 @@ namespace GoogleARCore.Examples.ObjectManipulation
             float newElevation =
                 Mathf.Max(0, -transform.InverseTransformPoint(m_DesiredAnchorPosition).y);
             GetComponent<SelectionManipulator>().OnElevationChanged(newElevation);
+        }
+
+        private bool checkMoveToggle() {
+            GameObject manipulationPanel = GameObject.Find("Controls");
+            OutputDebug("Move toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetMoveStatus());
+            return manipulationPanel.GetComponent<ManipulationButtons>().GetMoveStatus();
+        }
+
+        private void OutputDebug(string message)
+        {
+            GameObject ARDebugLog = GameObject.Find("Debug Log");
+            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
+
+            DebugLogText.text = DebugLogText.text + "\n" + message;
+            Debug.Log(message);
         }
     }
 }
