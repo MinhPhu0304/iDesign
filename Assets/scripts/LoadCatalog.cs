@@ -44,6 +44,9 @@ public class LoadCatalog : MonoBehaviour
         itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
 
         GameObject content = GameObject.Find("Content");
+
+        content.GetComponent<RectTransform>().position = new Vector2(0, 0);
+
         itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
         int listingNo = 0;

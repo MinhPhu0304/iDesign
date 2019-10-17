@@ -22,6 +22,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
     using System.Collections.Generic;
 
@@ -58,6 +59,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
             {
                 if (s_Instance == null)
                 {
+                    if (SceneManager.GetActiveScene().name != "ARManipulation")
+                    {
+                        return null;
+                    }
+
                     var manipulationSystems = FindObjectsOfType<ManipulationSystem>();
                     if (manipulationSystems.Length > 0)
                     {

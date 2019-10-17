@@ -21,6 +21,7 @@
 namespace GoogleARCore.Examples.ObjectManipulation
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// Base class that manipulates an object via a gesture.
@@ -281,6 +282,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// </summary>
         protected virtual void Update()
         {
+            if (SceneManager.GetActiveScene().name != "ARManipulation")
+            {
+                return;
+            }
+
             if (m_SelectedObject == gameObject &&
                 ManipulationSystem.Instance.SelectedObject != gameObject)
             {
@@ -301,6 +307,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
         private void ConnectToRecognizers()
         {
+            if (SceneManager.GetActiveScene().name != "ARManipulation")
+            {
+                Debug.Log("Scene is not ARManipulation. Halt manipulator script");
+                return;
+            }
             if (ManipulationSystem.Instance == null)
             {
                 Debug.LogError("Manipulation system not found in scene.");
