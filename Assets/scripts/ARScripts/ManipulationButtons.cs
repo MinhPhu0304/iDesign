@@ -143,6 +143,7 @@ public class ManipulationButtons : MonoBehaviour
         return toggleLift;
     }
 
+    //Updates the sprite colour depending on the manipulation function that is currently active.
     public void TogglePressedColour()
     {
         foreach (GameObject toggleButton in toggleButtons)

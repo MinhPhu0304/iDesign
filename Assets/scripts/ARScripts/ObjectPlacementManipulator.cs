@@ -167,6 +167,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
         }
 
         //Delete item that currently has visualization enabled
+        //If the item has visualization enabled, then that will be the item
+        //currently selected.
         public void DeleteItem()
         {
             
