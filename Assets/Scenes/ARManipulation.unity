@@ -1634,6 +1634,7 @@ MonoBehaviour:
   rotateButton: {fileID: 1337543336}
   moveButton: {fileID: 1278220134}
   placeButton: {fileID: 279384910}
+  deleteButton: {fileID: 2101898570}
   ItemPanel: {fileID: 1058248196}
 --- !u!114 &1297354676
 MonoBehaviour:
@@ -2089,8 +2090,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 397496646}
+        m_MethodName: DeleteItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
