@@ -198,17 +198,14 @@ public class AndroidLocalDataBase : MonoBehaviour
             dbcmd.Dispose();
             dbcmd = null;
             dbconn.Close();
-
         }
-
     }
 
-    //Update on  Database 
     private void UpdateUserRecord(string update_id, string update_name, string update_address)
     {
         using (dbconn = new SqliteConnection(conn))
         {
-            dbconn.Open(); //Open connection to the database.
+            dbconn.Open();
             dbcmd = dbconn.CreateCommand();
             sqlQuery = string.Format("UPDATE Staff set name = @name ,address = @address where ID = @id ");
 
@@ -225,12 +222,6 @@ public class AndroidLocalDataBase : MonoBehaviour
             dbconn.Close();
             SearchUsernameByID(t_id.text);
         }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }
