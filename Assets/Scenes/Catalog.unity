@@ -1140,7 +1140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -390, y: 0.000017755974}
+  m_AnchoredPosition: {x: -390, y: -0.000022695904}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201577807
@@ -1714,6 +1714,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToPlace: {fileID: 1190091649889860, guid: 7f647074527493641b806195ccc8077d,
     type: 3}
+  selectableModels: []
+  selectableItems: []
 --- !u!4 &418386294
 Transform:
   m_ObjectHideFlags: 0

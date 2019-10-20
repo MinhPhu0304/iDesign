@@ -7,7 +7,10 @@ public class ItemManager : MonoBehaviour
     private static ItemManager _instance;
 
     public GameObject ObjectToPlace;
-    public static ItemManager Instance;
+
+    public List<GameObject> selectableModels;
+    public List<Item> selectableItems;
+    
     
     public void Awake()
     {

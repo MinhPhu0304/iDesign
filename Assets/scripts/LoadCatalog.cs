@@ -115,6 +115,8 @@ public class LoadCatalog : MonoBehaviour
 
         }
 
+        UpdateItemManagerModels();
+
     }
 
     private Item FindItemCategory(Item item, string category)
@@ -139,6 +141,34 @@ public class LoadCatalog : MonoBehaviour
         }
 
         return found;
+    }
+
+    private void UpdateItemManagerModels()
+    {
+        List<GameObject> newVisibles = new List<GameObject>();
+
+        foreach (GameObject listing in itemListings)
+        {
+            string modelName;
+            string[] GameObjectName = listing.name.Split(' ');
+
+            if (GameObjectName[0] == "Listing:")
+            {
+                modelName = GameObjectName[2];
+                GameObject itemModel = Resources.Load($"Models/{modelName}") as GameObject;
+                //Debug.Log("Added "+GameObjectName[2]+" to ");
+                newVisibles.Add(itemModel);
+                
+            }
+            else
+            {
+                Debug.Log("Listing was not an itemListing");
+            }
+
+            
+        }
+
+        itemManager.selectableModels = newVisibles;
     }
 
     private Item FindItemDesigner(Item item, string designer)
@@ -230,6 +260,8 @@ public class LoadCatalog : MonoBehaviour
             visibleListings.Remove(toHide);
         }
 
+        UpdateItemManagerModels();
+
     }
 
     //Shows listing that is passed in and updates visible/disabled lists
@@ -244,6 +276,7 @@ public class LoadCatalog : MonoBehaviour
 
         visibleListings.Add(toShow);
         disabledListings.Remove(toShow);
+        UpdateItemManagerModels();
     }
 
     private void NavigateToInfoScene(Item itemToShow)
@@ -273,11 +306,6 @@ public class LoadCatalog : MonoBehaviour
         gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
         gotItem.AddBrand(new string[] { "The Warehouse" });
         gotItem.AddDesigner(new string[] { "Living & Co" });
-
-        loadedItems.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
-        gotItem = (Item)loadedItems[3];
-        gotItem.AddCategory(new string[] { "Google", "Android" });
-        gotItem.AddDesigner(new string[] { "Google" });
 
     }
 

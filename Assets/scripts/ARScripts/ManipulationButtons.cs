@@ -18,6 +18,7 @@ public class ManipulationButtons : MonoBehaviour
     public GameObject rotateButton;
     public GameObject moveButton;
     public GameObject placeButton;
+    public GameObject ItemPanel;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class ManipulationButtons : MonoBehaviour
         toggleButtons.Add(placeButton);
 
         TogglePressedColour();
+        ItemPanel.SetActive(false);
     }
 
     public void RotatePressed() {
@@ -155,10 +157,16 @@ public class ManipulationButtons : MonoBehaviour
             else if (toggleButton == placeButton && togglePlace)
             {
                 toggleButton.GetComponent<Image>().color = toggledColour;
+                ItemPanel.SetActive(true);
             }
             else
             {
                 toggleButton.GetComponent<Image>().color = Color.white;
+            }
+
+            if (togglePlace == false)
+            {
+                ItemPanel.SetActive(false);
             }
         }
     }
