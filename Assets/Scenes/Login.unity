@@ -980,8 +980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828d982a235f175459dc828878d94928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t_name: {fileID: 573922102}
-  t_Password: {fileID: 1338651780}
+  textInputUsername: {fileID: 573922102}
+  textInputPassword: {fileID: 1338651780}
   t_id: {fileID: 0}
   dataUser: {fileID: 0}
 --- !u!1 &766531930
