@@ -17,7 +17,6 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> selectableModels;
     public List<Item> selectableItems;
     
-    public static ItemManager Instance;
     private List<Item> itemList = new List<Item>();
     private string[] dbReadOrder = { "Name", "url", "desc", "categories", "brands", "designer", "spec" };
     private static readonly string DatabaseName = "users.s3db"; // Do not change db or the consequences are bad
