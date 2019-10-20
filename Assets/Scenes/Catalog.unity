@@ -244,6 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 563163796}
   textFilter: {fileID: 1531998782}
 --- !u!114 &43862651
@@ -479,6 +482,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 165393268}
   textFilter: {fileID: 1650627396}
 --- !u!1 &77065559
@@ -772,6 +778,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 688096863}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &141117357
@@ -1140,7 +1149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -390, y: -0.00007862743}
+  m_AnchoredPosition: {x: -390, y: 0.000018479981}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201577807
@@ -1233,6 +1242,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1833924110}
   textFilter: {fileID: 1531998782}
 --- !u!114 &207335447
@@ -1980,6 +1992,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 133071914}
 --- !u!114 &456569264
@@ -2309,6 +2324,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 2135779488}
   textFilter: {fileID: 1650627396}
 --- !u!114 &480501582
@@ -2946,6 +2964,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 688096863}
+  FilterButtonPrefab: {fileID: 8116941082010700482, guid: 22782ec1a9da19043946e8ddbe9c6fc8,
+    type: 3}
+  BrandPanel: {fileID: 861623125}
+  DesignerPanel: {fileID: 1705414309}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!1 &703669408
@@ -3586,6 +3608,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 1175716496}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!1 &861623125
@@ -3812,6 +3837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 323947181}
   textFilter: {fileID: 964788240}
 --- !u!1 &938060283
@@ -3945,6 +3973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 861623125}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &958441937
@@ -4415,6 +4446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1009608646}
   textFilter: {fileID: 1650627396}
 --- !u!1 &1125731511
@@ -4470,6 +4504,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 427183947}
   textFilter: {fileID: 1531998782}
 --- !u!114 &1125731514
@@ -4820,6 +4857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 688096863}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &1262713532
@@ -5018,6 +5058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 776762388}
   textFilter: {fileID: 964788240}
 --- !u!1 &1284690127
@@ -5163,6 +5206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1006872703}
   textFilter: {fileID: 964788240}
 --- !u!1 &1327696965
@@ -5297,6 +5343,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1732883548}
   textFilter: {fileID: 1650627396}
 --- !u!114 &1341631158
@@ -5442,6 +5491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1602938491}
   textFilter: {fileID: 1650627396}
 --- !u!114 &1353521104
@@ -5757,6 +5809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 861623125}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!1 &1472659287
@@ -6170,6 +6225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1532134888}
   textFilter: {fileID: 1531998782}
 --- !u!114 &1549035672
@@ -6390,6 +6448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 1175716496}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &1558748395
@@ -6559,7 +6620,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 468757082}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6734,6 +6795,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 1705414309}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &1621536167
@@ -7037,6 +7101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 688096863}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &1710413248
@@ -7458,6 +7525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 938060285}
   textFilter: {fileID: 1650627396}
 --- !u!114 &1809142739
@@ -7851,6 +7921,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 1911941374}
   textFilter: {fileID: 1650627396}
 --- !u!1 &1911941372
@@ -8075,6 +8148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 133071914}
 --- !u!1 &2037179715
@@ -8167,8 +8243,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 357063217}
-        m_MethodName: SearchCatalog
+      - m_Target: {fileID: 2097376198}
+        m_MethodName: GetSearchResults
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8282,6 +8358,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 804498691}
   textFilter: {fileID: 1650627396}
 --- !u!114 &2078615837
@@ -8576,6 +8655,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 1705414309}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 0}
 --- !u!114 &2081976859
@@ -8679,6 +8761,7 @@ GameObject:
   - component: {fileID: 2097376195}
   - component: {fileID: 2097376197}
   - component: {fileID: 2097376196}
+  - component: {fileID: 2097376198}
   m_Layer: 5
   m_Name: SearchPanel
   m_TagString: Untagged
@@ -8745,6 +8828,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097376194}
   m_CullTransparentMesh: 0
+--- !u!114 &2097376198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097376194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b66e9ec41c59c49905bf96fb7b3aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchText: {fileID: 100039242}
 --- !u!1 &2134954798
 GameObject:
   m_ObjectHideFlags: 0
@@ -8888,6 +8984,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToOpen: {fileID: 0}
+  FilterButtonPrefab: {fileID: 0}
+  BrandPanel: {fileID: 0}
+  DesignerPanel: {fileID: 0}
   textExtract: {fileID: 0}
   textFilter: {fileID: 133071914}
 --- !u!1 &2135779486
