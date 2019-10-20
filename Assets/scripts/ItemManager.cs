@@ -85,7 +85,8 @@ public class ItemManager : MonoBehaviour
                                    "categories varchar(200)," +
                                    "brands varchar(100)," +
                                    "designer varchar(50)," +
-                                   "spec varchar(100));";
+                                   "spec varchar(100)," +
+                                   "noClick INT);";
         try
         {
             dbcmd = dbconn.CreateCommand(); // create empty command
@@ -149,7 +150,8 @@ public class ItemManager : MonoBehaviour
             double price = dbRecord.GetFloat(2);
             string itemSiteURL = dbRecord.GetString(3);
             string itemDesc = dbRecord.GetString(4);
-            itemList.Add(new Item(itemId, name, (float)price, itemSiteURL, itemDesc));
+            int numberClick = dbRecord.GetInt32(5);
+            itemList.Add(new Item(itemId, name, (float)price, itemSiteURL, itemDesc, numberClick));
         }
         dbRecord.Close();
     }
@@ -158,8 +160,7 @@ public class ItemManager : MonoBehaviour
     {
         itemList.Add(new Item(1, "Chair", 30.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2356237609.htm?rsqid=3512401f2c8a4cffad08f4acf7c7ab30-001", "Adjustable seat height Height adjustable back/lumbar\n Independently adjustable seat tilt - free floating or lockable"));
         itemList.Add(new Item(2, "Table", 60.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2357653157.htm?rsqid=148a18ec29374beeafeeab8f14940dcc-001", "Good stuff"));
-        itemList.Add(new Item(3, "Andy", 50.00f, "https://google.com", "Just for fun"));
-        itemList.Add(new Item(4, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff"));
+        itemList.Add(new Item(3, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff"));
         AddDemoDataToDB();
     }
 
@@ -176,8 +177,9 @@ public class ItemManager : MonoBehaviour
                 string sellerURL = item.GetURL();
                 float price = item.GetPrice();
                 int itemId = item.GetItemID();
-                string insertRecord = string.Format("INSERT into item (ID, Name, price, url, desc, categories, brands, designer, spec)" +
-                                                        "values (\"{0}\",\"{1}\",\"{2}\", \"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\")",
+                int noClick = item.getNumberOfClick();
+                string insertRecord = string.Format("INSERT into item (ID, Name, price, url, desc, categories, brands, designer, spec, noClick)" +
+                                                        "values (\"{0}\",\"{1}\",\"{2}\", \"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\", \"{9}\")",
                                                         itemId,
                                                         itemName,
                                                         price,
@@ -186,7 +188,8 @@ public class ItemManager : MonoBehaviour
                                                         "",
                                                         "",
                                                         "",
-                                                        "");
+                                                        "",
+                                                        noClick);
                 dbCommand.CommandText = insertRecord;
                 dbCommand.ExecuteScalar();
             }

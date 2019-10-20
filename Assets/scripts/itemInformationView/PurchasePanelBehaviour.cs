@@ -41,8 +41,8 @@ public class PurchasePanelBehaviour : MonoBehaviour
     }
 
     public void GotoSupplierWebsite()
-    {
-        ++currentItem.numberOfClicks;
+    { 
+        currentItem.setNumberOfClick((currentItem.getNumberOfClick() + 1));
         Application.OpenURL(currentItem.GetURL());
     }
 }

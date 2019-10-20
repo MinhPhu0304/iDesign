@@ -13,7 +13,7 @@ public class Item
     private List<string> brands = new List<string>();
     private List<string> designers = new List<string>();
     private Specs specs;
-    public int numberOfClicks = 0;
+    private int numberOfClicks;
 
     public Item(int itemID, string name, float price, string URL, string desc) : this(itemID,name, price, URL, desc, 0)
     { 
@@ -37,6 +37,16 @@ public class Item
     public int GetItemID()
     {
         return itemID;
+    }
+
+    public void setNumberOfClick(int numberOfClick)
+    {
+        this.numberOfClicks = numberOfClick;
+    }
+
+    public int getNumberOfClick()
+    {
+        return numberOfClicks;
     }
 
     public string GetName()
