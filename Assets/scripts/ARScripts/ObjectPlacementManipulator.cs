@@ -23,8 +23,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
-    /*using UnityEngine.EventSystems;
-    using System.Collections.Generic;*/
 
     /// <summary>
     /// Controls the placement of objects via a tap gesture.
@@ -56,8 +54,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
         private void Start()
         {
             itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
-            ObjectToPlace = itemManager.ObjectToPlace;
-            Debug.Log("OPM: " + ObjectToPlace + " itemManager: " + itemManager.ObjectToPlace);
+            ObjectToPlace = itemManager.FocusedItem.Model;
+            Debug.Log("OPM: " + ObjectToPlace + " itemManager: " + itemManager.FocusedItem.Model);
         }
         /// <summary>
         /// Returns true if the manipulation can be started for the given gesture.

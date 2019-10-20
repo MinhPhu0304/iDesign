@@ -11,10 +11,12 @@ public class PurchasePanelBehaviour : MonoBehaviour
     public GameObject ItemPrice;
     public GameObject PreviewButton;
     public GameObject PurchaseButton;
+    ItemManager itemManager;
     // Start is called before the first frame update
     private void Start()
     {
-        currentItem = ItemDisplayPanelBehaviour.currentItem;
+        itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+        currentItem = itemManager.FocusedItem.ItemRef;
         HidePanel();
     }
 

@@ -13,6 +13,7 @@ public class TopPanelBehaviour : MonoBehaviour
     public GameObject TitleItemNameText;
     public GameObject FavouriteButton;
     private static User currentUser;
+    private ItemManager itemManager;
     // Start is called before the first frame update
     private Sprite selectedSprite;
     private Sprite defaultSprite;
@@ -22,6 +23,9 @@ public class TopPanelBehaviour : MonoBehaviour
     FileStream stream;
     void Start()
     {
+        itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+        currentItem = itemManager.FocusedItem.ItemRef;
+
         path = Application.persistentDataPath + "/favourites.dat";
 
         defaultSprite = Resources.Load("favourite", typeof(Sprite)) as Sprite;
@@ -29,9 +33,9 @@ public class TopPanelBehaviour : MonoBehaviour
         currentUser = new User(1, "guy01");
 
         Text name = TitleItemNameText.GetComponent<Text>();
-        currentItem = ItemDisplayPanelBehaviour.currentItem;
+        
         if (currentItem != null)
-            name.text = ItemDisplayPanelBehaviour.currentItem.GetName();
+            name.text = currentItem.GetName();
 
         if (File.Exists(path))
         {
@@ -52,8 +56,6 @@ public class TopPanelBehaviour : MonoBehaviour
     //Update the UI of the favourite button
     private void updateFavourtieButton()
     {
-        Item currentItem = ItemDisplayPanelBehaviour.currentItem;
-
         if (isFavourite())
         {
             FavouriteButton.GetComponent<Image>().sprite = selectedSprite;

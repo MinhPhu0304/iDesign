@@ -1140,7 +1140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -390, y: 0.000017755974}
+  m_AnchoredPosition: {x: -390, y: -0.00007862743}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201577807
@@ -1495,7 +1495,9 @@ GameObject:
   - component: {fileID: 357063216}
   - component: {fileID: 357063215}
   - component: {fileID: 357063214}
+  - component: {fileID: 357063219}
   - component: {fileID: 357063217}
+  - component: {fileID: 357063218}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -1580,7 +1582,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357063212}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba8908725ba358428f5d29ef5352871, type: 3}
   m_Name: 
@@ -1604,6 +1606,36 @@ MonoBehaviour:
   visibleListings: []
   disabledListings: []
   itemManager: {fileID: 0}
+--- !u!114 &357063218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357063212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0433041b4d22d047b5b5b610131081d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CategoryListingPrefab: {fileID: 2293756452914757157, guid: c3a9b3af2a9014d4995583f73f9733fd,
+    type: 3}
+  ItemListingPrefab: {fileID: 8750093181132216491, guid: 50d2c2dc450e4a04dbfb404e6230c684,
+    type: 3}
+  content: {fileID: 201577805}
+  FoundCategories: []
+--- !u!114 &357063219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357063212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4234da079313994e9cb216332719164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &360688889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1746,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToPlace: {fileID: 1190091649889860, guid: 7f647074527493641b806195ccc8077d,
     type: 3}
+  FocusedItem: {fileID: 0}
+  loadedItems: []
+  HoldingListings: 0
+  ShowingItems: 0
+  ItemReferences: []
+  itemListings: []
+  categoryListings: []
+  visibleListings: []
+  disabledListings: []
 --- !u!4 &418386294
 Transform:
   m_ObjectHideFlags: 0
@@ -5796,8 +5837,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 703669413}
-        m_MethodName: SwitchToMenu
+      - m_Target: {fileID: 357063218}
+        m_MethodName: CategoryBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6518,7 +6559,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 468757082}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

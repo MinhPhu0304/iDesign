@@ -34,11 +34,11 @@ public class LoadCatalog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateItems();
+        //GenerateItems();
         GenerateCategories();
 
-        sceneController = new GameObject();
-        sceneController.AddComponent<ObjectPlacementManipulator>();
+        /*sceneController = new GameObject();
+        sceneController.AddComponent<ObjectPlacementManipulator>();*/
 
         itemSceneController = new GameObject();
         itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
@@ -58,12 +58,13 @@ public class LoadCatalog : MonoBehaviour
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
             itemListing.GetComponentInChildren<Text>().fontSize = 30;
+            //itemListing.GetComponentInChildren<ItemReferenceID>().itemID = itemInList.GetItemID();
             itemListing.name = $"Listing: {itemInList.GetItemID()} {itemInList.GetName()}"; //Set name of gameobject
 
             Sprite thumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ itemInList.GetName()}") as Sprite;
             itemListing.transform.Find("Thumbnail").GetComponent<Image>().sprite = thumbnailSprite; //Set thumbnail
 
-            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName())); //Make previewbutton go to ARScene
+            itemListing.transform.Find("Preview Button").GetComponent<Button>().onClick.AddListener(() => NavigateToARScene(itemInList.GetName(), itemInList)); //Make previewbutton go to ARScene
             itemListing.transform.Find("Info Button").GetComponent<Button>().onClick.AddListener(() => NavigateToInfoScene(itemInList)); //Make info button go to info scene
 
             itemListing.transform.SetParent(content.transform, false); //Set listing parent
@@ -113,9 +114,18 @@ public class LoadCatalog : MonoBehaviour
 
             listingNo++;
 
+            //UpdateItemManagerListings();
         }
 
     }
+
+    //Updates the item managers listings
+    /*private void UpdateItemManagerListings()
+    {
+        itemManager.SetItemListings(itemListings);
+        itemManager.SetVisibleListings(visibleListings);
+        itemManager.SetDisabledListings(disabledListings);
+    }*/
 
     private Item FindItemCategory(Item item, string category)
     {
@@ -153,11 +163,13 @@ public class LoadCatalog : MonoBehaviour
         return found;
     }
 
-    private void NavigateToARScene(string name)
+    private void NavigateToARScene(string name, Item item)
     {
+        //itemManager.PlacedItem = item;
+
         Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
-        //sceneController.GetComponent<ObjectPlacementManipulator>().ChangeObjectToPlace(selectedObject);
+
         itemManager.ObjectToPlace = selectedObject;
         Debug.Log("Item Manager: " + itemManager.ObjectToPlace);
 
@@ -230,6 +242,8 @@ public class LoadCatalog : MonoBehaviour
             visibleListings.Remove(toHide);
         }
 
+        //UpdateItemManagerListings();
+
     }
 
     //Shows listing that is passed in and updates visible/disabled lists
@@ -249,10 +263,11 @@ public class LoadCatalog : MonoBehaviour
     private void NavigateToInfoScene(Item itemToShow)
     {
         Debug.Log("Navigate to infoscene");
-        itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
+        //itemManager.PlacedItem = itemToShow;
+        //itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemManager.PlacedItem);
     }
 
-    private void GenerateItems()
+/*    private void GenerateItems()
     {
         Item gotItem;
 
@@ -279,7 +294,7 @@ public class LoadCatalog : MonoBehaviour
         gotItem.AddCategory(new string[] { "Google", "Android" });
         gotItem.AddDesigner(new string[] { "Google" });
 
-    }
+    }*/
 
     private void GenerateCategories()
     {
@@ -380,6 +395,8 @@ public class LoadCatalog : MonoBehaviour
                 content.transform.Find($"Listing: {itemInList.GetItemID()} {itemInList.GetName()}").gameObject.SetActive(true);
             }
         }
+
+        //UpdateItemManagerListings();
     }
 
     private void ChangeContentToBrand(string brand)
