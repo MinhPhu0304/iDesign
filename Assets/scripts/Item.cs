@@ -9,9 +9,10 @@ public class Item
     private float price;
     private string URL;
     private string desc;
+    private string brand;
+    private string designer;
+
     private List<string> categories = new List<string>();
-    private List<string> brands = new List<string>();
-    private List<string> designers = new List<string>();
     private Specs specs;
     public int numberOfClicks = 0;
 
@@ -76,42 +77,25 @@ public class Item
         }
     }
 
-    public List<string> GetBrand()
+    public string GetBrand()
     {
-        return brands;
+        return brand;
     }
 
-    public void AddBrand(string brand)
+    public void SetBrand(string brand)
     {
-        brands.Add(brand);
+        this.brand = brand;
     }
 
-    public void AddBrand(string[] brandArray)
+    public string GetDesigner()
     {
-        foreach (string brand in brandArray)
-        {
-            brands.Add(brand);
-        }
+        return designer;
     }
 
-    public List<string> GetDesigner()
+    public void SetDesigner(string designer)
     {
-        return designers;
+        this.designer = designer;
     }
-
-    public void AddDesigner(string designer)
-    {
-        designers.Add(designer);
-    }
-
-    public void AddDesigner(string[] designerArray)
-    {
-        foreach (string designer in designerArray)
-        {
-            designers.Add(designer);
-        }
-    }
-
 
     public string GetSpecs()
     {

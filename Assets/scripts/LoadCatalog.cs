@@ -336,9 +336,9 @@ public class LoadCatalog : MonoBehaviour
 
     public void scanBrand(Item item)
     {
-        List<string> itemBrands = item.GetBrand();
+        //List<string> itemBrands = item.GetBrand();
 
-        foreach (string brand in itemBrands)
+        /*foreach (string brand in itemBrands)
         {
             if (foundBrands.Contains(brand))
             {
@@ -348,7 +348,7 @@ public class LoadCatalog : MonoBehaviour
             {
                 foundBrands.Add(brand);
             }
-        }
+        }*/
     }
 
     private void GenerateDesigners()
@@ -366,9 +366,9 @@ public class LoadCatalog : MonoBehaviour
 
     public void scanDesign(Item item)
     {
-        List<string> itemBrands = item.GetBrand();
+        //List<string> itemBrands = item.GetBrand();
 
-        foreach (string brand in itemBrands)
+        /*foreach (string brand in itemBrands)
         {
             if (foundBrands.Contains(brand))
             {
@@ -378,7 +378,7 @@ public class LoadCatalog : MonoBehaviour
             {
                 foundBrands.Add(brand);
             }
-        }
+        }*/
     }
 
     private void ChangeContentToCategory(string category)

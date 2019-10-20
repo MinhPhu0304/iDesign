@@ -11,13 +11,6 @@ public class ItemReference : MonoBehaviour
     public GameObject Model;
     public GameObject CatalogueListing;
 
-    /*public ItemReference(Item item)
-    {
-        ItemRef = item;
-        LoadThumbnailSprite();
-        LoadModel();
-    }*/
-
     public void LoadThumbnailSprite()
     {
         ThumbnailSprite = Resources.Load<Sprite>($"Thumbnails/{ItemRef.GetItemID()}") as Sprite;

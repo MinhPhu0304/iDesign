@@ -29,25 +29,25 @@ public class GenerateItems : MonoBehaviour
         itemManager.loadedItems.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)itemManager.loadedItems[0];
         gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks" });
-        gotItem.AddBrand(new string[] { "Ikea" });
-        gotItem.AddDesigner(new string[] { "Ikea" });
+        gotItem.SetBrand("Ikea");
+        gotItem.SetDesigner("Ikea");
 
         itemManager.loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)itemManager.loadedItems[1];
         gotItem.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
-        gotItem.AddBrand(new string[] { "Harvey Norman" });
-        gotItem.AddDesigner(new string[] { "Parkland" });
+        gotItem.SetBrand("Harvey Norman");
+        gotItem.SetDesigner("Parkland");
 
         itemManager.loadedItems.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
         gotItem = (Item)itemManager.loadedItems[2];
         gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
-        gotItem.AddBrand(new string[] { "The Warehouse" });
-        gotItem.AddDesigner(new string[] { "Living & Co" });
+        gotItem.SetBrand("The Warehouse");
+        gotItem.SetDesigner("Living & Co");
 
         itemManager.loadedItems.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
         gotItem = (Item)itemManager.loadedItems[3];
         gotItem.AddCategory(new string[] { "Google", "Android" });
-        gotItem.AddDesigner(new string[] { "Google" });
+        gotItem.SetDesigner("Google");
     }
 
     public void CreateItemReferences()
