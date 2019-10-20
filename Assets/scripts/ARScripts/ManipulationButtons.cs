@@ -18,6 +18,7 @@ public class ManipulationButtons : MonoBehaviour
     public GameObject rotateButton;
     public GameObject moveButton;
     public GameObject placeButton;
+    public GameObject deleteButton;
     public GameObject ItemPanel;
 
     private void Start()

@@ -23,8 +23,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
     using GoogleARCore;
     using UnityEngine;
     using UnityEngine.UI;
-    /*using UnityEngine.EventSystems;
-    using System.Collections.Generic;*/
+    using System.Collections.Generic;
 
     /// <summary>
     /// Controls the placement of objects via a tap gesture.
@@ -47,6 +46,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// </summary>
         public GameObject ManipulatorPrefab;
 
+        private List<GameObject> PlacedObjects;
+
         private ItemManager itemManager;
 
         /// <summary>
@@ -58,6 +59,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
             itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
             ObjectToPlace = itemManager.ObjectToPlace;
             Debug.Log("OPM: " + ObjectToPlace + " itemManager: " + itemManager.ObjectToPlace);
+            PlacedObjects = new List<GameObject>();
         }
         /// <summary>
         /// Returns true if the manipulation can be started for the given gesture.
@@ -115,6 +117,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 }
                 else
                 {
+                    ObjectToPlace = itemManager.ObjectToPlace;
 
                     // Instantiate model at the hit pose.
                     var modelObject = Instantiate(ObjectToPlace, hit.Pose.position, hit.Pose.rotation);
@@ -140,6 +143,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
                     GameObject manipulationPanel = GameObject.Find("Controls");
                     manipulationPanel.GetComponent<ManipulationButtons>().togglePlace = false;
 
+                    PlacedObjects.Add(modelObject);
+
                 }
             }
         }
@@ -161,6 +166,21 @@ namespace GoogleARCore.Examples.ObjectManipulation
             Debug.Log(message);
         }
 
+        //Delete item that currently has visualization enabled
+        public void DeleteItem()
+        {
+            
+            foreach (GameObject placedObject in PlacedObjects)
+            {
+                GameObject DeleteObject = placedObject.transform.parent.gameObject;
+                if (DeleteObject.transform.Find("Selection Visualization").gameObject.activeSelf == true)
+                {
+                    PlacedObjects.Remove(DeleteObject);
+                    DeleteObject.SetActive(false);
+                    OutputDebug(DeleteObject.name);
+                }
+            }
+        }
         
         public void ChangeObjectToPlace(GameObject toObject)
         {
