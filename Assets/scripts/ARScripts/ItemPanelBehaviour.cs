@@ -16,6 +16,7 @@ public class ItemPanelBehaviour : MonoBehaviour
         GenerateItemButtons();
     }
 
+    //Generates itemPanel buttons dynamically depending on object
     public void GenerateItemButtons()
     {
         foreach (GameObject model in itemManager.selectableModels)
@@ -31,6 +32,7 @@ public class ItemPanelBehaviour : MonoBehaviour
         }
     }
 
+    //Changes the item to the item that is pressed.
     public void ChangePlacedItem(GameObject model)
     {
         itemManager.ObjectToPlace = model;

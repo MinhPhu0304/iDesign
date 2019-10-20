@@ -143,6 +143,8 @@ public class LoadCatalog : MonoBehaviour
         return found;
     }
 
+    //Updates the the item manager models that are able to be placed
+    //Currently all available models are shown.
     private void UpdateItemManagerModels()
     {
         List<GameObject> newVisibles = new List<GameObject>();
@@ -156,7 +158,7 @@ public class LoadCatalog : MonoBehaviour
             {
                 modelName = GameObjectName[2];
                 GameObject itemModel = Resources.Load($"Models/{modelName}") as GameObject;
-                //Debug.Log("Added "+GameObjectName[2]+" to ");
+
                 newVisibles.Add(itemModel);
                 
             }
@@ -164,8 +166,6 @@ public class LoadCatalog : MonoBehaviour
             {
                 Debug.Log("Listing was not an itemListing");
             }
-
-            
         }
 
         itemManager.selectableModels = newVisibles;
