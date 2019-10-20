@@ -15,8 +15,8 @@ public class PopularItemsBehaviour : MonoBehaviour
     public GameObject sceneController;
     public GameObject itemSceneController;
     //Setting the number of popular items to display to 10
-    public int MAX_NUMBER_OF_POPULAR_ITEMS = 5;
-    public int FONT_SIZE = 30;
+    private readonly int MAX_NUMBER_OF_POPULAR_ITEMS = 5;
+    private readonly int FONT_SIZE = 30;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +38,13 @@ public class PopularItemsBehaviour : MonoBehaviour
         
     }
 
-    // This method will quet the database for the item. When the database is done.
     public void queryItems()
     {
         //Since the table for the items is not done Im just putting in some test data
         itemList.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
         itemList.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
         itemList.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
-        itemList.Add(new Item(3, "Andy", 0.00f, "http://www.google.com", "Andy the android."));
+
 
         //UnityEngine also has a random so specify that it is System's random
         System.Random rand = new System.Random();
@@ -62,8 +61,10 @@ public class PopularItemsBehaviour : MonoBehaviour
         itemList.Sort();
 
         int numberOfPopularItems;
+
+
         // Check if the item list is less than the max number of popular items
-        // If it is greater than the max number of items make it eual the max number
+        // If it is greater than the max number of items make it equal the max number
         if (itemList.Count < MAX_NUMBER_OF_POPULAR_ITEMS)
         {
             numberOfPopularItems = itemList.Count;
@@ -79,7 +80,7 @@ public class PopularItemsBehaviour : MonoBehaviour
             GameObject itemListing = Instantiate(popularItemPrefab);
             Item itemInList = itemList[i];
 
-            itemListing.SetActive(false); //Not shown when first loaded
+            itemListing.SetActive(false);
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
             itemListing.GetComponentInChildren<Text>().fontSize = FONT_SIZE;
@@ -99,7 +100,6 @@ public class PopularItemsBehaviour : MonoBehaviour
             rt.sizeDelta = new Vector2(400, 390);
 
             itemListings.Add(itemListing);
-            
             showListing(itemInList);
             itemListing.SetActive(true);
      
