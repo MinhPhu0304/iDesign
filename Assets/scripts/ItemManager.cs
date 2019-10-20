@@ -18,8 +18,9 @@ public class ItemManager : MonoBehaviour
     public List<Item> selectableItems;
     
     public static ItemManager Instance;
-    private List<Item> itemList;
+    public List<Item> itemList = new List<Item>();
     private string[] dbReadOrder = { "Name", "url", "desc", "categories", "brands", "designer", "spec" };
+    private static readonly string DatabaseName = "users.s3db"; // Do not change db or the consequences are bad
 
     public void Awake()
     {
@@ -35,34 +36,47 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    string DatabaseName = "users.s3db";
-    // Start is called before the first frame update
+    public List<Item> GetItemList()
+    {
+        return itemList;
+    }
+
     public void Start()
     {
         //Application database Path android
         string filepath = Application.persistentDataPath + "/" + DatabaseName;
-        if (!File.Exists(filepath))
+        
+        CreateDBFileIfNotExist(filepath);
+        EstablishDBConnection(filepath);
+        ReadRecordFromDB();
+    }
+
+    private void CreateDBFileIfNotExist(string location)
+    {
+        if (!File.Exists(location))
         {
             // If not found on android will create Tables and database
 
-            Debug.LogWarning("File \"" + filepath + "\" does not exist. Attempting to create from \"" +
+            Debug.LogWarning("File \"" + location + "\" does not exist. Attempting to create from \"" +
                              Application.dataPath + "!/assets/users");
 
             // UNITY_ANDROID
             WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/users.s3db");
             while (!loadDB.isDone) { }
             // then save to Application.persistentDataPath
-            File.WriteAllBytes(filepath, loadDB.bytes);
+            File.WriteAllBytes(location, loadDB.bytes);
         }
+    }
 
-        dbURL = "URI=file:" + filepath;
+    private void EstablishDBConnection(string filePath)
+    {
+        dbURL = "URI=file:" + filePath;
 
         Debug.Log("Stablishing connection to: " + dbURL);
         dbconn = new SqliteConnection(dbURL);
         dbconn.Open();
 
-        string query;
-        query = "CREATE TABLE IF NOT EXISTS item (" +
+        string query = "CREATE TABLE IF NOT EXISTS item (" +
                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                    "Name varchar(100), " +
                                    "price REAL," +
@@ -82,7 +96,7 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log(e);
         }
-        ReadRecordFromDB();
+        dbconn.Close();
     }
 
     private void ReadRecordFromDB()
@@ -96,7 +110,6 @@ public class ItemManager : MonoBehaviour
         {
             PopulateDemoData();
         }
-
     }
 
     private int CountTotalRecordInDB()
@@ -116,30 +129,41 @@ public class ItemManager : MonoBehaviour
 
     private void LoadItemFromDBIntoList()
     {
-
+        using (dbconn = new SqliteConnection(dbURL))
+        {
+            dbconn.Open();
+            IDbCommand dbQuery = dbconn.CreateCommand();
+            dbQuery.CommandText = "Select * from item;";
+            IDataReader dbRecord = dbQuery.ExecuteReader();
+            LoadDBRecordFrom(dbRecord);
+            dbQuery.Cancel();
+        }
     }
 
-    private void LoadItemIntoList(IDataReader dbRecord)
+    private void LoadDBRecordFrom(IDataReader dbRecord)
     {
         while (dbRecord.Read())
         {
-
+            int itemId = dbRecord.GetInt32(0);
+            string name = dbRecord.GetString(1);
+            double price = dbRecord.GetFloat(2);
+            string itemSiteURL = dbRecord.GetString(3);
+            string itemDesc = dbRecord.GetString(4);
+            itemList.Add(new Item(itemId, name, (float)price, itemSiteURL, itemDesc));
         }
+        dbRecord.Close();
     }
 
     private void PopulateDemoData()
     {
-        List<Item> demoData = new List<Item>();
-        demoData.Add(new Item(1, "Chair", 50.00f, "https://google.com", "You sit on it or can be used for fighting"));
-        demoData.Add(new Item(2, "Table", 50.00f, "https://google.com", "Good stuff"));
-        demoData.Add(new Item(3, "Andy", 50.00f, "https://google.com", "Just for fun"));
-        demoData.Add(new Item(4, "Couch", 50.00f, "https://google.com", "Cautions: heavy stuff"));
-
-        itemList = demoData;
-        AddDataIntoDB();
+        itemList.Add(new Item(1, "Chair", 30.00f, "https://google.com", "You sit on it or can be used for fighting"));
+        itemList.Add(new Item(2, "Table", 60.00f, "https://google.com", "Good stuff"));
+        itemList.Add(new Item(3, "Andy", 50.00f, "https://google.com", "Just for fun"));
+        itemList.Add(new Item(4, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff"));
+        AddDemoDataToDB();
     }
 
-    private void AddDataIntoDB()
+    private void AddDemoDataToDB()
     {
         using (dbconn = new SqliteConnection(dbURL))
         {
@@ -166,10 +190,9 @@ public class ItemManager : MonoBehaviour
                 dbCommand.CommandText = insertRecord;
                 dbCommand.ExecuteScalar();
             }
+            dbCommand.Cancel();
         }
-        Debug.Log("Done populating item data to database");
     }
-
     //https://www.youtube.com/watch?v=5p2JlI7PV1w
     //https://www.youtube.com/watch?v=AvuuX4qxC_0
 }
