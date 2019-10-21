@@ -70,7 +70,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             if (checkPlaceToggle() == false)
             {
-                //OutputDebug("Placement not enabled");
                 return false;
             }
 
@@ -144,26 +143,18 @@ namespace GoogleARCore.Examples.ObjectManipulation
                     manipulationPanel.GetComponent<ManipulationButtons>().togglePlace = false;
 
                     PlacedObjects.Add(modelObject);
+                    GameObject.Find("Controls").GetComponent<ManipulationButtons>().TogglePressedColour();
 
                 }
             }
         }
 
+        //Checks if place is enabled.
         private bool checkPlaceToggle()
         {
             GameObject manipulationPanel = GameObject.Find("Controls");
 
-            OutputDebug("Checking place toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetPlaceStatus());
             return manipulationPanel.GetComponent<ManipulationButtons>().GetPlaceStatus();
-        }
-
-        private void OutputDebug(string message)
-        {
-            GameObject ARDebugLog = GameObject.Find("Debug Log");
-            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-            DebugLogText.text = DebugLogText.text + "\n" + message;
-            Debug.Log(message);
         }
 
         //Delete item that currently has visualization enabled
@@ -175,11 +166,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
             foreach (GameObject placedObject in PlacedObjects)
             {
                 GameObject DeleteObject = placedObject.transform.parent.gameObject;
-                if (DeleteObject.transform.Find("Selection Visualization").gameObject.activeSelf == true)
+                if (DeleteObject.transform.Find("Selection Visualization").gameObject.activeSelf)
                 {
                     PlacedObjects.Remove(DeleteObject);
                     DeleteObject.SetActive(false);
-                    OutputDebug(DeleteObject.name);
+                    Destroy(DeleteObject);
                 }
             }
         }

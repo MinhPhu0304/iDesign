@@ -157,21 +157,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
             }
         }
 
+        //Checks if elevation is toggled
         private bool checkLiftToggle()
         {
             GameObject manipulationPanel = GameObject.Find("Controls");
 
-            OutputDebug("Checking lift toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetLiftStatus());
             return manipulationPanel.GetComponent<ManipulationButtons>().GetLiftStatus();
-        }
-
-        private void OutputDebug(string message)
-        {
-            GameObject ARDebugLog = GameObject.Find("Debug Log");
-            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-            DebugLogText.text = DebugLogText.text + "\n" + message;
-            Debug.Log(message);
         }
     }
 }

@@ -48,15 +48,8 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 return false;
             }
 
-            //Commented out to allow rotation when touch hits an object
-            /*if (gesture.TargetObject != null)
-            {
-                return false;
-            }*/
-
             if (checkRotationToggle() == false)
             {
-                //OutputDebug("Drag gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -83,7 +76,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
 
             if (checkRotationToggle() == false)
             {
-                //OutputDebug("Twist gesture to rotate recognised, however rotation is not enabled!");
                 return false;
             }
 
@@ -117,20 +109,11 @@ namespace GoogleARCore.Examples.ObjectManipulation
             transform.Rotate(0.0f, rotationAmount, 0.0f);
         }
 
+        //Checks if rotation is toggled
         private bool checkRotationToggle() {
             GameObject manipulationPanel = GameObject.Find("Controls");
             
-            OutputDebug("Checking rotation toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetRotationStatus());
             return manipulationPanel.GetComponent<ManipulationButtons>().GetRotationStatus();
-        }
-
-        private void OutputDebug(string message)
-        {
-            GameObject ARDebugLog = GameObject.Find("Debug Log");
-            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-            DebugLogText.text = DebugLogText.text + "\n" + message;
-            Debug.Log(message);
         }
     }
 }

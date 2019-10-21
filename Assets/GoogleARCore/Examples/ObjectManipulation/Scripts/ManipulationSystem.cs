@@ -210,14 +210,5 @@ namespace GoogleARCore.Examples.ObjectManipulation
             EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
             return results.Count > 0;
         }
-
-        private void OutputDebug(string message)
-        {
-            GameObject ARDebugLog = GameObject.Find("Debug Log");
-            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-            DebugLogText.text = DebugLogText.text + "\n" + message;
-            Debug.Log(message);
-        }
     }
 }
