@@ -187,21 +187,12 @@ namespace GoogleARCore.Examples.ObjectManipulation
             }
         }
 
+        //Checks if scale is toggled
         private bool checkScaleToggle()
         {
             GameObject manipulationPanel = GameObject.Find("Controls");
 
-            OutputDebug("Checking scale toggle: " + manipulationPanel.GetComponent<ManipulationButtons>().GetScaleStatus());
             return manipulationPanel.GetComponent<ManipulationButtons>().GetScaleStatus();
-        }
-
-        private void OutputDebug(string message)
-        {
-            GameObject ARDebugLog = GameObject.Find("Debug Log");
-            Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-            DebugLogText.text = DebugLogText.text + "\n" + message;
-            Debug.Log(message);
         }
     }
 }

@@ -46,8 +46,6 @@ public class ManipulationButtons : MonoBehaviour
             
         }
         TogglePressedColour();
-
-        OutputDebug("Rotate set to: " + toggleRotate);
     }
 
     public void MovePressed() {
@@ -66,8 +64,6 @@ public class ManipulationButtons : MonoBehaviour
         }
         TogglePressedColour();
 
-        OutputDebug("Move set to: " + toggleMove);
-
     }
 
     public void PlacePressed() {
@@ -85,8 +81,6 @@ public class ManipulationButtons : MonoBehaviour
             
         }
         TogglePressedColour();
-
-        OutputDebug("Place set to: " + togglePlace);
     }
 
     public void ScalePressed() {
@@ -102,8 +96,6 @@ public class ManipulationButtons : MonoBehaviour
             toggleLift = false;
             toggleScale = true;
         }
-
-        OutputDebug("Scale set to: " + toggleScale);
     }
 
     public void LiftPressed()
@@ -120,8 +112,6 @@ public class ManipulationButtons : MonoBehaviour
             toggleScale = false;
             toggleLift = true;
         }
-
-        OutputDebug("Scale set to: " + toggleScale);
     }
 
     public bool GetRotationStatus() {
@@ -172,14 +162,4 @@ public class ManipulationButtons : MonoBehaviour
             }
         }
     }
-
-    private void OutputDebug(string message)
-    {
-        GameObject ARDebugLog = GameObject.Find("Debug Log");
-        Text DebugLogText = ARDebugLog.GetComponentInChildren<Text>();
-
-        DebugLogText.text = DebugLogText.text + "\n" + message;
-        Debug.Log(message);
-    }
-
 }
