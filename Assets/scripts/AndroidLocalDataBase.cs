@@ -16,11 +16,9 @@ public class AndroidLocalDataBase : MonoBehaviour
     IDbConnection dbconn;
     IDbCommand dbcmd;
     private IDataReader reader;
-    public InputField textInputUsername, textInputPassword, t_id;
-    public Text dataUser;
+    public InputField textInputUsername, textInputPassword;
+    private static readonly string DatabaseName = "users.s3db";
 
-    string DatabaseName = "users.s3db";
-    // Start is called before the first frame update
     void Start()
     {
         //Application database Path android
@@ -44,47 +42,56 @@ public class AndroidLocalDataBase : MonoBehaviour
         Debug.Log("Stablishing connection to: " + conn);
         dbconn = new SqliteConnection(conn);
         dbconn.Open();
+        CreateUserTableIfNotExist(dbconn);
+        
+    }
 
-        string query;
-        query = "CREATE TABLE user (ID INTEGER PRIMARY KEY  AUTOINCREMENT, Name varchar(100), Password varchar(200))";
+    private void CreateUserTableIfNotExist(IDbConnection dbConnection)
+    {
+        string query = "CREATE TABLE user (ID INTEGER PRIMARY KEY  AUTOINCREMENT, Name varchar(100), Password varchar(200))";
         try
         {
             dbcmd = dbconn.CreateCommand(); // create empty command
             dbcmd.CommandText = query; // fill the command
             reader = dbcmd.ExecuteReader(); // execute command which returns a reader
+            dbcmd.Dispose();
+            dbconn.Close();
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
-        //  reader_function();
+        finally
+        {
+            dbconn.Close();
+        }
     }
-    //Insert
+    
     public void signUpRountine()
     {
         InsertNewUsernameToDatabase(textInputUsername.text, textInputPassword.text);
     }
 
-    //Insert To Database
     private void InsertNewUsernameToDatabase(string name, string password)
     {
         using (dbconn = new SqliteConnection(conn))
         {
-            dbconn.Open(); //Open connection to the database.
+            dbconn.Open();
             dbcmd = dbconn.CreateCommand();
-            sqlQuery = string.Format("insert into user (name, Password) values (\"{0}\",\"{1}\")", name, password);// table name
+            sqlQuery = string.Format("insert into user (name, Password) values (\"{0}\",\"{1}\")", name, password);//yeah yeah, sql injection is real....bite me
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
-            dbconn.Close();
+            dbcmd.Dispose();
         }
-        Debug.Log("Insert Done  ");
         SceneManager.LoadScene("Menu");
         ReadAllUsernameRecord();
     }
-    //Read All Data For To Database
+
+    /**
+     * <summary>DO NOT USE THIS. ONLY USED FOR DEV ENVIRONMENT</summary>
+     */
     public void ReadAllUsernameRecord()
     {
-        // int idreaders ;
         string Namereaders, Addressreaders;
         using (dbconn = new SqliteConnection(conn))
         {
@@ -97,46 +104,13 @@ public class AndroidLocalDataBase : MonoBehaviour
             {
                 Namereaders = reader.GetString(0);
                 Addressreaders = reader.GetString(1);
-
-                dataUser.text += Namereaders + " - " + Addressreaders + " ";
                 Debug.Log(" name =" + Namereaders + "Password=" + Addressreaders);
             }
             reader.Close();
             reader = null;
             dbcmd.Dispose();
             dbcmd = null;
-            dbconn.Close();
-            dbconn = null;
         }
-    }
-    //Search on Database by ID
-    private void SearchUsernameByID(string userNameID)
-    {
-        using (dbconn = new SqliteConnection(conn))
-        {
-            string usernameRead, passwordRead;
-            dbconn.Open(); //Open connection to the database.
-            IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT name,password " + "FROM user where id =" + userNameID;// table name
-            dbcmd.CommandText = sqlQuery;
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
-            {
-                //  string id = reader.GetString(0);
-                usernameRead = reader.GetString(0);
-                passwordRead = reader.GetString(1);
-                dataUser.text += usernameRead + " - " + passwordRead + "\n";
-
-                Debug.Log(" name =" + usernameRead + "Address=" + passwordRead);
-
-            }
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
-            dbconn.Close();
-        }
-
     }
 
     public void executeLogin()
@@ -147,9 +121,11 @@ public class AndroidLocalDataBase : MonoBehaviour
         using (dbconn = new SqliteConnection(conn))
         {
             dbconn.Open();
+            string queryUserCommand = GetQueryUserCommand();
+            SqliteParameter usernameSQLParam = new SqliteParameter("@name", username);
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT name,password " + "FROM user where Name =\"" + username +"\"";
-            dbcmd.CommandText = sqlQuery;
+            dbcmd.Parameters.Add(usernameSQLParam);
+            dbcmd.CommandText = queryUserCommand;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
@@ -165,63 +141,16 @@ public class AndroidLocalDataBase : MonoBehaviour
         showWrongCredentialMessage();
     }
 
+    private string GetQueryUserCommand()
+    {
+        return string.Format("SELECT name, password from user where name = \"@name\"");
+    }
+
     private void showWrongCredentialMessage()
     {
         textInputUsername.placeholder.GetComponent<Text>().text = "Wrong username or password";
         textInputUsername.text = "";
         textInputPassword.placeholder.GetComponent<Text>().text = "Wrong username or password";
         textInputPassword.text = "";
-    }
-
-    //Search on Database by ID
-    private void F_to_update_function(string Search_by_id)
-    {
-        using (dbconn = new SqliteConnection(conn))
-        {
-            string Name_readers_Search, Address_readers_Search;
-            dbconn.Open(); //Open connection to the database.
-            IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT name,address " + "FROM user where id =" + Search_by_id;// table name
-            dbcmd.CommandText = sqlQuery;
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
-            {
-
-                Name_readers_Search = reader.GetString(0);
-                Address_readers_Search = reader.GetString(1);
-                textInputUsername.text = Name_readers_Search;
-                textInputPassword.text = Address_readers_Search;
-
-            }
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
-            dbconn.Close();
-        }
-    }
-
-    private void UpdateUserRecord(string update_id, string update_name, string update_address)
-    {
-        using (dbconn = new SqliteConnection(conn))
-        {
-            dbconn.Open();
-            dbcmd = dbconn.CreateCommand();
-            sqlQuery = string.Format("UPDATE Staff set name = @name ,address = @address where ID = @id ");
-
-            SqliteParameter P_update_name = new SqliteParameter("@name", update_name);
-            SqliteParameter P_update_address = new SqliteParameter("@address", update_address);
-            SqliteParameter P_update_id = new SqliteParameter("@id", update_id);
-
-            dbcmd.Parameters.Add(P_update_name);
-            dbcmd.Parameters.Add(P_update_address);
-            dbcmd.Parameters.Add(P_update_id);
-
-            dbcmd.CommandText = sqlQuery;
-            dbcmd.ExecuteScalar();
-            dbconn.Close();
-            SearchUsernameByID(t_id.text);
-        }
-
     }
 }
