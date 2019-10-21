@@ -17,7 +17,7 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> selectableModels;
     public List<Item> selectableItems;
     
-    private List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>();
     private string[] dbReadOrder = { "Name", "url", "desc", "categories", "brands", "designer", "spec" };
     private static readonly string DatabaseName = "users.s3db"; // Do not change db or the consequences are bad
 
@@ -149,17 +149,41 @@ public class ItemManager : MonoBehaviour
             double price = dbRecord.GetFloat(2);
             string itemSiteURL = dbRecord.GetString(3);
             string itemDesc = dbRecord.GetString(4);
+            Debug.Log(dbRecord.GetString(5));
+            string[] itemCategories = dbRecord.GetString(5).Split(',');
             int numberClick = dbRecord.GetInt32(9);
-            itemList.Add(new Item(itemId, name, (float)price, itemSiteURL, itemDesc, numberClick));
+
+            Item newItem = new Item(itemId, name, (float)price, itemSiteURL, itemDesc, numberClick);
+
+            newItem.AddCategory(itemCategories);
+
+            itemList.Add(newItem);
         }
         dbRecord.Close();
     }
 
     private void PopulateDemoData()
     {
-        itemList.Add(new Item(1, "Chair", 30.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2356237609.htm?rsqid=3512401f2c8a4cffad08f4acf7c7ab30-001", "Adjustable seat height Height adjustable back/lumbar\n Independently adjustable seat tilt - free floating or lockable"));
-        itemList.Add(new Item(2, "Table", 60.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2357653157.htm?rsqid=148a18ec29374beeafeeab8f14940dcc-001", "Good stuff"));
-        itemList.Add(new Item(3, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff"));
+        Item chair = new Item(1, "Chair", 30.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2356237609.htm?rsqid=3512401f2c8a4cffad08f4acf7c7ab30-001", "Adjustable seat height Height adjustable back/lumbar\n Independently adjustable seat tilt - free floating or lockable");
+        chair.AddCategory(new string[] { "Office", "Chairs", "Desks" });
+        chair.AddBrand(new string[] { "Ikea" });
+        chair.AddDesigner(new string[] { "Ikea" });
+
+        Debug.Log("Chair has " + chair.GetCategories().Count);
+        itemList.Add(chair);
+
+        Item table = new Item(2, "Table", 60.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2357653157.htm?rsqid=148a18ec29374beeafeeab8f14940dcc-001", "Good stuff");
+        table.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
+        table.AddBrand(new string[] { "Harvey Norman" });
+        table.AddDesigner(new string[] { "Parkland" });
+        itemList.Add(table);
+
+        Item couch = new Item(3, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff");
+        couch.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
+        couch.AddBrand(new string[] { "The Warehouse" });
+        couch.AddDesigner(new string[] { "Living & Co" });
+
+        itemList.Add(couch);
         AddDemoDataToDB();
     }
 
@@ -176,6 +200,10 @@ public class ItemManager : MonoBehaviour
                 string sellerURL = item.GetURL();
                 float price = item.GetPrice();
                 int itemId = item.GetItemID();
+                string category = string.Join(",", item.GetCategories());
+                string brand = string.Join(",", item.GetBrand());
+                string designer = string.Join(",", item.GetDesigner());
+                string specs = item.GetSpecs().ToString();
                 int noClick = item.getNumberOfClick();
                 string insertRecord = string.Format("INSERT into item (ID, Name, price, url, desc, categories, brands, designer, spec, noClick)" +
                                                         "values (\"{0}\",\"{1}\",\"{2}\", \"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\", \"{9}\")",
@@ -184,10 +212,10 @@ public class ItemManager : MonoBehaviour
                                                         price,
                                                         sellerURL,
                                                         itemDesc,
-                                                        "",
-                                                        "",
-                                                        "",
-                                                        "",
+                                                        category,
+                                                        brand,
+                                                        designer,
+                                                        specs,
                                                         noClick);
                 dbCommand.CommandText = insertRecord;
                 dbCommand.ExecuteScalar();

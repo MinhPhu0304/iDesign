@@ -38,9 +38,15 @@ public class ItemDisplayPanelBehaviour : MonoBehaviour
         SceneManager.LoadScene("itemInformationView");        
     }
 
+    public void NavigateARScene()
+    {
+        SceneManager.LoadScene("ARManipulation");
+    }
     // Update is called once per frame
     void Update()
     {
         
     }
+
+
 }

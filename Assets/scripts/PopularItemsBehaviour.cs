@@ -102,6 +102,7 @@ public class PopularItemsBehaviour : MonoBehaviour
     private void NavigateToInfoScene(Item itemToShow)
     {
         Debug.Log("Navigate to infoscene");
+        UpdateItemManagerModels();
         itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
     }
 
@@ -111,6 +112,34 @@ public class PopularItemsBehaviour : MonoBehaviour
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
         sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 
-        SceneManager.LoadScene("ARScene");
+
+        UpdateItemManagerModels();
+        SceneManager.LoadScene("ARManipulation");
+    }
+
+    private void UpdateItemManagerModels()
+    {
+        List<GameObject> newVisibles = new List<GameObject>();
+
+        foreach (GameObject listing in itemListings)
+        {
+            string modelName;
+            string[] GameObjectName = listing.name.Split(' ');
+
+            if (GameObjectName[0] == "Listing:")
+            {
+                modelName = GameObjectName[2];
+                GameObject itemModel = Resources.Load($"Models/{modelName}") as GameObject;
+
+                newVisibles.Add(itemModel);
+
+            }
+            else
+            {
+                Debug.Log("Listing was not an itemListing");
+            }
+        }
+
+        itemManager.selectableModels = newVisibles;
     }
 }
