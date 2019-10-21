@@ -53,7 +53,6 @@ public class LoadCatalog : MonoBehaviour
         foreach (Item itemInList in loadedItems)
         {
             GameObject itemListing = Instantiate(itemListingPrefab);
-
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
