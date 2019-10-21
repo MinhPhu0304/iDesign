@@ -34,10 +34,6 @@ public class LoadCatalog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        
-
         sceneController = new GameObject();
         sceneController.AddComponent<ObjectPlacementManipulator>();
 

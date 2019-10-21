@@ -15,9 +15,8 @@ public class ItemManager : MonoBehaviour
     private IDataReader reader;
     public GameObject ObjectToPlace;
     public List<GameObject> selectableModels;
-    public List<Item> selectableItems;
-    
-    public List<Item> itemList = new List<Item>();
+   
+    private List<Item> itemList = new List<Item>();
     private string[] dbReadOrder = { "Name", "url", "desc", "categories", "brands", "designer", "spec" };
     private static readonly string DatabaseName = "users.s3db"; // Do not change db or the consequences are bad
 
@@ -44,7 +43,7 @@ public class ItemManager : MonoBehaviour
     {
         //Application database Path android
         string filepath = Application.persistentDataPath + "/" + DatabaseName;
-        
+
         CreateDBFileIfNotExist(filepath);
         EstablishDBConnection(filepath);
         ReadRecordFromDB();
@@ -121,7 +120,7 @@ public class ItemManager : MonoBehaviour
             IDbCommand dbCommand = dbconn.CreateCommand();
             dbCommand.CommandText = "Select COUNT(*) Total from item;";
             IDataReader dbRecord = dbCommand.ExecuteReader();
-            if(dbRecord.Read()) totalRecordInDB = dbRecord.GetInt32(0);
+            if (dbRecord.Read()) totalRecordInDB = dbRecord.GetInt32(0);
         }
 
         return totalRecordInDB;
@@ -156,7 +155,7 @@ public class ItemManager : MonoBehaviour
             Item newItem = new Item(itemId, name, (float)price, itemSiteURL, itemDesc, numberClick);
 
             newItem.AddCategory(itemCategories);
-
+            newItem.setNumberOfClick(numberClick);
             itemList.Add(newItem);
         }
         dbRecord.Close();
@@ -193,7 +192,7 @@ public class ItemManager : MonoBehaviour
         {
             dbconn.Open();
             IDbCommand dbCommand = dbconn.CreateCommand();
-            foreach(Item item in itemList)
+            foreach (Item item in itemList)
             {
                 string itemName = item.GetName();
                 string itemDesc = item.GetDesc();
@@ -223,6 +222,26 @@ public class ItemManager : MonoBehaviour
             dbCommand.Cancel();
         }
     }
-    //https://www.youtube.com/watch?v=5p2JlI7PV1w
-    //https://www.youtube.com/watch?v=AvuuX4qxC_0
+
+    public void updateNumberOfClicks(Item item)
+    {
+        using (dbconn = new SqliteConnection(dbURL))
+        {
+            dbconn.Open();
+            dbcmd = dbconn.CreateCommand();
+            sqlQuery = string.Format("UPDATE Item set noClick = @noClick where ID = @id ");
+
+            SqliteParameter P_update_name = new SqliteParameter("@noClick", item.getNumberOfClick());
+            SqliteParameter P_update_id = new SqliteParameter("@id", item.GetItemID());
+
+            dbcmd.Parameters.Add(P_update_name);
+            dbcmd.Parameters.Add(P_update_id);
+
+            dbcmd.CommandText = sqlQuery;
+            dbcmd.ExecuteScalar();
+            dbconn.Close();
+        }
+        //https://www.youtube.com/watch?v=5p2JlI7PV1w
+        //https://www.youtube.com/watch?v=AvuuX4qxC_0
+    }
 }

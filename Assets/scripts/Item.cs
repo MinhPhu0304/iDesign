@@ -9,7 +9,7 @@ public class Item : IComparable
     private float price;
     private string URL;
     private string desc;
-    public List<string> categories = new List<string>();
+    private List<string> categories = new List<string>();
     private List<string> brands = new List<string>();
     private List<string> designers = new List<string>();
     private Specs specs;
