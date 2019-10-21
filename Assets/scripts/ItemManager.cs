@@ -149,7 +149,7 @@ public class ItemManager : MonoBehaviour
             double price = dbRecord.GetFloat(2);
             string itemSiteURL = dbRecord.GetString(3);
             string itemDesc = dbRecord.GetString(4);
-            int numberClick = dbRecord.GetInt32(5);
+            int numberClick = dbRecord.GetInt32(9);
             itemList.Add(new Item(itemId, name, (float)price, itemSiteURL, itemDesc, numberClick));
         }
         dbRecord.Close();
