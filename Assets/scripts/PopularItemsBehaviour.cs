@@ -14,13 +14,16 @@ public class PopularItemsBehaviour : MonoBehaviour
     public List<GameObject> itemListings;
     public GameObject sceneController;
     public GameObject itemSceneController;
+    private ItemManager itemManager;
     //Setting the number of popular items to display to 10
     private readonly int MAX_NUMBER_OF_POPULAR_ITEMS = 5;
     private readonly int FONT_SIZE = 30;
     // Start is called before the first frame update
     void Start()
     {
-        itemList = new List<Item>();
+        itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+
+        itemList = itemManager.GetItemList();
         itemListings = new List<GameObject>();
 
         sceneController = new GameObject();
@@ -28,32 +31,13 @@ public class PopularItemsBehaviour : MonoBehaviour
 
         itemSceneController = new GameObject();
         itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
-        queryItems();
         updatePopularItems();
     }
-
+  
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void queryItems()
-    {
-        //Since the table for the items is not done Im just putting in some test data
-        itemList.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
-        itemList.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
-        itemList.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
-
-
-        //UnityEngine also has a random so specify that it is System's random
-        System.Random rand = new System.Random();
-
-        //Setting the number of clicks for testing purposes
-        foreach (Item item in itemList)
-        {
-            item.numberOfClicks = rand.Next(0, 10);
-        }
     }
 
     public void updatePopularItems()
