@@ -43,6 +43,8 @@ public class PurchasePanelBehaviour : MonoBehaviour
     public void GotoSupplierWebsite()
     { 
         currentItem.setNumberOfClick((currentItem.getNumberOfClick() + 1));
+        ItemManager itemMananger = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+        itemMananger.updateNumberOfClicks(currentItem);
         Application.OpenURL(currentItem.GetURL());
     }
 }

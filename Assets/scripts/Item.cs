@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class Item
+public class Item : IComparable
 {
     private int itemID;
     private string name;
@@ -139,5 +139,14 @@ public class Item
     {
         Item compareItem = (Item) obj;
         return (itemID == compareItem.itemID);
+    }
+
+    public int CompareTo(object obj)
+    {
+        Item otherItem = (Item)obj;
+
+        int otherItemClicks = otherItem.numberOfClicks;
+
+        return numberOfClicks - otherItemClicks;
     }
 }

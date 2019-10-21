@@ -34,9 +34,6 @@ public class LoadCatalog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateItems();
-        GenerateCategories();
-
         sceneController = new GameObject();
         sceneController.AddComponent<ObjectPlacementManipulator>();
 
@@ -49,11 +46,12 @@ public class LoadCatalog : MonoBehaviour
 
         itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
+        loadedItems = itemManager.GetItemList();
+        GenerateCategories();
         int listingNo = 0;
         foreach (Item itemInList in loadedItems)
         {
             GameObject itemListing = Instantiate(itemListingPrefab);
-
             itemListing.SetActive(false); //Not shown when first loaded
 
             itemListing.GetComponentInChildren<Text>().text = itemInList.GetName(); //Set Titletext
@@ -283,30 +281,6 @@ public class LoadCatalog : MonoBehaviour
     {
         Debug.Log("Navigate to infoscene");
         itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
-    }
-
-    private void GenerateItems()
-    {
-        Item gotItem;
-
-        loadedItems.Add(new Item(0, "Chair", 10.00f, "http://www.google.com", "No description set."));
-        gotItem = (Item)loadedItems[0];
-        gotItem.AddCategory(new string[] { "Office", "Chairs", "Desks" });
-        gotItem.AddBrand(new string[] { "Ikea" });
-        gotItem.AddDesigner(new string[] { "Ikea" });
-
-        loadedItems.Add(new Item(1, "Couch", 100.00f, "http://www.google.com", "No description set."));
-        gotItem = (Item)loadedItems[1];
-        gotItem.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
-        gotItem.AddBrand(new string[] { "Harvey Norman" });
-        gotItem.AddDesigner(new string[] { "Parkland" });
-
-        loadedItems.Add(new Item(2, "Table", 20.00f, "http://www.google.com", "No description set."));
-        gotItem = (Item)loadedItems[2];
-        gotItem.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
-        gotItem.AddBrand(new string[] { "The Warehouse" });
-        gotItem.AddDesigner(new string[] { "Living & Co" });
-
     }
 
     private void GenerateCategories()
