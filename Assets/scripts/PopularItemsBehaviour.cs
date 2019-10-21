@@ -108,7 +108,6 @@ public class PopularItemsBehaviour : MonoBehaviour
 
     private void NavigateToARScene(string name)
     {
-        Debug.Log($"Loading resource: {name}");
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
         sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 

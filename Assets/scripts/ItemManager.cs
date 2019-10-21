@@ -148,7 +148,6 @@ public class ItemManager : MonoBehaviour
             double price = dbRecord.GetFloat(2);
             string itemSiteURL = dbRecord.GetString(3);
             string itemDesc = dbRecord.GetString(4);
-            Debug.Log(dbRecord.GetString(5));
             string[] itemCategories = dbRecord.GetString(5).Split(',');
             int numberClick = dbRecord.GetInt32(9);
 
@@ -168,7 +167,6 @@ public class ItemManager : MonoBehaviour
         chair.AddBrand(new string[] { "Ikea" });
         chair.AddDesigner(new string[] { "Ikea" });
 
-        Debug.Log("Chair has " + chair.GetCategories().Count);
         itemList.Add(chair);
 
         Item table = new Item(2, "Table", 60.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2357653157.htm?rsqid=148a18ec29374beeafeeab8f14940dcc-001", "Good stuff");
@@ -204,6 +202,7 @@ public class ItemManager : MonoBehaviour
                 string designer = string.Join(",", item.GetDesigner());
                 string specs = item.GetSpecs().ToString();
                 int noClick = item.getNumberOfClick();
+
                 string insertRecord = string.Format("INSERT into item (ID, Name, price, url, desc, categories, brands, designer, spec, noClick)" +
                                                         "values (\"{0}\",\"{1}\",\"{2}\", \"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\", \"{9}\")",
                                                         itemId,
@@ -239,9 +238,7 @@ public class ItemManager : MonoBehaviour
 
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
-            dbconn.Close();
         }
-        //https://www.youtube.com/watch?v=5p2JlI7PV1w
-        //https://www.youtube.com/watch?v=AvuuX4qxC_0
+        dbcmd.Cancel();
     }
 }

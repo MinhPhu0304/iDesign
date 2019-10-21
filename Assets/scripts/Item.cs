@@ -147,17 +147,6 @@ public class Item : IComparable
 
         int otherItemClicks = otherItem.numberOfClicks;
 
-        if(numberOfClicks > otherItemClicks)
-        {
-            return -1;
-        }
-        else if(numberOfClicks < otherItemClicks)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
+        return numberOfClicks - otherItemClicks;
     }
 }

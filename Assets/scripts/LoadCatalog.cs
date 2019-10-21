@@ -288,7 +288,6 @@ public class LoadCatalog : MonoBehaviour
         foreach (Item item in loadedItems)
         {
             List<string> itemCategories = item.GetCategories();
-            Debug.Log("Item is " + item.GetCategories());
 
             foreach (string category in itemCategories)
             {
