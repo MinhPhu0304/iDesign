@@ -49,8 +49,8 @@ device
 
 | <a href="https://github.com/MinhPhu0304" target="_blank">**Minh Phu**</a> | <a href="https://github.com/MillanUka" target="_blank">**Millan Uka**</a>
 | :---: |:---:|
-| [![Minhphu0304](https://avatars3.githubusercontent.com/u/29682322?s=100)](https://github.com/MinhPhu0304)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/41311473?s=100)](https://github.com/MillanUka) |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/Minhphu0304`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/MillanUka`</a> |
+| [![Minhphu0304](https://avatars3.githubusercontent.com/u/29682322?s=100)](https://github.com/MinhPhu0304)    | [![Kadin](https://avatars1.githubusercontent.com/u/41311473?s=100)](https://github.com/MillanUka) |
+| <a href="http://github.com/MinhPhu0304" target="_blank">`github.com/Minhphu0304`</a> | <a href="http://github.com/MillanUka" target="_blank">`github.com/MillanUka`</a> |
 
 
 | <a href="https://github.com/KadinHoneyfield" target="_blank">**Kadin HoneyField**</a> | <a href="https://github.com/benNthen" target="_blank">**Ben Velasco**</a>
