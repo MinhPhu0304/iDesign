@@ -15,6 +15,7 @@ public class PopularItemsBehaviour : MonoBehaviour
     public GameObject sceneController;
     public GameObject itemSceneController;
     private ItemManager itemManager;
+
     //Setting the number of popular items to display to 10
     private readonly int MAX_NUMBER_OF_POPULAR_ITEMS = 5;
     private readonly int FONT_SIZE = 30;
@@ -33,7 +34,7 @@ public class PopularItemsBehaviour : MonoBehaviour
         itemSceneController.AddComponent<ItemDisplayPanelBehaviour>();
         updatePopularItems();
     }
-  
+
     // Update is called once per frame
     void Update()
     {
