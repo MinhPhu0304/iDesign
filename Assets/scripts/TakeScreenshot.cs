@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TakeScreenshot : MonoBehaviour
 {
-    //public Renderer rend;
     public void TakeAShot()
     {
         StartCoroutine("TakeScreenshotAndSave");

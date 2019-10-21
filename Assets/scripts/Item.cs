@@ -13,18 +13,17 @@ public class Item
     private List<string> brands = new List<string>();
     private List<string> designers = new List<string>();
     private Specs specs;
-    public int numberOfClicks = 0;
+    private int numberOfClicks;
 
-    public Item(int itemID, string name, float price, string URL, string desc)
-    {
-        this.itemID = itemID;
-        this.name = name;
-        this.price = price;
-        this.URL = URL;
-        this.desc = desc;
-        this.specs = new Specs(0, 0, 0, "n/a");
+    public Item(int itemID, string name, float price, string URL, string desc) : this(itemID,name, price, URL, desc, 0)
+    { 
     }
-    public Item(int itemID, string name, float price, string URL, string desc, Specs specs)
+
+    public Item(int itemID, string name, float price, string URL, string desc, int noClick) : this(itemID, name, price, URL, desc, new Specs(0,0,0, "n/a"), noClick)
+    {
+    }
+
+    public Item(int itemID, string name, float price, string URL, string desc, Specs specs, int noClick)
     {
         this.itemID = itemID;
         this.name = name;
@@ -32,11 +31,22 @@ public class Item
         this.URL = URL;
         this.desc = desc;
         this.specs = specs;
+        noClick = 0;
     }
 
     public int GetItemID()
     {
         return itemID;
+    }
+
+    public void setNumberOfClick(int numberOfClick)
+    {
+        this.numberOfClicks = numberOfClick;
+    }
+
+    public int getNumberOfClick()
+    {
+        return numberOfClicks;
     }
 
     public string GetName()
