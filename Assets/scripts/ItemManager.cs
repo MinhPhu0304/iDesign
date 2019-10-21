@@ -90,6 +90,7 @@ public class ItemManager : MonoBehaviour
             dbcmd = dbconn.CreateCommand(); // create empty command
             dbcmd.CommandText = query;
             dbcmd.ExecuteReader(); // execute command which returns a reader
+            dbcmd.Dispose();
         }
         catch (Exception e)
         {
@@ -135,7 +136,7 @@ public class ItemManager : MonoBehaviour
             dbQuery.CommandText = "Select * from item;";
             IDataReader dbRecord = dbQuery.ExecuteReader();
             LoadDBRecordFrom(dbRecord);
-            dbQuery.Cancel();
+            dbQuery.Dispose();
         }
     }
 
@@ -218,7 +219,7 @@ public class ItemManager : MonoBehaviour
                 dbCommand.CommandText = insertRecord;
                 dbCommand.ExecuteScalar();
             }
-            dbCommand.Cancel();
+            dbCommand.Dispose();
         }
     }
 
@@ -238,7 +239,7 @@ public class ItemManager : MonoBehaviour
 
             dbcmd.CommandText = sqlQuery;
             dbcmd.ExecuteScalar();
+            dbcmd.Dispose();
         }
-        dbcmd.Cancel();
     }
 }
