@@ -51,7 +51,9 @@ public class LoadCatalog : MonoBehaviour
         itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
         loadedItems = itemManager.GetItemList();
+
         GenerateAllListingFromItemManager();
+
         int listingNo = 0;
         foreach (Item itemInList in loadedItems)
         {
@@ -301,6 +303,7 @@ public class LoadCatalog : MonoBehaviour
     {
         foreach (Item item in loadedItems)
         {
+
             List<string> itemCategories = item.GetCategories();
 
             foreach (string category in itemCategories)
@@ -344,5 +347,4 @@ public class LoadCatalog : MonoBehaviour
         }
         showingItems = true;
     }
-
 }

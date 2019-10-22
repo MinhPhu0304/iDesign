@@ -79,5 +79,4 @@ public class FilterTypeBehaviour : MonoBehaviour
         RectTransform rt = Button.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(ParentPanel.GetComponent<RectTransform>().rect.width - SIDEGAP, HEIGHT);
     }
-
 }
