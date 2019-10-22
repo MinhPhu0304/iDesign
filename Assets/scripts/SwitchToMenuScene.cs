@@ -21,4 +21,18 @@ public class SwitchToMenuScene : MonoBehaviour
     { 
         SceneManager.LoadScene("Menu");
     }
+
+    public void SwitchToMenuFronCatalog()
+    {
+        LoadCatalog CatalogueScript = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
+
+        if (CatalogueScript.showingItems)
+        {
+            SceneManager.LoadScene("Catalog");
+        }
+        else
+        {
+            SwitchToMenu();
+        }
+    }
 }

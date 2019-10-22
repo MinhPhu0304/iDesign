@@ -129,6 +129,6 @@ public class Item : IComparable
 
         int otherItemClicks = otherItem.numberOfClicks;
 
-        return numberOfClicks - otherItemClicks;
+        return otherItemClicks - numberOfClicks;
     }
 }

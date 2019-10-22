@@ -8,44 +8,77 @@ public class FilterTypeBehaviour : MonoBehaviour
     public GameObject ParentPanel;
     public GameObject TypePrefab;
     LoadCatalog CatalogueScript;
+    public GameObject ContentForScroll;
 
     // Start is called before the first frame update
     void Start()
     {
         CatalogueScript = GameObject.Find("Viewport").GetComponent<LoadCatalog>();
 
-        GenerateCategories(CatalogueScript.foundCategories);
-        
+        if (ParentPanel == GameObject.Find("Category Container"))
+        {
+            GenerateButtons(CatalogueScript.foundCategories);
+        }
+        else if (ParentPanel == GameObject.Find("Designer Container"))
+        {
+            GenerateButtons(CatalogueScript.foundDesigners);
+        }
+        else if (ParentPanel == GameObject.Find("Brand Container"))
+        {
+            GenerateButtons(CatalogueScript.foundBrands);
+        }
+        else {
+            Debug.Log("Couldn't find parent");
+        }
 
     }
 
-    private void GenerateCategories(List<string> categories)
+    //Generated buttons dynamically depending on number of strings in foundStrings.
+    private void GenerateButtons(List<string> foundStrings)
     {
-        foreach (string FoundCategory in categories)
+        foreach (string FoundCategory in foundStrings)
         {
             Debug.Log("Found "+FoundCategory);
 
-            GameObject CategoryButton = Instantiate(TypePrefab);
+            GameObject FilterButton = Instantiate(TypePrefab);
 
-            CategoryButton.GetComponentInChildren<Text>().text = FoundCategory;
-            CategoryButton.name = FoundCategory;
+            FilterButton.GetComponentInChildren<Text>().text = FoundCategory;
+            FilterButton.name = FoundCategory;
 
-            SetButtonSize(CategoryButton);
+            FilterButton.GetComponent<Button>().onClick.AddListener(() => ActivateFilter(FilterButton));
 
-            CategoryButton.transform.SetParent(ParentPanel.transform, false);
+            SetButtonSize(FilterButton);
+            if (ContentForScroll != null)
+            {
+                FilterButton.transform.SetParent(ContentForScroll.transform, false);
+                Debug.Log("IF ACCESSED");
+            }
+            else {
+                FilterButton.transform.SetParent(ParentPanel.transform, false);
+            }
+            
         }
     }
 
-    private void GenerateExtras()
+    //Sets the search text to the button that was pressed.
+    private void ActivateFilter(GameObject ButtonPressed)
     {
+        string ButtonText = ButtonPressed.GetComponentInChildren<Text>().text;
 
+        GameObject SearchBox = GameObject.Find("InputField");
+        Debug.Log(SearchBox);
+        Debug.Log(ButtonText);
+
+        SearchBox.GetComponent<InputField>().text = ButtonText;
+        CatalogueScript.showingItems = true;
+        CatalogueScript.SearchCatalog();
     }
 
+    //Sets size of the button.
     private void SetButtonSize(GameObject Button)
     {
         float SIDEGAP = 20f;
         float HEIGHT = 150;
-
 
         RectTransform rt = Button.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(ParentPanel.GetComponent<RectTransform>().rect.width - SIDEGAP, HEIGHT);
