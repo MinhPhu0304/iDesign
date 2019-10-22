@@ -20,7 +20,9 @@ product looks like on wall, table on their phone iDesign by using AR technology.
 are clear, for everyone involved: less hassle, less travel, quicker and more intuitive
 understanding of how a space will look and feel.
 
-![Demo stration of the p](https://raw.githubusercontent.com/MinhPhu0304/iDesign/master/projectpitchimage.png)
+<div style="text-align:center">
+<img src="demo.gif" height="400">
+</div>
 
 ### II. Getting Started
 
