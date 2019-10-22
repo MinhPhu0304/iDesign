@@ -19,6 +19,6 @@ public class SwitchToCameraScene : MonoBehaviour
 
     public void SwitchToCamera()
     {
-        SceneManager.LoadScene("ARScene");
+        SceneManager.LoadScene("ARManipulation");
     }
 }

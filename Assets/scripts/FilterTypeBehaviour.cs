@@ -38,8 +38,6 @@ public class FilterTypeBehaviour : MonoBehaviour
     {
         foreach (string FoundCategory in foundStrings)
         {
-            Debug.Log("Found "+FoundCategory);
-
             GameObject FilterButton = Instantiate(TypePrefab);
 
             FilterButton.GetComponentInChildren<Text>().text = FoundCategory;
@@ -51,9 +49,9 @@ public class FilterTypeBehaviour : MonoBehaviour
             if (ContentForScroll != null)
             {
                 FilterButton.transform.SetParent(ContentForScroll.transform, false);
-                Debug.Log("IF ACCESSED");
             }
-            else {
+            else
+            {
                 FilterButton.transform.SetParent(ParentPanel.transform, false);
             }
             
@@ -66,8 +64,6 @@ public class FilterTypeBehaviour : MonoBehaviour
         string ButtonText = ButtonPressed.GetComponentInChildren<Text>().text;
 
         GameObject SearchBox = GameObject.Find("InputField");
-        Debug.Log(SearchBox);
-        Debug.Log(ButtonText);
 
         SearchBox.GetComponent<InputField>().text = ButtonText;
         CatalogueScript.showingItems = true;
@@ -84,9 +80,4 @@ public class FilterTypeBehaviour : MonoBehaviour
         rt.sizeDelta = new Vector2(ParentPanel.GetComponent<RectTransform>().rect.width - SIDEGAP, HEIGHT);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
