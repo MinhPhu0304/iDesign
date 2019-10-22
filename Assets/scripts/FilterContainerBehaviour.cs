@@ -12,6 +12,7 @@ public class FilterContainerBehaviour : MonoBehaviour
     public GameObject DesignerPanel;
     public GameObject BrandPanel;
 
+    //Opens panel based on button pressed.
     public void ButtonPressed(GameObject Pressed)
     {
         if (Pressed == CategoryButton)
@@ -28,10 +29,26 @@ public class FilterContainerBehaviour : MonoBehaviour
         }
     }
 
+    //If a panel is open hide the open panel
+    //Otherwise close the filter view
     public void BackPressed()
     {
-        CategoryPanel.SetActive(false);
-        DesignerPanel.SetActive(false);
-        BrandPanel.SetActive(false);
+        if (IsPanelsActivated())
+        {
+            CategoryPanel.SetActive(false);
+            DesignerPanel.SetActive(false);
+            BrandPanel.SetActive(false);
+        }
+        else
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+        }
+
+    }
+
+    //Checks if any of the type panels are visible
+    public bool IsPanelsActivated()
+    {
+        return CategoryPanel.activeSelf || DesignerPanel.activeSelf || BrandPanel.activeSelf;
     }
 }
