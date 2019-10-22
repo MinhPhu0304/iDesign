@@ -29,7 +29,7 @@ public class PurchasePanelBehaviour : MonoBehaviour
         name.text = currentItem.GetName();
 
         Text price = ItemPrice.GetComponent<Text>();
-        price.text = "Price: " + string.Format("{0:C}", currentItem.GetPrice());
+        price.text = "Price: $" + string.Format("{0:N}", currentItem.GetPrice());
     }
 
     public void HidePanel()

@@ -10,6 +10,7 @@ public class ItemDisplayPanelBehaviour : MonoBehaviour
     public GameObject itemPrice;
     public GameObject DescAndSpecsContent;
     public GameObject image;
+    private ItemManager itemManager;
 
     void Start()
     {
@@ -18,11 +19,13 @@ public class ItemDisplayPanelBehaviour : MonoBehaviour
         {
             return;
         }
+
+        itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
         
         Text name = ItemNameText.GetComponent<Text>();
         name.text = currentItem.GetName();
 
-        itemPrice.GetComponent<Text>().text = string.Format("{0:C}", currentItem.GetPrice());
+        itemPrice.GetComponent<Text>().text = "$" + string.Format("{0:N}", currentItem.GetPrice());
         currentItem.GetPrice();
 
         Sprite imageSprite = Resources.Load<Sprite>($"Thumbnails/{currentItem.GetName()}") as Sprite;
@@ -40,6 +43,9 @@ public class ItemDisplayPanelBehaviour : MonoBehaviour
 
     public void NavigateARScene()
     {
+        GameObject selectedObject = Resources.Load($"Models/{currentItem.GetName()}") as GameObject;
+
+        itemManager.ObjectToPlace = selectedObject;
         SceneManager.LoadScene("ARManipulation");
     }
     // Update is called once per frame

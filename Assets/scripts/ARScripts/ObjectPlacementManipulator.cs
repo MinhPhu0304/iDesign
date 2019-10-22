@@ -170,7 +170,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 {
                     PlacedObjects.Remove(DeleteObject);
                     DeleteObject.SetActive(false);
-                    Destroy(DeleteObject);
+                    //Destroy(DeleteObject);
                 }
             }
         }

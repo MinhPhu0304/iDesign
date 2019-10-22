@@ -186,6 +186,21 @@ public class ItemManager : MonoBehaviour
         couch.SetDesigner("Living & Co");
 
         itemList.Add(couch);
+
+        Item chair2 = new Item(4, "Chair2", 90.00f, "https://www.HarveyNorman.com", "A minimalist white chair");
+        chair2.AddCategory(new string[] { "Living Room", "Dining Room", "Chairs" });
+        chair2.SetBrand("Harvey Norman");
+        chair2.SetDesigner("Luxury Chairs");
+
+        itemList.Add(chair2);
+
+        Item sofa = new Item(5, "Sofa", 1000.00f, "https://www.HarveyNorman.com", "Looks big and comfy");
+        sofa.AddCategory(new string[] { "Living Room", "Dining Room", "Couches" });
+        sofa.SetBrand("Harvey Norman");
+        sofa.SetDesigner("Luxury Chairs");
+
+        itemList.Add(sofa);
+
         AddDemoDataToDB();
     }
 

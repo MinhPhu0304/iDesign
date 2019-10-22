@@ -111,7 +111,7 @@ public class PopularItemsBehaviour : MonoBehaviour
         GameObject selectedObject = Resources.Load($"Models/{name}") as GameObject;
         sceneController.GetComponent<ARSceneController>().ChangeObjectToPlace(selectedObject);
 
-
+        itemManager.ObjectToPlace = selectedObject;
         UpdateItemManagerModels();
         SceneManager.LoadScene("ARManipulation");
     }
