@@ -51,7 +51,9 @@ public class LoadCatalog : MonoBehaviour
         itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
         loadedItems = itemManager.GetItemList();
-        GenerateLists();
+
+        GenerateAllListingFromItemManager();
+
         int listingNo = 0;
         foreach (Item itemInList in loadedItems)
         {
@@ -80,9 +82,6 @@ public class LoadCatalog : MonoBehaviour
 
             listingNo++;
         }
-
-        Debug.Log($"List<T>: {itemListings.Count}");
-
 
         listingNo = 0;
         foreach (string category in foundCategories)
@@ -207,8 +206,6 @@ public class LoadCatalog : MonoBehaviour
             return;
         }
 
-        Debug.Log("Searching for: " + search);
-
         List<Item> searchResults = new List<Item>();
 
         foreach (Item foundItem in loadedItems)
@@ -254,7 +251,7 @@ public class LoadCatalog : MonoBehaviour
 
         }
 
-        hideListings();
+        HideListings();
 
         foreach (Item toShow in searchResults)
         {
@@ -263,7 +260,7 @@ public class LoadCatalog : MonoBehaviour
     }
 
     //Hides all listings currently visible
-    private void hideListings()
+    private void HideListings()
     {
         List<GameObject> listingsToHide = new List<GameObject>();
 
@@ -287,25 +284,22 @@ public class LoadCatalog : MonoBehaviour
     //Shows listing that is passed in and updates visible/disabled lists
     private void showListing(Item listing)
     {
-        Debug.Log($"Looking for: Listing: {listing.GetItemID()} {listing.GetName()}");
-
         GameObject content = GameObject.Find("Content");
-        GameObject toShow = content.transform.Find($"Listing: { listing.GetItemID()} { listing.GetName()}").gameObject;
+        GameObject itemFound = content.transform.Find($"Listing: { listing.GetItemID()} { listing.GetName()}").gameObject;
 
-        toShow.SetActive(true);
+        itemFound.SetActive(true);
 
-        visibleListings.Add(toShow);
-        disabledListings.Remove(toShow);
+        visibleListings.Add(itemFound);
+        disabledListings.Remove(itemFound);
         UpdateItemManagerModels();
     }
 
     private void NavigateToInfoScene(Item itemToShow)
     {
-        Debug.Log("Navigate to infoscene");
         itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
     }
 
-    private void GenerateLists()
+    private void GenerateAllListingFromItemManager()
     {
         foreach (Item item in loadedItems)
         {
@@ -314,11 +308,7 @@ public class LoadCatalog : MonoBehaviour
 
             foreach (string category in itemCategories)
             {
-                if (foundCategories.Contains(category))
-                {
-                    Debug.Log($"Category {category} is already in foundCategories.");
-                }
-                else
+                if (!foundCategories.Contains(category))
                 {
                     foundCategories.Add(category);
                 }
@@ -339,16 +329,13 @@ public class LoadCatalog : MonoBehaviour
         foundCategories.Sort();
         foundBrands.Sort();
         foundDesigners.Sort();
-
-        var result = string.Join(", ", foundCategories.ToArray());
-        Debug.Log($"Categories loaded: {result}");
     }
 
     public void ChangeContentToCategory(string category)
     {
         GameObject content = GameObject.Find("Content");
 
-        hideListings();
+        HideListings();
 
         foreach (Item itemInList in loadedItems)
         {
@@ -359,11 +346,5 @@ public class LoadCatalog : MonoBehaviour
             }
         }
         showingItems = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
