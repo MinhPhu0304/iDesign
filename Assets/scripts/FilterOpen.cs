@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FilterOpen : MonoBehaviour
 {
     public GameObject panelToOpen;
+    public GameObject filterButtonPrefab;
     public Text textExtract;
     public Text textFilter;
 
@@ -33,6 +34,8 @@ public class FilterOpen : MonoBehaviour
         string designerName;
         string filterTo;
 
+        
+
         //Text object provided contains text that is loaded into 'filter', then program knows which sorting function to use
         filterTo = textFilter.text;
 
@@ -40,7 +43,7 @@ public class FilterOpen : MonoBehaviour
         {
             categoryName = textExtract.text;
 
-            scriptToAccess.categoryGenerate(categoryName);
+            scriptToAccess.ChangeContentToCategory(categoryName);
         }
 
         if (filterTo == "Brand")

@@ -47,7 +47,7 @@ public class LoadCatalog : MonoBehaviour
         itemManager = GameObject.Find("Item Manager").GetComponent<ItemManager>();
 
         loadedItems = itemManager.GetItemList();
-        GenerateCategories();
+        GenerateLists();
         int listingNo = 0;
         foreach (Item itemInList in loadedItems)
         {
@@ -283,10 +283,11 @@ public class LoadCatalog : MonoBehaviour
         itemSceneController.GetComponent<ItemDisplayPanelBehaviour>().SetCurrentItem(itemToShow);
     }
 
-    private void GenerateCategories()
+    private void GenerateLists()
     {
         foreach (Item item in loadedItems)
         {
+
             List<string> itemCategories = item.GetCategories();
 
             foreach (string category in itemCategories)
@@ -300,15 +301,28 @@ public class LoadCatalog : MonoBehaviour
                     foundCategories.Add(category);
                 }
             }
+
+            if (!foundBrands.Contains(item.GetBrand()))
+            {
+                foundBrands.Add(item.GetBrand());
+            }
+
+            if (!foundDesigners.Contains(item.GetDesigner()))
+            {
+                foundDesigners.Add(item.GetDesigner());
+            }
+
         }
 
         foundCategories.Sort();
+        foundBrands.Sort();
+        foundDesigners.Sort();
 
         var result = string.Join(", ", foundCategories.ToArray());
         Debug.Log($"Categories loaded: {result}");
     }
 
-    private void GenerateBrands()
+/*    private void GenerateBrands()
     {
         foreach (Item item in loadedItems)
         {
@@ -319,9 +333,9 @@ public class LoadCatalog : MonoBehaviour
 
         var result = string.Join(", ", foundBrands.ToArray());
         Debug.Log($"Brands loaded: {result}");
-    }
+    }*/
 
-    public void scanBrand(Item item)
+/*    public void scanBrand(Item item)
     {
         List<string> itemBrands = item.GetBrand();
 
@@ -336,9 +350,9 @@ public class LoadCatalog : MonoBehaviour
                 foundBrands.Add(brand);
             }
         }
-    }
+    }*/
 
-    private void GenerateDesigners()
+/*    private void GenerateDesigners()
     {
         foreach (Item item in loadedItems)
         {
@@ -349,9 +363,9 @@ public class LoadCatalog : MonoBehaviour
 
         var result = string.Join(", ", foundDesigners.ToArray());
         Debug.Log($"Designers loaded: {result}");
-    }
+    }*/
 
-    public void scanDesign(Item item)
+/*    public void scanDesign(Item item)
     {
         List<string> itemBrands = item.GetBrand();
 
@@ -366,9 +380,9 @@ public class LoadCatalog : MonoBehaviour
                 foundBrands.Add(brand);
             }
         }
-    }
+    }*/
 
-    private void ChangeContentToCategory(string category)
+    public void ChangeContentToCategory(string category)
     {
         GameObject content = GameObject.Find("Content");
 

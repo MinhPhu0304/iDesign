@@ -165,21 +165,21 @@ public class ItemManager : MonoBehaviour
     {
         Item chair = new Item(1, "Chair", 30.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2356237609.htm?rsqid=3512401f2c8a4cffad08f4acf7c7ab30-001", "Adjustable seat height Height adjustable back/lumbar\n Independently adjustable seat tilt - free floating or lockable");
         chair.AddCategory(new string[] { "Office", "Chairs", "Desks" });
-        chair.AddBrand(new string[] { "Ikea" });
-        chair.AddDesigner(new string[] { "Ikea" });
+        chair.SetBrand( "Ikea");
+        chair.SetDesigner("Ikea");
 
         itemList.Add(chair);
 
         Item table = new Item(2, "Table", 60.00f, "https://www.trademe.co.nz/business-farming-industry/office-furniture/desk-chairs/listing-2357653157.htm?rsqid=148a18ec29374beeafeeab8f14940dcc-001", "Good stuff");
         table.AddCategory(new string[] { "Living Room", "Couches", "Lounge" });
-        table.AddBrand(new string[] { "Harvey Norman" });
-        table.AddDesigner(new string[] { "Parkland" });
+        table.SetBrand( "Harvey Norman");
+        table.SetDesigner("Parkland");
         itemList.Add(table);
 
         Item couch = new Item(3, "Couch", 90.00f, "https://google.com", "Cautions: heavy stuff");
         couch.AddCategory(new string[] { "Living Room", "Tables", "Dining Room", "Office" });
-        couch.AddBrand(new string[] { "The Warehouse" });
-        couch.AddDesigner(new string[] { "Living & Co" });
+        couch.SetBrand( "The Warehouse");
+        couch.SetDesigner("Living & Co");
 
         itemList.Add(couch);
         AddDemoDataToDB();
